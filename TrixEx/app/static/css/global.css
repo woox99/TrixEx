@@ -1,0 +1,96 @@
+/* global.css */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+}
+
+html{
+    font-size: 1vw;
+}
+
+body{
+    position: relative;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    background-color: #0d1117;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    overflow-x: hidden;
+    letter-spacing: 0.05vw;
+}
+
+p{
+    color: #ffffff;
+    opacity: 95%;
+}
+
+a{
+    color: #ffffff;
+    opacity: 95%;
+    text-decoration: none;
+}
+
+i{
+    color: #ffffff;
+    opacity: 95%;
+}
+
+.dark{
+    opacity: 0.4;
+}
+.green{
+    color: #3fb950;
+}
+.blue{
+    color: #218bff;
+}
+.orange{
+    color: #ff8600;
+}
+.relative{
+    position: relative;
+}
+.flex{
+    display: flex;
+}
+.vCenter{
+    display: flex;
+    align-items: center;
+}
+.hCenter{
+    display: flex;
+    justify-content: center;
+}
+button:hover{
+    cursor: pointer;
+}
+
+/* Footer */
+.foot{
+    width: 100vw;
+    height: 8.5vw;
+    font-weight: 600;   
+    background-image: linear-gradient(#ffffff07, #0d1117);
+    gap: 4vw;
+    padding-left: 8vw;
+}
+.foot .group{
+    font-size: 1.7rem; 
+    letter-spacing: 0;
+    opacity: 0.4;
+    margin-bottom: 1vw;
+}
+.foot .group i{
+    font-size: 2rem;
+    margin-right: 0.8vw;
+}
+.foot .link{
+    font-size: 1.1rem;
+}
+.foot .copyright{
+    opacity: 0.4;
+    margin-left: 20vw;
+}

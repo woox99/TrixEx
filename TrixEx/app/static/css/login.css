@@ -1,0 +1,103 @@
+/* Nav Bar */
+.landingNav{
+    display: flex;
+    align-items: center;
+    height: 5.5vw;
+}
+.landingNav .logo{
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-left: 1vw;
+    letter-spacing: -0.025vw;
+}
+.landingNav i{
+    font-size: 1.5rem;
+    margin-top: 0.4vw;
+    margin-left: 0.6vw;
+}
+.landingNav .links{
+    font-size: 1.1rem;
+    position: absolute;
+    right: 0;
+}
+.landingNav a{
+    margin-right: 2.9vw;
+}
+.landingNav .button{
+    padding: 0.7vw 1.5vw;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+}
+
+/* Sign In Form */
+.signIn{
+    margin-top: 3vw;
+}
+form{
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 0.5vw;
+    padding: 2vw;
+}
+.signIn .header{
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -0.1vw;
+}
+.signIn .input{
+    position: relative;
+    margin-top: 2vw;
+}
+.signIn .input i{
+    position: absolute;
+    top: 0.1vw;
+    left: 0.5vw;
+    font-size: 1.25rem;
+    border-radius: 50%;
+    padding: 0.8vw;
+    background-color: #0d1117;
+}
+.signIn input{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    width: 22vw;
+    height: 3vw;
+    background-color: #0d1117;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    padding-left: 3.5vw;
+    color: white;
+}
+.signIn input:focus{
+    border: 1px solid #218bff;
+    outline: none;
+}
+
+.signIn .flex{
+    justify-content: space-between;
+    font-size: 1.1rem;
+    align-items: center;
+    margin-top: 2vw;
+}
+.signIn button{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #0d1117;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+    width: 7vw;
+    height: 3vw;
+    letter-spacing: 0.05vw;
+}
+
+
+
+/* Footer */
+.foot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

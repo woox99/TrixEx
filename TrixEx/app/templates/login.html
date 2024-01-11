@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrixEx - Login</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body>
+    <!-- Nav Bar -->
+    <div class="landingNav">
+        <div class="logo flex vCenter">
+            <p class="logo green">TrixEx</p>
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <div class="links">
+            <a class="blue" href="">Demo Account</a>
+            <a href="/TrixEx/login">Sign In</a>
+            <a class="button smooth-scroll" href="/TrixEx#registerSection">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Sign In Form -->
+    <div class="hCenter signIn">
+        <form action="">
+            <p class="header blue">Sign In</p>
+            <div class="input">
+                <i class="fa-solid fa-envelope"></i>
+                <input type="text" placeholder="Email">
+            </div>
+            <div class="input">
+                <i class="fa-solid fa-lock"></i>
+                <input type="password" placeholder="Password">
+            </div>
+            <div class="flex">
+                <p>Not a member? <a class="blue" href="/TrixEx#registerSection">Sign Up</a></p>
+                <button type="submit">Login</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot vCenter">
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-linkedin"></i>
+                <p>Connect with us</p>
+            </div>
+            <p class="link"><a class="blue" href="">Follow</a> us on LinkedIn</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Support</p>
+            </div>
+            <p class="link"><a class="blue" href="">Report</a> an issue</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-github"></i>
+                <p>Source Code</p>
+            </div>
+            <p class="link"><a class="blue" href="">Github</a> or it didn't happen</p>
+        </div>
+        <p class="copyright">© 2024 TrixEx</p>
+    </div>
+</body>
+
+</html>

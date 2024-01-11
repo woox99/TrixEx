@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrixEx</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+</head>
+
+<body>
+    <!-- #This is temporary -->
+    <!-- <div class="temp"></div> -->
+
+    <!-- Nav Bar -->
+    <div class="landingNav">
+        <div class="logo flex vCenter">
+            <p class="logo green">TrixEx</p>
+            <i class="fa-solid fa-code"></i>
+        </div>
+        <div class="links">
+            <a class="green" href="">Demo Account</a>
+            <a href="/TrixEx/login">Sign In</a>
+            <a class="button smooth-scroll" href="#registerSection">Sign Up</a>
+        </div>
+    </div>
+
+    <!-- Side Bar -->
+    <div class="sideBar">
+        <div class="relative">
+            <i class="fa-solid fa-signature"></i>
+            <div class="gradient greenGradient"></div>
+        </div>
+        <div class="bar greenBlueBar"></div>
+        <div class="relative">
+            <i class="fa-solid fa-users"></i>
+            <div class="gradient blueGradient"></div>
+        </div>
+        <div class="bar blueOrangeBar"></div>
+        <div class="relative">
+            <i class="fa-solid fa-headphones"></i>
+            <div class="gradient orangeGradient"></div>
+        </div>
+    </div>
+
+    <!-- Section 1 -->
+    <div class="section intro">
+        <p class="header">Store, share, and visualize front-end code</p>
+        <p class="dark">Facilitating community collaboration.</p>
+        <div class="carousel">
+
+        </div>
+    </div>
+
+    <!-- Section 2 -->
+    <div class="section registerSection" id="registerSection">
+        <p class="header">Join the developer community</p>
+        <div class="flex">
+            <div class="demoAccount">
+                <p class="header2">Sign In with a <span class="blue">Demo Account</span></p>
+                <p class="dark">Gain full access to the site in one click.</p>
+                <a class="button" href="">Demo Account</a>
+            </div>
+            <div class="register">
+                <p class="header2 blue">Sign Up</p>
+                <form action="">
+                    <div class="input">
+                        <i class="fa-solid fa-envelope"></i>
+                        <input type="text" placeholder="Email">
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" placeholder="Create Username">
+                    </div>
+                    <div class="input">
+                        <i class="fa-solid fa-lock"></i>
+                        <input type="password" placeholder="Create Password">
+                    </div>
+                    <div class="flex">
+                        <p>Already a memeber? <a class="blue" href="/TrixEx/login">Sign In</a></p>
+                        <button type="submit">Register</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3 -->
+    <div class="section footerSection">
+        <p class="header">We make it easy to reach out</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot vCenter">
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-linkedin"></i>
+                <p>Connect with us</p>
+            </div>
+            <p class="link"><a href="">Follow</a> us on LinkedIn</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Support</p>
+            </div>
+            <p class="link"><a href="">Report</a> an issue</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-github"></i>
+                <p>Source Code</p>
+            </div>
+            <p class="link"><a href="">Github</a> or it didn't happen</p>
+        </div>
+        <p class="copyright">© 2024 TrixEx</p>
+    </div>
+
+    <script src="{% static 'js/index.js' %}"></script>
+</body>
+
+</html>

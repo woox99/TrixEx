@@ -1,0 +1,228 @@
+/* index.css */
+
+*{
+    
+}
+.temp{
+    height: 2.9vw;
+    background-color: rgb(58, 58, 62);
+}
+
+/* Nav Bar */
+.landingNav{
+    display: flex;
+    align-items: center;
+    height: 5.5vw;
+}
+.landingNav .logo{
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-left: 1vw;
+    letter-spacing: -0.025vw;
+}
+.landingNav i{
+    font-size: 1.5rem;
+    margin-top: 0.4vw;
+    margin-left: 0.6vw;
+}
+.landingNav .links{
+    font-size: 1.1rem;
+    position: absolute;
+    right: 0;
+}
+.landingNav a{
+    margin-right: 2.9vw;
+}
+.landingNav .button{
+    padding: 0.7vw 1.5vw;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+}
+
+/* Side Bar */
+.sideBar{
+    position: absolute;
+    left: 2vw;
+    top: 14vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 6.5vw;
+    /* height: 250vh; */
+    /* border: 1px solid white; */
+}
+.sideBar i{
+    position: absolute;
+    top: 2.2vw;
+    left: 2.4vw;
+    z-index: 100;
+    font-size: 1.5rem;
+}
+.sideBar .gradient{
+    width: 6.5vw;
+    height: 6.5vw;
+    filter: blur(15px);
+    opacity: .70;
+}
+.sideBar .greenGradient{
+    background-image: radial-gradient(#3fb950, #0d1117 75%);
+}
+.sideBar .bar{
+    width: 0.2vw;
+    /* height: 100vh; */
+    border-radius: 10vw;
+}
+.sideBar .greenBlueBar{
+    background-image: linear-gradient(#3fb950 30%, #218bff 70%);
+    height: 34vw;
+}
+.sideBar .blueGradient{
+    background-image: radial-gradient(#218bff, #0d1117 75%);
+}
+.sideBar .blueOrangeBar{
+    background-image: linear-gradient(#218bff 40%, #ff8600 80%);
+    height: 47vw;
+}
+.sideBar .orangeGradient{
+    background-image: radial-gradient(#ff8600, #0d1117 75%);
+}
+
+/* Intro Section */
+.section{
+    margin-left: 10vw;
+    /* background-color: red; */
+}
+.intro{
+    margin-top: 4vw;
+}
+.intro .header{
+    font-size: 6rem;
+    width: 70vw;
+    font-weight: 700;
+    letter-spacing: -0.1vw;
+    line-height: 7vw;
+}
+.intro .dark{
+    font-size: 2rem;
+    margin-top: 1vw;
+}
+.intro .carousel{
+    height: 18vw;
+    width: 100%;
+    border: 1px solid white;
+    opacity: 0.4;
+}
+
+/* Register Section */
+.registerSection{
+    height: 100vhl;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.registerSection .header{
+    font-size: 6rem;
+    font-weight: 700;
+    letter-spacing: -0.1vw;
+    line-height: 7vw;
+    width: 60vw;
+    margin-top: 5vw;
+}
+.registerSection .demoAccount{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 40vw;
+    height: 24vw;
+    margin-right: 7vw;
+}
+.registerSection .header2{
+    font-size: 4rem;
+    font-weight: 700;
+    line-height: 4vw;
+    letter-spacing: -0.1vw;
+    width: 35vw;
+}
+.registerSection .dark{
+    font-size: 2rem;
+    margin-top: 1.5vw;
+}
+.registerSection .demoAccount .button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 10vw;
+    height: 3vw;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+    margin-left: 25.5vw;
+    margin-top: 1.5vw;
+}
+.registerSection .register{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    width: 40vw;
+    height: 24vw;
+}
+.registerSection .input{
+    position: relative;
+    margin-top: 2vw;
+}
+.registerSection .input i{
+    position: absolute;
+    top: 0.1vw;
+    left: 0.5vw;
+    font-size: 1.25rem;
+    border-radius: 50%;
+    padding: 0.8vw;
+    background-color: #0d1117;
+}
+.registerSection input{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    width: 22vw;
+    height: 3vw;
+    background-color: #0d1117;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    padding-left: 3.5vw;
+    color: white;
+}
+.registerSection input:focus{
+    border: 1px solid #218bff;
+    outline: none;
+}
+
+.registerSection .register .flex{
+    font-size: 1.1rem;
+    align-items: center;
+    gap: 7vw;
+    margin-top: 2vw;
+}
+.registerSection .register button{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    color: #ffffff;
+    background-color: #0d1117;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+    width: 7vw;
+    height: 3vw;
+    letter-spacing: 0.05vw;
+}
+
+/* Footer Section */
+.footerSection .header{
+    width: 50vw;
+    font-size: 5.5rem;
+    font-weight: 700;
+    letter-spacing: -0.1vw;
+    line-height: 5vw;
+    opacity: 0.4;
+    margin-top: 18vw;
+    margin-bottom: 2vw;
+}
