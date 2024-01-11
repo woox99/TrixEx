@@ -19,12 +19,12 @@
 
     <!-- Nav Bar -->
     <div class="landingNav">
-        <div class="logo flex vCenter">
+        <a href="/TrixEx" class="logo flex vCenter">
             <p class="logo green">TrixEx</p>
             <i class="fa-solid fa-code"></i>
-        </div>
+        </a>
         <div class="links">
-            <a class="green" href="">Demo Account</a>
+            <a class="green" href="/TrixEx/demo">Demo Account</a>
             <a href="/TrixEx/login">Sign In</a>
             <a class="button smooth-scroll" href="#registerSection">Sign Up</a>
         </div>
@@ -64,22 +64,23 @@
             <div class="demoAccount">
                 <p class="header2">Sign In with a <span class="blue">Demo Account</span></p>
                 <p class="dark">Gain full access to the site in one click.</p>
-                <a class="button" href="">Demo Account</a>
+                <a class="button" href="/TrixEx/demo">Demo Account</a>
             </div>
             <div class="register">
                 <p class="header2 blue">Sign Up</p>
-                <form action="">
+                <form action="/TrixEx" method="POST">
+                    {% csrf_token %}
                     <div class="input">
                         <i class="fa-solid fa-envelope"></i>
-                        <input type="text" placeholder="Email">
+                        <input type="text" name="email" placeholder="Email" value="{{email}}">
                     </div>
                     <div class="input">
                         <i class="fa-solid fa-user"></i>
-                        <input type="text" placeholder="Create Username">
+                        <input type="text" name="username" placeholder="Create Username" maxlength="12" value="{{username}}">
                     </div>
                     <div class="input">
                         <i class="fa-solid fa-lock"></i>
-                        <input type="password" placeholder="Create Password">
+                        <input type="password" name="password" placeholder="Create Password">
                     </div>
                     <div class="flex">
                         <p>Already a memeber? <a class="blue" href="/TrixEx/login">Sign In</a></p>
@@ -102,21 +103,21 @@
                 <i class="fa-brands fa-linkedin"></i>
                 <p>Connect with us</p>
             </div>
-            <p class="link"><a href="">Follow</a> us on LinkedIn</p>
+            <p class="link"><a class="orange" href="">Follow</a> us on LinkedIn</p>
         </div>
         <div>
             <div class="flex vCenter group">
                 <i class="fa-solid fa-envelope"></i>
                 <p>Support</p>
             </div>
-            <p class="link"><a href="">Report</a> an issue</p>
+            <p class="link"><a class="orange" href="">Report</a> an issue</p>
         </div>
         <div>
             <div class="flex vCenter group">
                 <i class="fa-brands fa-github"></i>
                 <p>Source Code</p>
             </div>
-            <p class="link"><a href="">Github</a> or it didn't happen</p>
+            <p class="link"><a class="orange" href="">Github</a> or it didn't happen</p>
         </div>
         <p class="copyright">© 2024 TrixEx</p>
     </div>

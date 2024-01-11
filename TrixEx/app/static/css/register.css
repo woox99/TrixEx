@@ -31,8 +31,8 @@
 }
 
 /* Sign In Form */
-.signIn{
-    margin-top: 3vw;
+.register{
+    margin-top: 2vw;
 }
 form{
     background-color: #ffffff07;
@@ -40,23 +40,23 @@ form{
     border-radius: 0.5vw;
     padding: 2vw;
 }
-.signIn .header{
+.register .header{
     font-size: 5rem;
     font-weight: 700;
     letter-spacing: -0.1vw;
 }
-.signIn .error{
+.register .error{
     position: absolute;
     font-weight: 300;
     color: rgb(223, 132, 132);
     margin-top: 0.4vw;
     margin-left: 0.5vw;
 }
-.signIn .input{
+.register .input{
     position: relative;
     margin-top: 2vw;
 }
-.signIn .input i{
+.register .input i{
     position: absolute;
     top: 0.1vw;
     left: 0.5vw;
@@ -65,7 +65,7 @@ form{
     padding: 0.8vw;
     background-color: #0d1117;
 }
-.signIn input{
+.register input{
     font-family: 'Open Sans', sans-serif;
     font-weight: 500;
     width: 22vw;
@@ -76,18 +76,18 @@ form{
     padding-left: 3.5vw;
     color: white;
 }
-.signIn input:focus{
+.register input:focus{
     border: 1px solid #218bff;
     outline: none;
 }
 
-.signIn .flex{
+.register .flex{
     justify-content: space-between;
     font-size: 1.1rem;
     align-items: center;
     margin-top: 2vw;
 }
-.signIn button{
+.register button{
     font-family: 'Open Sans', sans-serif;
     font-size: 1rem;
     color: #ffffff;

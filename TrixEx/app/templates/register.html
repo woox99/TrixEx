@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
 </head>
 
 <body>
@@ -27,27 +27,34 @@
     </div>
 
     <!-- Sign In Form -->
-    <div class="hCenter signIn">
-        <form action="/TrixEx/login" method="POST">
+    <div class="hCenter register">
+        <form action="/TrixEx" method="POST">
             {% csrf_token %}
-            <p class="header blue">Sign In</p>
+            <p class="header blue">Sign Up</p>
             {% if email_error %}
-            <p class="error">{{email_error}}</p>
+                <p class="error">{{email_error}}</p>
             {% endif %}
             <div class="input">
                 <i class="fa-solid fa-envelope"></i>
                 <input type="text" name="email" value="{{email}}" placeholder="Email">
             </div>
+            {% if username_error %}
+                <p class="error">{{username_error}}</p>
+            {% endif %}
+            <div class="input">
+                <i class="fa-solid fa-user"></i>
+                <input type="text" name="username" value="{{username}}" placeholder="Create Username">
+            </div>
             {% if password_error %}
-            <p class="error">{{password_error}}</p>
+                <p class="error">{{password_error}}</p>
             {% endif %}
             <div class="input">
                 <i class="fa-solid fa-lock"></i>
-                <input type="password" name="password" value="{{password}}" placeholder="Password">
+                <input type="password" name="password" value="{{password}}" placeholder="Create Password">
             </div>
             <div class="flex">
-                <p>Not a member? <a class="blue" href="/TrixEx#registerSection">Sign Up</a></p>
-                <button type="submit">Login</button>
+                <p>Already a member? <a class="blue" href="/TrixEx/login">Sign In</a></p>
+                <button type="submit">Register</button>
             </div>
         </form>
     </div>
