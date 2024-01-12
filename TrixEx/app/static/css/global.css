@@ -68,6 +68,92 @@ button:hover{
     cursor: pointer;
 }
 
+/* Nav */
+.nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    height: 6vw;
+    box-shadow: 5px 5px 10px black;
+}
+.nav .logo{
+    font-size: 2rem;
+    margin-left: 2vw;
+}
+.nav form{
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-left: 2vw;
+}
+.nav input{
+    height: 2.75vw;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.025vw;
+    outline: none;
+    background-color: #ffffff07;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    color: #ffffff;
+    padding-left: 3vw;
+}
+.nav button{
+    position: absolute;
+    left: 1vw;
+    background-color: #0d1117;
+    font-size: 1.5rem;
+    outline: none;
+    border: none;
+}
+.nav button i{
+    color: #218bff;
+}
+.nav .icons{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2vw;
+    font-weight: 300;
+}
+.nav .icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.nav .icon i{
+    font-size: 1.75rem;
+    margin-bottom: 0.5vw;
+    color: #218bff;
+}
+.nav .icon p{
+    font-size: 0.8rem;
+    opacity: 0.4;
+}
+.nav .username{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    right: 2vw;
+    display: flex;
+}
+.nav .welcome{
+    margin-right: 2vw;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+.nav .welcome a{
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+
 /* Footer */
 .foot{
     width: 100vw;

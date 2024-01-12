@@ -3,9 +3,10 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 import bcrypt
 
-from ..models import User
+from .models import User
 
-# LANDING AND REGISTRATION
+# INDEX
+# Validates and creates user registration
 def index(request):
     if request.method == 'GET':
         return render(request, 'index.html')
@@ -34,6 +35,7 @@ def index(request):
         return redirect('/TrixEx/home')
 
 # LOGIN
+# Validates and handles user login
 def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
@@ -53,8 +55,19 @@ def login(request):
         request.session['userId'] = user.id
         print(user.id)
         return redirect('/TrixEx/home')
+    
+# LOGOUT
+# Displays and handles logout
+def logout(request):
+    user = User.objects.get(id=request.session['userId'])
+    del request.session['userId']
+    context = {
+        'username' : user.username
+    }
+    return render(request, 'logout.html', context)
 
-# CREATE DEMO ACCOUNT
+# DEMO ACCOUNT
+# Creates demo account
 def demo(request):
     id = User.objects.all().last().id + 1
     username = 'DemoAccount#' + str(id)
@@ -65,6 +78,7 @@ def demo(request):
     return redirect('/TrixEx/home')
 
 # HOME
+# Displays home page
 def home(request):
     if 'userId' not in request.session:
         return redirect('/TrixEx')
@@ -73,3 +87,8 @@ def home(request):
         'user' : user
     }
     return render(request, 'home.html', context)
+
+# Create
+# Displays and handles create page
+def create(request):
+    return render(request, 'create.html')

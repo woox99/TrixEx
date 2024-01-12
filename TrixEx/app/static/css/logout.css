@@ -1,0 +1,66 @@
+/* Nav Bar */
+.landingNav{
+    display: flex;
+    align-items: center;
+    height: 5.5vw;
+}
+.landingNav .logo{
+    font-size: 2.25rem;
+    font-weight: 800;
+    margin-left: 1vw;
+    letter-spacing: -0.025vw;
+}
+.landingNav i{
+    font-size: 1.5rem;
+    margin-top: 0.4vw;
+    margin-left: 0.6vw;
+}
+.landingNav .links{
+    font-size: 1.1rem;
+    position: absolute;
+    right: 0;
+}
+.landingNav a{
+    margin-right: 2.9vw;
+}
+.landingNav .button{
+    padding: 0.7vw 1.5vw;
+    border: 1px solid #ffffff20;
+    border-radius: 0.5vw;
+    background-color: #ffffff10;
+}
+
+.logout{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35vw;
+    height: 20vw;
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 0.5vw;
+    padding: 0 3vw;
+    margin-top: 5vw;
+}
+.logout .header{
+    font-size: 5rem;
+    font-weight: 700;
+    letter-spacing: -0.1vw;
+    line-height: 5vw;
+    width: 15vw;
+}
+.logout .message{
+    font-size: 1.5rem;
+    margin-top: 2vw;
+    opacity: 0.4;
+}
+
+
+
+
+/* Footer */
+.foot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}

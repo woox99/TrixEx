@@ -1,10 +1,12 @@
 # app/urls.py
 from django.urls import path
-from .views import user
+from . import views
 
 urlpatterns = [
-    path('TrixEx', user.index),
-    path('TrixEx/login', user.login),
-    path('TrixEx/demo', user.demo),
-    path('TrixEx/home', user.home),
+    path('TrixEx', views.index),
+    path('TrixEx/login', views.login),
+    path('TrixEx/demo', views.demo),
+    path('TrixEx/home', views.home),
+    path('TrixEx/logout', views.logout),
+    path('TrixEx/create', views.create),
 ]
