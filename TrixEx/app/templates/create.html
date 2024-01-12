@@ -62,17 +62,23 @@
     <div class="editor-display">
         <div class="html">
             <p>HTML</p>
-            <textarea id="htmleditor"></textarea>
+            <textarea id="htmlEditor" oninput="updatePreview()"></textarea>
         </div>
         <div class="css">
             <p>CSS</p>
-            <textarea id="csseditor"></textarea>
+            <textarea id="cssEditor" oninput="updatePreview()"></textarea>
         </div>
         <div class="js">
             <p>JS</p>
-            <textarea id="jseditor"></textarea>
+            <textarea id="jsEditor" oninput="updatePreview()"></textarea>
         </div>
+
     </div>
+    
+    <!-- Screen -->
+    <iframe id="screen"></iframe>
+
+
 
     <script src="{% static 'js/create.js' %}"></script>
 </body>

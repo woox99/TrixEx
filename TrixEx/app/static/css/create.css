@@ -1,9 +1,9 @@
 .editor-display{
     position: fixed;
     top: 0;
-    right: 0;
+    right: -2vw;
     z-index: 1;
-    width: 40vw;
+    width: 42vw;
     height: 100vh;
     border-left: 1px solid #ffffff10;
 }
@@ -16,10 +16,9 @@ the scroll bar doesnt hide */
 }
 .editor-display p{
     font-weight: 800;
-    background-color: black;
     border-top: 1px solid #ffffff20;
+    /* background-color: black; */
     padding-left: 1vw;
-    /* font-size: 1.25rem; */
 }
 .html p{
     color: #ff8f8f;
@@ -32,4 +31,14 @@ the scroll bar doesnt hide */
 }
 .editor-display textarea{
     width: 100%;
+}
+
+/* Screen */
+#screen{
+    position: absolute;
+    top: 8vw;
+    left: 2.5vw;
+    width: 55vw;
+    height: 30vw;
+    border: 1px solid #ffffff10;
 }
