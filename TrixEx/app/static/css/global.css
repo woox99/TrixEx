@@ -24,18 +24,18 @@ body{
 
 p{
     color: #ffffff;
-    opacity: 95%;
+    opacity: 90%;
 }
 
 a{
     color: #ffffff;
-    opacity: 95%;
+    opacity: 90%;
     text-decoration: none;
 }
 
 i{
     color: #ffffff;
-    opacity: 95%;
+    opacity: 90%;
 }
 button{
     font-family: 'Open Sans', sans-serif;
@@ -110,7 +110,7 @@ button:hover{
 .nav button{
     position: absolute;
     left: 1vw;
-    background-color: #0d1117;
+    background-color: transparent;
     font-size: 1.5rem;
     outline: none;
     border: none;

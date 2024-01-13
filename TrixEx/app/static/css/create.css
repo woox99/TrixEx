@@ -35,29 +35,28 @@ the scroll bar doesnt hide */
 
 /* Main */
 .main{
-    /* display: flex; */
-    /* justify-content: center; */
-    width: 54.4vw;
+    position: relative;
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
 }
 #screen{
     position: absolute;
-    top: 15vw;
+    top: 16vw;
     left: 15.75vw;
     width: 28vw;
     height: 15.75vw;
     border: 1px solid #ffffff10;
-    border-radius: 2.5vw;
-    /* box-shadow: 0.5vw 0.5vw 2vw; */
+    border-radius: 3vw;
+    box-shadow: 0.25vw 0.25vw 1vw;
     overflow: hidden !important;
     transform: scale(2);
 }
 .main .controls{
     position: absolute;
-    bottom: 0;
-    width: 60vw;
-
-    /* margin-top: 50vw; */
-    /* background-color: red; */
+    bottom: 1vw;
+    width: 56vw;
 }
 .main input{
     height: 2.75vw;
@@ -133,13 +132,11 @@ the scroll bar doesnt hide */
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 20vw;
-    height: 7vw;
-}
-.controller{
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 20vw;
+    height: 7vw;
 }
 .decrease, .increase{
     text-align: center;

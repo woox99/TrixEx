@@ -85,7 +85,7 @@ def home(request):
     if 'userId' not in request.session:
         return redirect('/TrixEx')
     user = User.objects.get(id=request.session['userId'])
-    projects = Project.objects.filter(is_public=1)
+    projects = Project.objects.filter(is_public=1).order_by('-created_at')
     context = {
         'user' : user,
         'projects' : projects

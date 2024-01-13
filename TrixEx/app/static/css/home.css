@@ -1,4 +1,7 @@
 /* Footer */
+body{
+    padding-bottom: 8.5vw;
+}
 .foot{
     position: absolute;
     bottom: 0;
@@ -6,18 +9,39 @@
 }
 
 /* Projects */
-
 .projects{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     margin-top: 10vw;
-    margin-left: 2vw;
+    margin-left: 3.5vw;
+    /* background-color: red; */
 }
-
+.project{
+    margin-right: 3.5vw;
+    margin-bottom: 3vw;
+}
 iframe{
     width: 28vw;
     height: 15.75vw;
     border: 1px solid #ffffff20;
-    margin-bottom: 3vw;
+    box-shadow: 0.25vw 0.25vw 1vw;
+    border-radius: 3vw;
+}
+.project .icon-bar{
+    font-weight: 300;
+    margin-top: 0.5vw;
+    padding-left: 1vw;
+    font-size: 0.9rem;
+}
+.projects i{
+    font-size: 1.5rem;
+    margin-right: 1vw;
+    cursor: pointer;
+    color: #218bff;
+    opacity: 0.4;
+}
+.projects .bookmarked,
+.projects .liked{
+    display: none;
 }

@@ -8,11 +8,9 @@ const getProjects = () => {
                 const cssCode = project.css;
                 const jsCode = project.js;
                 const scale = project.scale;
-                const marginTop = project.marginTop;
-                const marginLeft = project.marginLeft;
-                console.log(iframe)
-                console.log(project)
-
+                const marginTop = project.margin_top;
+                const marginLeft = project.margin_left;
+                
                 // Clear existing content
                 iframe.innerHTML = "";
 
