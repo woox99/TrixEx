@@ -1,7 +1,7 @@
 # app/views/user.py
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 
 import bcrypt
 
@@ -85,10 +85,24 @@ def home(request):
     if 'userId' not in request.session:
         return redirect('/TrixEx')
     user = User.objects.get(id=request.session['userId'])
+    # Get all public projects to display on home page
     projects = Project.objects.filter(is_public=1).order_by('-created_at')
+
+    # Create sets for bookmarks and likes for BigO(1) lookup
+    bookmarked_projectIds_set = set()
+    bookmarked_projects = user.bookmarked_projects.all()
+    for project in bookmarked_projects:
+        bookmarked_projectIds_set.add(project.id)
+    liked_projectIds_set = set()
+    liked_projects = user.liked_projects.all()
+    for project in liked_projects:
+        liked_projectIds_set.add(project.id)
+
     context = {
         'user' : user,
-        'projects' : projects
+        'projects' : projects,
+        'bookmarked_projectIds_set' : bookmarked_projectIds_set,
+        'liked_projectIds_set' : liked_projectIds_set,
     }
     return render(request, 'home.html', context)
 
@@ -110,7 +124,7 @@ def getAll(request):
         })
     return JsonResponse(serialized_projects, safe=False)
 
-# Create
+# CREATE
 # Displays and handles create page
 def create(request):
     if request.method == 'GET':
@@ -131,3 +145,23 @@ def create(request):
         owner = User.objects.get(id=request.session['userId'])
         Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
         return redirect('/TrixEx/home')
+    
+# Bookmark Project
+def bookmark(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    if project in user.bookmarked_projects.all():
+        user.bookmarked_projects.remove(project)
+    else:
+        user.bookmarked_projects.add(project)
+    return HttpResponse()
+
+# Like Project
+def like(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    if project in user.liked_projects.all():
+        user.liked_projects.remove(project)
+    else:
+        user.liked_projects.add(project)
+    return HttpResponse()

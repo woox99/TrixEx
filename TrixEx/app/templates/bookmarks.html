@@ -58,18 +58,10 @@
         <div class="project">
             <iframe data-project-id="{{project.id}}"></iframe>
             <div class="icon-bar vCenter">
-                {% if project.id in bookmarked_projectIds_set %}
-                <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1" onclick="toggleBookmark({{project.id}})"></i>
-                {% endif %}
-                {% if project.id not in bookmarked_projectIds_set %}
-                <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0" onclick="toggleBookmark({{project.id}})"></i>
-                {% endif %}
-                {% if project.id in liked_projectIds_set %}
-                <i class="fa-solid fa-thumbs-up selected" data-like-projectId="{{project.id}}" data-is-liked="1" onclick="toggleLike({{project.id}})"></i>
-                {% endif %}
-                {% if project.id not in liked_projectIds_set %}
-                <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0" onclick="toggleLike({{project.id}})"></i>
-                {% endif %}
+                <i class="fa-regular fa-bookmark unbookmarked"></i>
+                <i class="fa-solid fa-bookmark bookmarked"></i>
+                <i class="fa-regular fa-thumbs-up unliked"></i>
+                <i class="fa-solid fa-thumbs-up liked"></i>
                 <p>{{project.title}}</p>
             </div>
         </div>

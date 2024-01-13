@@ -41,10 +41,7 @@ iframe{
     color: #218bff;
     opacity: 0.4;
 }
-.projects .selected{
-    opacity: 1.0; 
-}
-/* .projects .bookmarked,
+.projects .bookmarked,
 .projects .liked{
     display: none;
-} */
+}
