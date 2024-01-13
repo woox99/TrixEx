@@ -1,9 +1,11 @@
 # app/views/user.py
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.http import JsonResponse
+
 import bcrypt
 
-from .models import User
+from .models import User, ExampleProject, Project
 
 # INDEX
 # Validates and creates user registration
@@ -83,12 +85,49 @@ def home(request):
     if 'userId' not in request.session:
         return redirect('/TrixEx')
     user = User.objects.get(id=request.session['userId'])
+    projects = Project.objects.filter(is_public=1)
     context = {
-        'user' : user
+        'user' : user,
+        'projects' : projects
     }
     return render(request, 'home.html', context)
+
+# Get all public projects
+def getAll(request):
+    projects = Project.objects.filter(is_public=1)
+    
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)
 
 # Create
 # Displays and handles create page
 def create(request):
-    return render(request, 'create.html')
+    if request.method == 'GET':
+        example = ExampleProject.objects.get(id=1)
+        context = {
+            'example' : example
+        }
+        return render(request, 'create.html', context)
+    if request.method == 'POST':
+        title = request.POST['title']
+        css = request.POST['css_input']
+        html = request.POST['html_input']
+        js = request.POST['js_input']
+        is_public = request.POST['is_public']
+        scale = request.POST['scale']
+        margin_top = request.POST['margin_top']
+        margin_left = request.POST['margin_left']
+        owner = User.objects.get(id=request.session['userId'])
+        Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
+        return redirect('/TrixEx/home')

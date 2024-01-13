@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,10 +12,11 @@
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
 </head>
-<body>
+
+<body onload="getProjects()">
     <!-- Nav Bar -->
     <div class="nav">
-        <a href="/TrixEx" class="logo">
+        <a href="/TrixEx/home" class="logo">
             <i class="fa-solid fa-code"></i>
         </a>
         <form action="/">
@@ -23,17 +25,10 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
         </form>
-        <div class="username">
-            <p class="welcome">Welcome, <a href="" class="blue">{{user.username}}</a></p>
-            <a href="/TrixEx/logout" class="icon">
-                <i class="fa-solid fa-right-from-bracket"></i>
-                <p>Logout</p>
-            </a>
-        </div>
         <div class="icons">
             <a href="/TrixEx/" class="icon">
-                <i class="fa-solid fa-house"></i>
-                <p>Home</p>
+                <i class="fa-solid fa-house selected"></i>
+                <p class="selected">Home</p>
             </a>
             <a href="" class="icon">
                 <i class="fa-regular fa-folder-open"></i>
@@ -48,32 +43,50 @@
                 <p>Create</p>
             </a>
         </div>
+        <div class="username">
+            <p class="welcome"><span class="dark">Welcome,</span> <a href="" class="blue">{{user.username}}</a></p>
+            <a href="/TrixEx/logout" class="icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <p>Logout</p>
+            </a>
+        </div>
     </div>
 
-        <!-- Footer -->
-        <div class="foot vCenter">
-            <div>
-                <div class="flex vCenter group">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <p>Connect with us</p>
-                </div>
-                <p class="link"><a class="blue" href="">Follow</a> us on LinkedIn</p>
-            </div>
-            <div>
-                <div class="flex vCenter group">
-                    <i class="fa-solid fa-envelope"></i>
-                    <p>Support</p>
-                </div>
-                <p class="link"><a class="blue" href="">Report</a> an issue</p>
-            </div>
-            <div>
-                <div class="flex vCenter group">
-                    <i class="fa-brands fa-github"></i>
-                    <p>Source Code</p>
-                </div>
-                <p class="link"><a class="blue" href="">Github</a> or it didn't happen</p>
-            </div>
-            <p class="copyright">© 2024 TrixEx</p>
+    <!-- Projects -->
+    <div class="projects">
+        {% for project in projects %}
+        <div class="project">
+            <iframe data-project-id="{{project.id}}"></iframe>
         </div>
+        {% endfor %}
+    </div>
+
+    <!-- Footer -->
+    <div class="foot vCenter">
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-linkedin"></i>
+                <p>Connect with us</p>
+            </div>
+            <p class="link"><a class="blue" href="">Follow</a> us on LinkedIn</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Support</p>
+            </div>
+            <p class="link"><a class="blue" href="">Report</a> an issue</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-github"></i>
+                <p>Source Code</p>
+            </div>
+            <p class="link"><a class="blue" href="">Github</a> or it didn't happen</p>
+        </div>
+        <p class="copyright">© 2024 TrixEx</p>
+    </div>
+    <script src="{% static 'js/home.js' %}"></script>
 </body>
+
 </html>

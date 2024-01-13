@@ -37,7 +37,11 @@ i{
     color: #ffffff;
     opacity: 95%;
 }
-
+button{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.05vw;
+}
 .dark{
     opacity: 0.4;
 }
@@ -73,11 +77,13 @@ button:hover{
     position: fixed;
     top: 0;
     left: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     width: 100vw;
     height: 6vw;
     box-shadow: 5px 5px 10px black;
+    background-color: #0d1117;
 }
 .nav .logo{
     font-size: 2rem;
@@ -97,7 +103,7 @@ button:hover{
     outline: none;
     background-color: #ffffff07;
     border: 1px solid #ffffff20;
-    border-radius: 0.5vw;
+    border-radius: 10vw;
     color: #ffffff;
     padding-left: 3vw;
 }
@@ -110,7 +116,8 @@ button:hover{
     border: none;
 }
 .nav button i{
-    color: #218bff;
+    color: #ffffff;
+    opacity: 0.1;
 }
 .nav .icons{
     position: absolute;
@@ -131,6 +138,10 @@ button:hover{
     font-size: 1.75rem;
     margin-bottom: 0.5vw;
     color: #218bff;
+    opacity: 0.4;
+}
+.nav .selected{
+    opacity: 1.0 !important;
 }
 .nav .icon p{
     font-size: 0.8rem;
@@ -151,6 +162,10 @@ button:hover{
 .nav .welcome a{
     font-size: 1.5rem;
     font-weight: 700;
+}
+.nav .username i{
+    color: #ffffff;
+    opacity: 0.4;
 }
 
 

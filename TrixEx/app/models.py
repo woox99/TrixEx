@@ -52,4 +52,25 @@ class User(models.Model):
     # is_banned = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    objects = UserManager() # Add This Line
+    objects = UserManager() 
+    # Projects
+
+class ExampleProject(models.Model):
+    html = models.TextField()
+    css = models.TextField()
+    js = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+class Project(models.Model):
+    owner = models.ForeignKey(User, related_name="projects", on_delete = models.CASCADE)
+    title = models.CharField(max_length=16)
+    html = models.TextField()
+    css = models.TextField()
+    js = models.TextField()
+    is_public = models.BooleanField()
+    scale = models.FloatField()
+    margin_top = models.FloatField()
+    margin_left = models.FloatField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)

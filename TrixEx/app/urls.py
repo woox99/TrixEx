@@ -9,4 +9,5 @@ urlpatterns = [
     path('TrixEx/home', views.home),
     path('TrixEx/logout', views.logout),
     path('TrixEx/create', views.create),
+    path('TrixEx/getAll', views.getAll),
 ]

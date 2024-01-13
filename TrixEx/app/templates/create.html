@@ -26,10 +26,10 @@
 
 </head>
 
-<body>
+<body onload="updatePreview()">
     <!-- Nav Bar -->
     <div class="nav">
-        <a href="/TrixEx" class="logo">
+        <a href="/TrixEx/home" class="logo">
             <i class="fa-solid fa-code"></i>
         </a>
         <form action="/">
@@ -39,7 +39,7 @@
             </button>
         </form>
         <div class="icons">
-            <a href="" class="icon">
+            <a href="/TrixEx/home" class="icon">
                 <i class="fa-solid fa-house"></i>
                 <p>Home</p>
             </a>
@@ -52,31 +52,75 @@
                 <p>Saved</p>
             </a>
             <a href="" class="icon">
-                <i class="fa-solid fa-cloud-arrow-up"></i>
-                <p>Create</p>
+                <i class="fa-solid fa-cloud-arrow-up selected"></i>
+                <p class="selected">Create</p>
             </a>
         </div>
     </div>
 
     <!-- Text Editor -->
-    <div class="editor-display">
-        <div class="html">
-            <p>HTML</p>
-            <textarea id="htmlEditor" oninput="updatePreview()"></textarea>
-        </div>
-        <div class="css">
-            <p>CSS</p>
-            <textarea id="cssEditor" oninput="updatePreview()"></textarea>
-        </div>
-        <div class="js">
-            <p>JS</p>
-            <textarea id="jsEditor" oninput="updatePreview()"></textarea>
+    <form action="/TrixEx/create" method="POST">
+        {% csrf_token %}
+        <div class="editor-display">
+            <div class="html">
+                <p>HTML</p>
+                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{example.html}}</p></textarea>
+            </div>
+            <div class="css">
+                <p>CSS</p>
+                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{example.css}}</textarea>
+            </div>
+            <div class="js">
+                <p>JS</p>
+                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
+            </div>
+            <input id="is-public" type="hidden" name="is_public" value="True">
+            <input id="scale" type="hidden" name="scale" value="1.0">
+            <input id="margin-top" type="hidden" name="margin_top" value="0">
+            <input id="margin-left" type="hidden" name="margin_left" value="0">
         </div>
 
-    </div>
-    
-    <!-- Screen -->
-    <iframe id="screen"></iframe>
+        
+        <!-- Main -->
+        <div class="main">
+            <iframe id="screen"></iframe>
+            <div class="controls">
+                <div class="relative vCenter">
+                    <div class="visibility vCenter">
+                        <p class="selected public-button" onclick="togglePublic(this)">Public</p>
+                        <i class="fa-solid fa-eye public-icon"></i>
+                        <i class="fa-solid fa-eye-slash private-icon"></i>
+                        <p class="private-button" onclick="togglePrivate(this)">Private</p>
+                    </div>
+                    <input type="text" name="title" placeholder="Title" minlength="3" maxlength="16">
+                </div>
+                <button type="submit" class="flex">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Save</p>
+                </button>
+                <div class="controller">
+                    <div class="decrease" onclick="decreaseScale()">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                        <p>Decrease</p>
+                    </div>
+                    <div class="line line-left"></div>
+                    <div class="direction-pad">
+                        <img src="{% static 'assets/direction_pad.png' %}" />
+                        <div class="direction up" onclick="moveUp()"></div>
+                        <div class="direction down" onclick="moveDown()"></div>
+                        <div class="direction left" onclick="moveLeft()"></div>
+                        <div class="direction right" onclick="moveRight()"></div>
+                    </div>
+                    <div class="line line-right"></div>
+                    <div class="increase" onclick="increaseScale()">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        <p>Increase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
 
 
 
