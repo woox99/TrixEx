@@ -65,7 +65,7 @@ class ExampleProject(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
 
 class Project(models.Model):
-    owner = models.ForeignKey(User, related_name="projects", on_delete = models.CASCADE)
+    owner = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
     title = models.CharField(max_length=32)
     html = models.TextField()
     css = models.TextField()
@@ -76,6 +76,6 @@ class Project(models.Model):
     margin_left = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
-    bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects") 
-    liked_users = models.ManyToManyField(User, related_name="liked_projects") 
+    bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects")
+    liked_users = models.ManyToManyField(User, related_name="liked_projects")
 

@@ -28,23 +28,40 @@ iframe{
     box-shadow: 0.25vw 0.25vw 1vw;
     border-radius: 3vw;
 }
+iframe:hover{
+    transform-origin: bottom;
+    transform: scale(1.05) ;
+    transition: transform 0.2s ease;
+}
 .project .icon-bar{
-    font-weight: 300;
+    position: relative;
+    font-weight: 600;
     margin-top: 0.5vw;
     padding-left: 1vw;
-    font-size: 0.9rem;
+    font-size: 1rem;
+    letter-spacing: 0;
 }
 .projects i{
-    font-size: 1.5rem;
     margin-right: 1vw;
     cursor: pointer;
+}
+.projects .fa-bookmark{
+    font-size: 1.7rem;
     color: #218bff;
     opacity: 0.4;
 }
-.projects .selected{
-    opacity: 1.0; 
+.projects .fa-thumbs-up{
+    font-size: 1.5rem;
+    color: #ffffff;
+    opacity: 0.85;
 }
-/* .projects .bookmarked,
-.projects .liked{
-    display: none;
-} */
+.projects .selected{
+    opacity: 1;
+}
+.projects .link{
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05vw;
+}

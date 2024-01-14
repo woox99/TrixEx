@@ -34,7 +34,7 @@
                 <i class="fa-regular fa-folder-open"></i>
                 <p>Folder</p>
             </a>
-            <a href="" class="icon">
+            <a href="/TrixEx/bookmarks" class="icon">
                 <i class="fa-solid fa-bookmark"></i>
                 <p>Saved</p>
             </a>
@@ -59,18 +59,23 @@
             <iframe data-project-id="{{project.id}}"></iframe>
             <div class="icon-bar vCenter">
                 {% if project.id in bookmarked_projectIds_set %}
-                <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1" onclick="toggleBookmark({{project.id}})"></i>
+                <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1"
+                    onclick="toggleBookmark({{project.id}})"></i>
                 {% endif %}
                 {% if project.id not in bookmarked_projectIds_set %}
-                <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0" onclick="toggleBookmark({{project.id}})"></i>
+                <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0"
+                    onclick="toggleBookmark({{project.id}})"></i>
                 {% endif %}
                 {% if project.id in liked_projectIds_set %}
-                <i class="fa-solid fa-thumbs-up selected" data-like-projectId="{{project.id}}" data-is-liked="1" onclick="toggleLike({{project.id}})"></i>
+                <i class="fa-solid fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="1"
+                    onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
                 {% if project.id not in liked_projectIds_set %}
-                <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0" onclick="toggleLike({{project.id}})"></i>
+                <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
+                    onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
-                <p>{{project.title}}</p>
+                <p class="blue">{{project.owner.username}}</p>
+                <p class="link">View Code <i class="fa-solid fa-angles-right green"></i></p>
             </div>
         </div>
         {% endfor %}

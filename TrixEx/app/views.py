@@ -106,24 +106,6 @@ def home(request):
     }
     return render(request, 'home.html', context)
 
-# Get all public projects
-def getAll(request):
-    projects = Project.objects.filter(is_public=1)
-    
-    # Serialize the projects to JSON
-    serialized_projects = []
-    for project in projects:
-        serialized_projects.append({
-            'id' : project.id,
-            'html': project.html,
-            'css': project.css,
-            'js': project.js,
-            'scale': project.scale,
-            'margin_top': project.margin_top,
-            'margin_left': project.margin_left,
-        })
-    return JsonResponse(serialized_projects, safe=False)
-
 # CREATE
 # Displays and handles create page
 def create(request):
@@ -165,3 +147,65 @@ def like(request, projectId):
     else:
         user.liked_projects.add(project)
     return HttpResponse()
+
+# BOOKMARKS
+# Displays and handles bookmarks page
+def bookmarks(request):
+    user = User.objects.get(id=request.session['userId'])
+    
+    # Create sets for bookmarks and likes for BigO(1) lookup
+    bookmarked_projectIds_set = set()
+    projects = user.bookmarked_projects.all()
+    for project in projects:
+        bookmarked_projectIds_set.add(project.id)
+    liked_projectIds_set = set()
+    liked_projects = user.liked_projects.all()
+    for project in liked_projects:
+        liked_projectIds_set.add(project.id)
+
+    context = {
+        'user' : user,
+        'projects' : projects,
+        'bookmarked_projectIds_set' : bookmarked_projectIds_set,
+        'liked_projectIds_set' : liked_projectIds_set,
+    }
+    return render(request, 'bookmarks.html', context)
+
+# AJAX  CALL
+# Get all public projects (home page)
+def getAll(request):
+    projects = Project.objects.filter(is_public=1)
+    
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)
+
+# AJAX CALL
+# Get all bookmarked projects (bookmarks page)
+def getBookmarks(request):
+    user = User.objects.get(id=request.session['userId'])
+    projects = user.bookmarked_projects.all()
+    
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)

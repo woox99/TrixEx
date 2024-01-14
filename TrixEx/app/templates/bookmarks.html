@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bookmarks.css' %}">
 
 </head>
 
@@ -27,16 +27,16 @@
         </form>
         <div class="icons">
             <a href="/TrixEx/home" class="icon">
-                <i class="fa-solid fa-house selected"></i>
-                <p class="selected">Home</p>
+                <i class="fa-solid fa-house"></i>
+                <p class="">Home</p>
             </a>
             <a href="" class="icon">
                 <i class="fa-regular fa-folder-open"></i>
                 <p>Folder</p>
             </a>
-            <a href="" class="icon">
-                <i class="fa-solid fa-bookmark"></i>
-                <p>Saved</p>
+            <a href="/TrixEx/bookmarks" class="icon">
+                <i class="fa-solid fa-bookmark selected"></i>
+                <p class="selected">Saved</p>
             </a>
             <a href="/TrixEx/create" class="icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -52,17 +52,34 @@
         </div>
     </div>
 
+    
     <!-- Projects -->
     <div class="projects">
+        {% if projects.count == 0 %}
+        <p class="empty-message"><i class="fa-solid fa-bookmark selected"></i>Bookmark projects to send them here.</p>
+        {% endif %}
         {% for project in projects %}
         <div class="project">
             <iframe data-project-id="{{project.id}}"></iframe>
             <div class="icon-bar vCenter">
-                <i class="fa-regular fa-bookmark unbookmarked"></i>
-                <i class="fa-solid fa-bookmark bookmarked"></i>
-                <i class="fa-regular fa-thumbs-up unliked"></i>
-                <i class="fa-solid fa-thumbs-up liked"></i>
-                <p>{{project.title}}</p>
+                {% if project.id in bookmarked_projectIds_set %}
+                <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1"
+                    onclick="toggleBookmark({{project.id}})"></i>
+                {% endif %}
+                {% if project.id not in bookmarked_projectIds_set %}
+                <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0"
+                    onclick="toggleBookmark({{project.id}})"></i>
+                {% endif %}
+                {% if project.id in liked_projectIds_set %}
+                <i class="fa-solid fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="1"
+                    onclick="toggleLike({{project.id}})"></i>
+                {% endif %}
+                {% if project.id not in liked_projectIds_set %}
+                <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
+                    onclick="toggleLike({{project.id}})"></i>
+                {% endif %}
+                <p class="blue">{{project.owner.username}}</p>
+                <p class="link">View Code <i class="fa-solid fa-angles-right green"></i></p>
             </div>
         </div>
         {% endfor %}
@@ -93,7 +110,7 @@
         </div>
         <p class="copyright">© 2024 TrixEx</p>
     </div>
-    <script src="{% static 'js/home.js' %}"></script>
+    <script src="{% static 'js/bookmarks.js' %}"></script>
 </body>
 
 </html>

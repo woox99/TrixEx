@@ -56,7 +56,7 @@ const toggleLike = (projectId) => {
     let isLiked = likeIcon.getAttribute('data-is-liked');
     if(isLiked == 1){
         likeIcon.classList.remove('fa-solid');
-        likeIcon.classList.remove('selected');
+        // likeIcon.classList.remove('selected');
         likeIcon.classList.add('fa-regular')
         fetch(`/TrixEx/like/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 0);
@@ -64,7 +64,7 @@ const toggleLike = (projectId) => {
     else{
         likeIcon.classList.remove('fa-regular')
         likeIcon.classList.add('fa-solid');
-        likeIcon.classList.add('selected');
+        // likeIcon.classList.add('selected');
         fetch(`/TrixEx/like/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 1);
     }
