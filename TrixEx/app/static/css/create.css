@@ -6,31 +6,42 @@
     width: 42vw;
     height: 100vh;
     border-left: 1px solid #ffffff10;
+    margin-top: 6vh;
 }
 
-/* Height must be the same as in the js file otherwise
-the scroll bar doesnt hide */
+.editor-display .label{
+    position: absolute;
+    top: -4vh;
+    height: 4vh;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    background-color: #0e0f11;
+}
 .html, .css, .js{
-    height: calc(100vh / 3);
-    overflow: hidden;
+    position: relative;
 }
 .editor-display p{
-    font-weight: 800;
-    border-top: 1px solid #ffffff20;
-    /* background-color: black; */
-    padding-left: 1vw;
+    display: flex;
+    align-items: center;
+    width: 7vw;
+    height: 4vh;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-image: linear-gradient(#1a1a1a, #0e0f11 80%);
+    border-radius: 1vw 1vw 0 0; 
+    gap: 0.75vw;
+    padding-left: 1.25vw;
 }
-.html p{
+.html p, .html i{
     color: #ff8f8f;
 }
-.css p{
+.css p, .css i{
     color: #a7e5ff;
 }
-.js p{
+.js p, .js i{
     color: #fff6a2;
-}
-.editor-display textarea{
-    width: 100%;
 }
 
 /* Main */

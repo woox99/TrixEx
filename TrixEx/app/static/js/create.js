@@ -20,7 +20,7 @@ var jsEditor = CodeMirror.fromTextArea(document.getElementById("jsEditor"), {
 });
 
 // Set the height for each editor
-var newHeight = "calc(100vh / 3)"; // Adjust the height as needed
+var newHeight = "calc(100vh / 3 - 1vh)"; // Adjust the height as needed
 htmlEditor.setSize(null, newHeight);
 cssEditor.setSize(null, newHeight);
 jsEditor.setSize(null, newHeight);

@@ -63,15 +63,21 @@
         {% csrf_token %}
         <div class="editor-display">
             <div class="html">
-                <p>HTML</p>
+                <div class="label">
+                    <p><i class="fa-brands fa-html5"></i>HTML</p>
+                </div>
                 <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{example.html}}</p></textarea>
             </div>
             <div class="css">
-                <p>CSS</p>
+                <div class="label">
+                    <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
+                </div>
                 <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{example.css}}</textarea>
             </div>
             <div class="js">
-                <p>JS</p>
+                <div class="label">
+                    <p><i class="fa-brands fa-square-js"></i>JS</p>
+                </div>
                 <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
             </div>
             <input id="is-public" type="hidden" name="is_public" value="True">
