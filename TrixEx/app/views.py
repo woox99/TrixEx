@@ -155,7 +155,7 @@ def bookmarks(request):
     
     # Create sets for bookmarks and likes for BigO(1) lookup
     bookmarked_projectIds_set = set()
-    projects = user.bookmarked_projects.all()
+    projects = user.bookmarked_projects.all().order_by('bookmarked_users__created_at')[::-1]
     for project in projects:
         bookmarked_projectIds_set.add(project.id)
     liked_projectIds_set = set()
@@ -170,6 +170,15 @@ def bookmarks(request):
         'liked_projectIds_set' : liked_projectIds_set,
     }
     return render(request, 'bookmarks.html', context)
+
+# VIEW
+# Displays and handles view page
+# def view(request, project_id):
+#     project = Project.objects.get(id=project_id)
+#     context = {
+#         'project' : project
+#     }
+#     return render(request, 'view.html', context)
 
 # AJAX  CALL
 # Get all public projects (home page)

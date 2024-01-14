@@ -56,7 +56,7 @@ function updatePreview() {
     var doc = iframe.contentDocument || iframe.contentWindow.document;
     doc.open();
     doc.write("<body>" + htmlCode + "</body>");
-    doc.write(`<style> html{background-color:black; transform: scale(${scale}) !important; margin-top: ${marginTop}vw !important; margin-Left: ${marginLeft}vw !important; overflow: hidden !important;} ${cssCode} </style>`)
+    doc.write(`<style> body{background-color:black; transform: scale(${scale}) !important; margin-top: ${marginTop}vw !important; margin-Left: ${marginLeft}vw !important; overflow: hidden !important;} ${cssCode} </style>`)
     doc.write("<script>" + jsCode + "</script>");
     doc.close();
     console.log(doc)

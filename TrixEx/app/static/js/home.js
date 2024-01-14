@@ -22,7 +22,8 @@ const getProjects = () => {
                 doc.write(`<style> body{background-color:black; transform: scale(${scale}) !important; margin-top: ${marginTop}vw !important; margin-Left: ${marginLeft}vw !important; overflow: hidden !important;} ${cssCode} </style>`)
                 doc.write("<script>" + jsCode + "</" + "script>");
                 doc.close();
-
+                console.log()
+                console.log(doc)
             }
             return null;
 

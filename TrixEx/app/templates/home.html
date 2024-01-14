@@ -75,7 +75,7 @@
                     onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
                 <p class="blue">{{project.owner.username}}</p>
-                <p class="link">View Code <i class="fa-solid fa-angles-right green"></i></p>
+                <a href="/TrixEx/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
             </div>
         </div>
         {% endfor %}
