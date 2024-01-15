@@ -45,9 +45,12 @@ body{
 }
 .folder .follows i{
     font-size: 1rem;
-    /* margin-right: 0.25vw; */
+}
+.folder .fa-users{
+    margin-right: 0.25vw;
 }
 .folder .follow-button{
+    width: 4.5vw;
     background-color: #ffffff07;
     border: 1px solid #ffffff10;
     border-radius: 5vw;
@@ -55,14 +58,12 @@ body{
     margin-left: 1vw;
     cursor: pointer;
 }
-.folder .green{
-    opacity: 1;
-}
 .folder .follow{
     font-weight: 500;
+    margin-left: 0.25vw;
 }
 .folder .disabled{
-    opacity: 0.3;
+    opacity: 0.4;
 }
 .folder .hide{
     display: none;

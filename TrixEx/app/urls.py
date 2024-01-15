@@ -13,6 +13,7 @@ urlpatterns = [
     path('TrixEx.com/view/<int:project_id>', views.view),
     path('TrixEx.com/logout', views.logout),
     path('TrixEx/getAll', views.getAll), #AJAX
+    path('TrixEx/getAllByUser/<int:userId>', views.getAllByUser), #AJAX
     path('TrixEx/getBookmarks', views.getBookmarks), #AJAX
     path('TrixEx/bookmark/<int:projectId>', views.bookmark), #AJAX
     path('TrixEx/like/<int:projectId>', views.like), #AJAX

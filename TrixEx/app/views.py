@@ -187,11 +187,15 @@ def view(request, project_id):
 # FOLDER
 # Displays and handles folder page
 def folder(request, folder_userId, username):
-    # If view own folder, user & folder_user will be same
+    # If viewing own folder, user & folder_user will be same
     user = User.objects.get(id=request.session['userId'])
     folder_user = User.objects.get(id=folder_userId)
     
-    projects = Project.objects.filter(is_public=1).order_by('-created_at')
+    # If viewing own folder, get all projects, else get public projects 
+    if folder_userId == user.id:
+        projects = Project.objects.filter(owner_id=folder_userId).order_by('-created_at')
+    else:
+        projects = Project.objects.filter(owner_id=folder_userId, is_public=1).order_by('-created_at')
 
     # Create sets for bookmarks, likes, and followings for BigO(1) lookup
     bookmarked_projectIds_set = set()
@@ -224,6 +228,28 @@ def folder(request, folder_userId, username):
 def getAll(request):
     projects = Project.objects.filter(is_public=1)
     
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)
+
+# AJAX  CALL
+# Get all projects by user (folder page)
+def getAllByUser(request, userId):
+    if userId == request.session['userId']:
+        projects = Project.objects.filter(owner_id=userId)
+    else:
+        projects = Project.objects.filter(owner_id=userId, is_public=1)
+
     # Serialize the projects to JSON
     serialized_projects = []
     for project in projects:

@@ -1,6 +1,6 @@
 // Get all public projects
-const getProjects = () => {
-    fetch('/TrixEx/getAll') //change this to encoded. I think the @ in the email address is messing up java
+const getAllProjectsByUser = (userId) => {
+    fetch(`/TrixEx/getAllByUser/${userId}`) //change this to encoded. I think the @ in the email address is messing up java
         .then(res => res.json())
         .then(projects => {
             for (const project of projects) {
@@ -74,23 +74,33 @@ const toggleLike = (projectId) => {
 
 // Follow User
 const toggleFollow = (followeeId) => {
-    const followIcon = document.querySelector('.fa-user-plus')
-    const followText = document.querySelector('.follow')
-    let isFollowing = followIcon.getAttribute('data-is-following')
+    const followIcon = document.querySelector('.fa-user-plus');
+    const followText = document.querySelector('.follow');
+    let isFollowing = followIcon.getAttribute('data-is-following');
+    const followerCountElement = document.querySelector('.follower-count');
+    let followerCount = parseInt(followerCountElement.getAttribute('data-follower-count'));
 
     if(isFollowing == 1){
         followIcon.style.display = 'contents';
         followIcon.style.marginRight = '0.25vw';
         followText.classList.add('green')
         followText.innerHTML = 'Follow';
+        followText.style.opacity = '1'
         fetch(`/TrixEx/follow/${followeeId}`)
+        followerCount -= 1;
+        followerCountElement.innerHTML = followerCount;
+        followerCountElement.setAttribute('data-follower-count', followerCount);
         followIcon.setAttribute('data-is-following', 0);
     }
     else{
         followIcon.style.display = 'none';
         followText.classList.remove('green')
         followText.innerHTML = 'unfollow';
+        followText.style.opacity = '0.4'
         fetch(`/TrixEx/follow/${followeeId}`)
+        followerCount += 1;
+        followerCountElement.innerHTML = followerCount;
+        followerCountElement.setAttribute('data-follower-count', followerCount);
         followIcon.setAttribute('data-is-following', 1);
     }
     

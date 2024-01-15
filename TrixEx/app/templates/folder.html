@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="getProjects()">
+<body onload="getAllProjectsByUser({{folder_user.id}})">
     <!-- Nav Bar -->
     <div class="nav">
         <a href="/TrixEx.com/home" class="logo">
@@ -70,12 +70,12 @@
                 <p class="username">{{folder_user.username}}</p>
                 <div class="follows vCenter">
                     <i class="fa-solid fa-users"></i>
-                    <p>3 followers</p>
+                    <p><span class="follower-count" data-follower-count="{{folder_user.followers.count}}">{{folder_user.followers.count}}</span> followers</p>
                     {% if user.id != folder_user.id %}
                     {% if folder_user.id in following_userIds_set %}
                     <div class="follow-button flex" onclick="toggleFollow({{folder_user.id}})">
                         <i class="fa-solid fa-user-plus green hide" data-is-following="1"></i>
-                        <p class="follow">Unfollow</p>
+                        <p class="follow disabled">Unfollow</p>
                     </div>
                     {% endif %}
                     {% if folder_user.id not in following_userIds_set %}
@@ -122,7 +122,7 @@
                 <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
                     onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
-                <p class="blue">{{project.owner.username}}</p>
+                <a href="/TrixEx.com/view/{{project.id}}">{{project.title}}</a>
                 <a href="/TrixEx.com/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
             </div>
         </div>
