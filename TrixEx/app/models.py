@@ -68,7 +68,7 @@ class ExampleProject(models.Model):
 
 class Project(models.Model):
     owner = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
-    title = models.CharField(max_length=32)
+    title = models.CharField(max_length=26)
     html = models.TextField()
     css = models.TextField()
     js = models.TextField()

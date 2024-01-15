@@ -34,6 +34,11 @@ body{
 .folder .user-card i{
     font-size: 4rem;
 }
+.folder .upload-link{
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 1vw;
+}
 .folder .username{
     font-size: 1.25rem;
     font-weight: 500;
@@ -131,9 +136,17 @@ iframe:hover{
 .projects .selected{
     opacity: 1;
 }
+.projects .fa-eye-slash{
+    font-size: 1.25rem;
+    color: #ff8f8f;
+    cursor: auto;
+}
+.projects .fa-ellipsis{
+    font-size: 2rem;
+}
 .projects .link{
     position: absolute;
-    right: 0;
+    right: 0vw;
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.05vw;

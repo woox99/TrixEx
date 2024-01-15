@@ -63,7 +63,10 @@
             <div class="icon">
                 <i class="fa-solid fa-icons"></i>
                 {% if user.id == folder_user.id %}
-                    <p class="blue">Upload Img</p>
+                <input id="file-upload" type="file" accept="image/" style="display: none;">
+                    <label for="file-upload">
+                        <p class="blue upload-link">Upload Img</p>
+                    </label>
                 {% endif %}
             </div>
             <div>
@@ -101,6 +104,8 @@
     </div>
 
     <!-- Projects -->
+    <!-- Folder user's projects -->
+    {% if user.id != folder_user.id %}
     <div class="projects">
         {% for project in projects %}
         <div class="project">
@@ -128,6 +133,26 @@
         </div>
         {% endfor %}
     </div>
+    {% endif %}
+
+    <!-- Own Projects -->
+    {% if user.id == folder_user.id %}
+    <div class="projects">
+        {% for project in projects %}
+        <div class="project">
+            <iframe data-project-id="{{project.id}}"></iframe>
+            <div class="icon-bar vCenter">
+                <i class="fa-solid fa-ellipsis blue"></i>
+                {% if project.is_public == 0 %}
+                <i class="fa-solid fa-eye-slash"></i>
+                {% endif %}
+                <a href="/TrixEx.com/view/{{project.id}}">{{project.title}}</a>
+                <a href="/TrixEx.com/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
     <!-- Footer -->
     <div class="foot vCenter">
