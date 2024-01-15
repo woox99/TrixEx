@@ -3,16 +3,18 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('TrixEx', views.index),
-    path('TrixEx/login', views.login),
-    path('TrixEx/demo', views.demo),
-    path('TrixEx/home', views.home),
-    path('TrixEx/bookmarks', views.bookmarks),
-    path('TrixEx/create', views.create),
-    # path('TrixEx/view/<int:project_id>', views.view),
-    path('TrixEx/logout', views.logout),
-    path('TrixEx/getAll', views.getAll),
-    path('TrixEx/getBookmarks', views.getBookmarks),
-    path('TrixEx/bookmark/<int:projectId>', views.bookmark),
-    path('TrixEx/like/<int:projectId>', views.like),
+    path('TrixEx.com', views.index),
+    path('TrixEx.com/login', views.login),
+    path('TrixEx.com/demo', views.demo),
+    path('TrixEx.com/home', views.home),
+    path('TrixEx.com/bookmarks', views.bookmarks),
+    path('TrixEx.com/folder<int:folder_userId>/<str:username>', views.folder),
+    path('TrixEx.com/create', views.create),
+    path('TrixEx.com/view/<int:project_id>', views.view),
+    path('TrixEx.com/logout', views.logout),
+    path('TrixEx/getAll', views.getAll), #AJAX
+    path('TrixEx/getBookmarks', views.getBookmarks), #AJAX
+    path('TrixEx/bookmark/<int:projectId>', views.bookmark), #AJAX
+    path('TrixEx/like/<int:projectId>', views.like), #AJAX
+    path('TrixEx/follow/<int:followeeId>', views.follow), #AJAX
 ]

@@ -1,0 +1,139 @@
+/* Footer */
+body{
+    padding-bottom: 8.5vw;
+}
+.foot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.folder{
+    width: 92vw;
+    height: 10vw;
+    /* border: 1px solid wheat; */
+    margin-top: 10vw;
+    margin-left: 4vw;
+}
+.folder .user-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    height: 100%;
+    width: 25vw;
+    border: 1px solid #ffffff10;
+    background-color: #ffffff03;
+    border-radius: 1vw;
+    margin-left: 2vw;
+}
+.folder .icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.folder .user-card i{
+    font-size: 4rem;
+}
+.folder .username{
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1vw;
+}
+.folder .follows{
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.folder .follows i{
+    font-size: 1rem;
+    /* margin-right: 0.25vw; */
+}
+.folder .follow-button{
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 5vw;
+    padding: 0.35vw .75vw;
+    margin-left: 1vw;
+    cursor: pointer;
+}
+.folder .green{
+    opacity: 1;
+}
+.folder .follow{
+    font-weight: 500;
+}
+.folder .disabled{
+    opacity: 0.3;
+}
+.folder .hide{
+    display: none;
+}
+
+.folder .motto{
+    display: flex;
+    align-items: end;
+    width: 55vw;
+    font-size: 3.5rem;
+    font-weight: 700;
+    opacity: 0.4;
+    margin-left: 4vw;
+    line-height: 4vw;
+    letter-spacing: 0;
+}
+
+/* Projects */
+.projects{
+    display: flex;
+    flex-wrap: wrap;
+    /* justify-content: space-evenly; */
+    margin-top: 5vw;
+    margin-left: 3.5vw;
+    /* background-color: red; */
+}
+.project{
+    margin-right: 3.5vw;
+    margin-bottom: 3vw;
+}
+iframe{
+    width: 28vw;
+    height: 15.75vw;
+    border: 1px solid #ffffff20;
+    box-shadow: 0.25vw 0.25vw 1vw;
+    border-radius: 3vw;
+}
+iframe:hover{
+    transform-origin: bottom;
+    transform: scale(1.05) ;
+    transition: transform 0.2s ease;
+}
+.project .icon-bar{
+    position: relative;
+    font-weight: 600;
+    margin-top: 0.5vw;
+    padding-left: 1vw;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+.projects i{
+    margin-right: 1vw;
+    cursor: pointer;
+}
+.projects .fa-bookmark{
+    font-size: 1.7rem;
+    color: #218bff;
+    opacity: 0.4;
+}
+.projects .fa-thumbs-up{
+    font-size: 1.5rem;
+    color: #ffffff;
+    opacity: 0.85;
+}
+.projects .selected{
+    opacity: 1;
+}
+.projects .link{
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05vw;
+}

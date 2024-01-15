@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/bookmarks.css' %}">
+    <link rel="stylesheet" href="{% static 'css/folder.css' %}">
 
 </head>
 
@@ -27,16 +27,22 @@
         </form>
         <div class="icons">
             <a href="/TrixEx.com/home" class="icon">
-                <i class="fa-solid fa-house"></i>
+                <i class="fa-solid fa-house "></i>
                 <p class="">Home</p>
             </a>
             <a href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="icon">
+                {% if user.id == folder_user.id %}
+                <i class="fa-regular fa-folder-open selected"></i>
+                <p class="selected">Folder</p>
+                {% endif %}
+                {% if user.id != folder_user.id %}
                 <i class="fa-regular fa-folder-open"></i>
-                <p>Folder</p>
+                <p class="">Folder</p>
+                {% endif %}
             </a>
             <a href="/TrixEx.com/bookmarks" class="icon">
-                <i class="fa-solid fa-bookmark selected"></i>
-                <p class="selected">Saved</p>
+                <i class="fa-solid fa-bookmark"></i>
+                <p>Saved</p>
             </a>
             <a href="/TrixEx.com/create" class="icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
@@ -52,12 +58,50 @@
         </div>
     </div>
 
-    
+    <div class="folder flex">
+        <div class="user-card">
+            <div class="icon">
+                <i class="fa-solid fa-icons"></i>
+                {% if user.id == folder_user.id %}
+                    <p class="blue">Upload Img</p>
+                {% endif %}
+            </div>
+            <div>
+                <p class="username">{{folder_user.username}}</p>
+                <div class="follows vCenter">
+                    <i class="fa-solid fa-users"></i>
+                    <p>3 followers</p>
+                    {% if user.id != folder_user.id %}
+                    {% if folder_user.id in following_userIds_set %}
+                    <div class="follow-button flex" onclick="toggleFollow({{folder_user.id}})">
+                        <i class="fa-solid fa-user-plus green hide" data-is-following="1"></i>
+                        <p class="follow">Unfollow</p>
+                    </div>
+                    {% endif %}
+                    {% if folder_user.id not in following_userIds_set %}
+                    <div class="follow-button flex" onclick="toggleFollow({{folder_user.id}})">
+                        <i class="fa-solid fa-user-plus green" data-is-following="0"></i>
+                        <p class="follow green">Follow</p>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% if user.id == folder_user.id %}
+                    <div class="follow-button flex">
+                        <i class="fa-solid fa-user-plus green disabled"></i>
+                        <p class="follow green disabled">Follow</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <div class="motto">
+            <p>Store, share, and visualize front-end code</p>
+        </div>
+        <!-- <input type="file" accept="imgage/"> -->
+    </div>
+
     <!-- Projects -->
     <div class="projects">
-        {% if not projects %}
-        <p class="empty-message"><i class="fa-solid fa-bookmark selected"></i>Bookmark projects to send them here.</p>
-        {% endif %}
         {% for project in projects %}
         <div class="project">
             <iframe data-project-id="{{project.id}}"></iframe>
@@ -78,7 +122,7 @@
                 <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
                     onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
-                <a class="blue" href="/TrixEx.com/folder{{project.owner.id}}/{{project.owner.username}}">{{project.owner.username}}</a>
+                <p class="blue">{{project.owner.username}}</p>
                 <a href="/TrixEx.com/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
             </div>
         </div>
@@ -110,7 +154,7 @@
         </div>
         <p class="copyright">© 2024 TrixEx</p>
     </div>
-    <script src="{% static 'js/bookmarks.js' %}"></script>
+    <script src="{% static 'js/folder.js' %}"></script>
 </body>
 
 </html>

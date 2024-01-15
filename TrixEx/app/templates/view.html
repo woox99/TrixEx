@@ -9,7 +9,7 @@
     <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
-    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+    <link rel="stylesheet" href="{% static 'css/view.css' %}">
 
     <!-- Include CodeMirror CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
@@ -51,9 +51,9 @@
                 <i class="fa-solid fa-bookmark"></i>
                 <p>Saved</p>
             </a>
-            <a href="" class="icon">
-                <i class="fa-solid fa-cloud-arrow-up selected"></i>
-                <p class="selected">Create</p>
+            <a href="/TrixEx.com/create" class="icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p class="">Create</p>
             </a>
         </div>
     </div>
@@ -66,30 +66,29 @@
                 <div class="label">
                     <p><i class="fa-brands fa-html5"></i>HTML</p>
                 </div>
-                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{example.html}}</p></textarea>
+                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{project.html}}</p></textarea>
             </div>
             <div class="css">
                 <div class="label">
                     <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
                 </div>
-                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{example.css}}</textarea>
+                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{project.css}}</textarea>
             </div>
             <div class="js">
                 <div class="label">
                     <p><i class="fa-brands fa-square-js"></i>JS</p>
                 </div>
-                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
+                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{project.js}}</textarea>
             </div>
-            <input id="is-public" type="hidden" name="is_public" value="True">
-            <input id="scale" type="hidden" name="scale" value="1.0">
-            <input id="margin-top" type="hidden" name="margin_top" value="0">
-            <input id="margin-left" type="hidden" name="margin_left" value="0">
+            <input id="scale" type="hidden" name="scale" value="{{project.scale}}">
+            <input id="margin-top" type="hidden" name="margin_top" value="{{project.margin_top}}">
+            <input id="margin-left" type="hidden" name="margin_left" value="{{project.margin_left}}">
         </div>
 
         <!-- Main -->
         <div class="main">
             <div id="screen"></div>
-            <div class="controls">
+            <!-- <div class="controls">
                 <div class="relative vCenter">
                     <div class="visibility vCenter">
                         <p class="selected public-button" onclick="togglePublic(this)">Public</p>
@@ -123,13 +122,13 @@
                         <p>Increase</p>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </form>
 
 
 
-    <script src="{% static 'js/create.js' %}"></script>
+    <script src="{% static 'js/view.js' %}"></script>
 </body>
 
 </html>

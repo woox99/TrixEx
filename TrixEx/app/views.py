@@ -34,7 +34,7 @@ def index(request):
         pw_hash = bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
         user = User.objects.create(email=email, username=username, password=pw_hash)
         request.session['userId'] = user.id
-        return redirect('/TrixEx/home')
+        return redirect('/TrixEx.com/home')
 
 # LOGIN
 # Validates and handles user login
@@ -56,7 +56,7 @@ def login(request):
         user = User.objects.get(email=request.POST['email'])
         request.session['userId'] = user.id
         print(user.id)
-        return redirect('/TrixEx/home')
+        return redirect('/TrixEx.com/home')
     
 # LOGOUT
 # Displays and handles logout
@@ -77,7 +77,7 @@ def demo(request):
     is_demo = True
     demo = User.objects.create(username=username, is_demo=is_demo, email=email)
     request.session['userId'] = demo.id
-    return redirect('/TrixEx/home')
+    return redirect('/TrixEx.com/home')
 
 # HOME
 # Displays home page
@@ -112,6 +112,7 @@ def create(request):
     if request.method == 'GET':
         example = ExampleProject.objects.get(id=1)
         context = {
+            'user' : User.objects.get(id=request.session['userId']),
             'example' : example
         }
         return render(request, 'create.html', context)
@@ -126,8 +127,9 @@ def create(request):
         margin_left = request.POST['margin_left']
         owner = User.objects.get(id=request.session['userId'])
         Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
-        return redirect('/TrixEx/home')
-    
+        return redirect('/TrixEx.com/home')
+
+# AJAX CALL
 # Bookmark Project
 def bookmark(request, projectId):
     user = User.objects.get(id=request.session['userId'])
@@ -138,6 +140,7 @@ def bookmark(request, projectId):
         user.bookmarked_projects.add(project)
     return HttpResponse()
 
+# AJAX CALL
 # Like Project
 def like(request, projectId):
     user = User.objects.get(id=request.session['userId'])
@@ -173,12 +176,48 @@ def bookmarks(request):
 
 # VIEW
 # Displays and handles view page
-# def view(request, project_id):
-#     project = Project.objects.get(id=project_id)
-#     context = {
-#         'project' : project
-#     }
-#     return render(request, 'view.html', context)
+def view(request, project_id):
+    project = Project.objects.get(id=project_id)
+    context = {
+        'user' : User.objects.get(id=request.session['userId']),
+        'project' : project
+    }
+    return render(request, 'view.html', context)
+
+# FOLDER
+# Displays and handles folder page
+def folder(request, folder_userId, username):
+    # If view own folder, user & folder_user will be same
+    user = User.objects.get(id=request.session['userId'])
+    folder_user = User.objects.get(id=folder_userId)
+    
+    projects = Project.objects.filter(is_public=1).order_by('-created_at')
+
+    # Create sets for bookmarks, likes, and followings for BigO(1) lookup
+    bookmarked_projectIds_set = set()
+    bookmarked_projects = user.bookmarked_projects.all()
+    for project in bookmarked_projects:
+        bookmarked_projectIds_set.add(project.id)
+    liked_projectIds_set = set()
+    liked_projects = user.liked_projects.all()
+    for project in liked_projects:
+        liked_projectIds_set.add(project.id)
+    following_userIds_set = set()
+    following = user.following.all()
+    for followee in following:
+        following_userIds_set.add(followee.id)
+
+    context = {
+        'user' : user,
+        'folder_user' : folder_user,
+        'projects' : projects,
+        'bookmarked_projectIds_set' : bookmarked_projectIds_set,
+        'liked_projectIds_set' : liked_projectIds_set,
+        'following_userIds_set' : following_userIds_set,
+    }
+
+    return render(request, 'folder.html', context)
+
 
 # AJAX  CALL
 # Get all public projects (home page)
@@ -218,3 +257,15 @@ def getBookmarks(request):
             'margin_left': project.margin_left,
         })
     return JsonResponse(serialized_projects, safe=False)
+
+# AJAX CALL
+# Follow followee
+def follow(request, followeeId):
+    user = User.objects.get(id=request.session['userId'])
+    followee = User.objects.get(id=followeeId)
+
+    if followee in user.following.all():
+        user.following.remove(followee)
+    else:
+        user.following.add(followee)
+    return HttpResponse()

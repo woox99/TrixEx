@@ -52,10 +52,12 @@ class User(models.Model):
     # is_banned = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     objects = UserManager() 
     # projects
     # bookmarked_projects
     # liked_projects
+    # following (from_user_id = follower) (to_user_id = followee)
 
 class ExampleProject(models.Model):
     html = models.TextField()
@@ -78,4 +80,10 @@ class Project(models.Model):
     updated_at = models.DateTimeField(auto_now_add=True)
     bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects")
     liked_users = models.ManyToManyField(User, related_name="liked_projects")
+
+# class Follow(models.Model):
+#     follower = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
+#     followee = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now_add=True)
 

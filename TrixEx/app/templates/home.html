@@ -16,7 +16,7 @@
 <body onload="getProjects()">
     <!-- Nav Bar -->
     <div class="nav">
-        <a href="/TrixEx/home" class="logo">
+        <a href="/TrixEx.com/home" class="logo">
             <i class="fa-solid fa-code"></i>
         </a>
         <form action="/">
@@ -26,26 +26,26 @@
             </button>
         </form>
         <div class="icons">
-            <a href="/TrixEx/home" class="icon">
+            <a href="/TrixEx.com/home" class="icon">
                 <i class="fa-solid fa-house selected"></i>
                 <p class="selected">Home</p>
             </a>
-            <a href="" class="icon">
+            <a href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="icon">
                 <i class="fa-regular fa-folder-open"></i>
                 <p>Folder</p>
             </a>
-            <a href="/TrixEx/bookmarks" class="icon">
+            <a href="/TrixEx.com/bookmarks" class="icon">
                 <i class="fa-solid fa-bookmark"></i>
                 <p>Saved</p>
             </a>
-            <a href="/TrixEx/create" class="icon">
+            <a href="/TrixEx.com/create" class="icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
                 <p>Create</p>
             </a>
         </div>
         <div class="username">
             <p class="welcome"><span class="dark">Welcome,</span> <a href="" class="blue">{{user.username}}</a></p>
-            <a href="/TrixEx/logout" class="icon">
+            <a href="/TrixEx.com/logout" class="icon">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <p>Logout</p>
             </a>
@@ -74,8 +74,8 @@
                 <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
                     onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
-                <p class="blue">{{project.owner.username}}</p>
-                <a href="/TrixEx/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
+                <a class="blue" href="/TrixEx.com/folder{{project.owner.id}}/{{project.owner.username}}">{{project.owner.username}}</a>
+                <a href="/TrixEx.com/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
             </div>
         </div>
         {% endfor %}
