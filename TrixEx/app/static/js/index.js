@@ -21,26 +21,21 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 // Carousel
-var carousel = $(".carousel"),
-    currdeg = 0;
+var carousel = document.querySelector('.carousel');
+let currdeg = 0;
 
-$(".next").on("click", { d: "n" }, rotate);
-$(".prev").on("click", { d: "p" }, rotate);
-
-function rotate(e) {
-    if (e.data.d == "n") {
-        currdeg = currdeg - 60;
-    }
-    if (e.data.d == "p") {
-        currdeg = currdeg + 60;
-    }
-    carousel.css({
-        "-webkit-transform": "rotateY(" + currdeg + "deg)",
-        "-moz-transform": "rotateY(" + currdeg + "deg)",
-        "-o-transform": "rotateY(" + currdeg + "deg)",
-        "transform": "rotateY(" + currdeg + "deg)"
-    });
+function rotateCarousel() {
+    currdeg -= 0.2;
+    carousel.style.transform = "rotateY(" + currdeg + "deg)";
 }
+setInterval(rotateCarousel, 1);
+
+// function turnCarousel() {
+//     currdeg -= 60;
+//     carousel.style.transform = "rotateY(" + currdeg + "deg)";
+// }
+// setInterval(turnCarousel, 3000);
+
 
 // Get all landing projects
 const getProjects = () => {
@@ -64,7 +59,7 @@ const getProjects = () => {
                 var doc = iframe.contentDocument || iframe.contentWindow.document;
                 doc.open();
                 doc.write("<body>" + htmlCode + "</body>");
-                doc.write(`<style> body{background-color:black; transform: scale(${scale}) !important; margin-top: ${marginTop}vw !important; margin-Left: ${marginLeft}vw !important; overflow: hidden !important;} ${cssCode} </style>`)
+                doc.write(`<style> body{background-color:#00000050 !important; transform: scale(${scale}) !important; margin-top: ${marginTop}vw !important; margin-Left: ${marginLeft}vw !important; overflow: hidden !important;} ${cssCode} </style>`)
                 doc.write("<script>" + jsCode + "</" + "script>");
                 doc.close();
                 console.log()

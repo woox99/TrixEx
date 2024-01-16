@@ -3,10 +3,7 @@
 *{
     
 }
-.temp{
-    height: 2.9vw;
-    background-color: rgb(58, 58, 62);
-}
+
 
 /* Nav Bar */
 .landingNav{
@@ -91,7 +88,6 @@
 /* Intro Section */
 .section{
     margin-left: 10vw;
-    /* background-color: red; */
 }
 .intro{
     margin-top: 4vw;
@@ -107,12 +103,7 @@
     font-size: 2rem;
     margin-top: 1vw;
 }
-.intro .carousel{
-    height: 18vw;
-    width: 100%;
-    border: 1px solid white;
-    opacity: 0.4;
-}
+
 
 /* Register Section */
 .registerSection{
@@ -231,8 +222,7 @@
 /* Carousel */
 .container {
     margin: 0 auto;
-    margin-top: 4vw;
-    margin-bottom: 10vw;
+    margin-top: 3vw;
     width: 28vw;
     height: 15.75vw;
     position: relative;
@@ -251,12 +241,13 @@
 .item {
     display: block;
     position: absolute;
-    background: #000;
+    /* background: #000; */
     width: 28vw;
     height: 15.75vw;
     text-align: center;
     color: #FFF;
     border-radius: 3vw;
+    /* opacity: 0.95; */
 }
 
 iframe{
@@ -272,27 +263,22 @@ iframe{
 
 .carousel :nth-child(2) {
     transform: rotateY(60deg) translateZ(28vw);
-    background: #0072bc;
 }
 
 .carousel :nth-child(3) {
     transform: rotateY(120deg) translateZ(28vw);
-    background: #39b54a;
 }
 
 .carousel :nth-child(4) {
     transform: rotateY(180deg) translateZ(28vw);
-    background: #f26522;
 }
 
 .carousel :nth-child(5) {
     transform: rotateY(240deg) translateZ(28vw);
-    background: #630460;
 }
 
 .carousel :nth-child(6) {
     transform: rotateY(300deg) translateZ(28vw);
-    background: #8c6239;
 }
 
 .next,
@@ -309,7 +295,7 @@ iframe{
     transition: box-shadow 0.1s, top 0.1s;
 }
 
-.next:hover,
+/* .next:hover,
 .prev:hover {
     color: #000;
 }
@@ -321,9 +307,9 @@ iframe{
 }
 
 .next {
-    right: 5em;
-}
+    right: -30vw;
+} */
 
 .prev {
-    left: 5em;
+    left: -30vw;
 }

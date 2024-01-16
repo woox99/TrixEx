@@ -10,7 +10,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
     <link rel="stylesheet" href="{% static 'css/global.css' %}">
     <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 
 <body onload="getProjects()">
@@ -55,15 +54,12 @@
         <div class="carousel">
             {% for project in projects %}
             <div class="item">
-                <div class="item">
-                    <iframe data-project-id="{{project.id}}"></iframe>
-                </div>
+                <iframe data-project-id="{{project.id}}"></iframe>
+                <!-- <a class="smooth-scroll" href="#registerSection">View Code <i class="fa-solid fa-angles-right green"></i> </a> -->
             </div>
             {% endfor %}
         </div>
     </div>
-    <div class="next">Next</div>
-    <div class="prev">Prev</div>
 
     <!-- Section 2 -->
     <div class="section registerSection" id="registerSection">
@@ -132,7 +128,6 @@
     </div>
 
     <script src="{% static 'js/index.js' %}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </body>
 
 </html>
