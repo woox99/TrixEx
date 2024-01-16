@@ -13,7 +13,7 @@
 
 </head>
 
-<body onload="getProjects()">
+<body onload="getProjects();">
     <!-- Nav Bar -->
     <div class="nav">
         <a href="/TrixEx.com/home" class="logo">
@@ -53,9 +53,9 @@
     </div>
 
     <!-- Projects -->
-    <div class="projects">
+    <div class="projects carousel">
         {% for project in projects %}
-        <div class="project">
+        <div class="project item">
             <iframe data-project-id="{{project.id}}"></iframe>
             <div class="icon-bar vCenter">
                 {% if project.id in bookmarked_projectIds_set %}
@@ -80,6 +80,14 @@
         </div>
         {% endfor %}
     </div>
+    <button class="carousel-left-button" onclick="moveCarouselLeft()" disabled>
+        <!-- <i class="fa-solid fa-chevron-left"></i> -->
+        <i class="fa-solid fa-angles-left green"></i>
+    </button>
+    <button class="carousel-right-button" onclick="moveCarouselRight()">
+        <!-- <i class="fa-solid fa-chevron-right"></i> -->
+        <i class="fa-solid fa-angles-right green"></i>
+    </button>
 
     <!-- Footer -->
     <div class="foot vCenter">

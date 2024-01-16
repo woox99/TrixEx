@@ -72,3 +72,37 @@ const toggleLike = (projectId) => {
     
 }
 
+// Carousel Movement
+const moveCarouselLeftButton = document.querySelector('.carousel-left-button')
+const moveCarouselRightButton = document.querySelector('.carousel-right-button')
+const pages = Math.ceil(document.querySelectorAll('.item').length / 6);
+let page = 1;
+let carouselMarginLeft = 0;
+const moveCarouselRight = () => {
+    const carousel = document.querySelector('.carousel');
+    carouselMarginLeft -= 93;
+    carousel.style.marginLeft = `calc(${carouselMarginLeft}vw)`;
+    
+    // Disable right button if on last page
+    page += 1;
+    if(page >= pages){
+        moveCarouselRightButton.disabled = true;
+        moveCarouselRightButton.style.opacity = '0.3';
+    }
+    moveCarouselLeftButton.disabled = false;
+    moveCarouselLeftButton.style.opacity = '1.0';
+}
+const moveCarouselLeft = () => {
+    const carousel = document.querySelector('.carousel');
+    carouselMarginLeft += 93;
+    carousel.style.marginLeft = `calc(${carouselMarginLeft}vw)`;
+    
+    // Disable left button if on first page
+    page -= 1;
+    if(page <= 1){
+        moveCarouselLeftButton.disabled = true;
+        moveCarouselLeftButton.style.opacity = '0.3';
+    }
+    moveCarouselRightButton.disabled = false;
+    moveCarouselRightButton.style.opacity = '1.0';
+}

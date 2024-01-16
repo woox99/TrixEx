@@ -1,6 +1,6 @@
 /* Footer */
 body{
-    padding-bottom: 8.5vw;
+    padding-bottom: 5vw;
 }
 .foot{
     position: absolute;
@@ -11,15 +11,19 @@ body{
 /* Projects */
 .projects{
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     /* justify-content: space-evenly; */
-    margin-top: 10vw;
-    margin-left: 3.5vw;
-    /* background-color: red; */
+    height: 43vw;
+    /* width: 100vw; */
+    margin-top: 6.5vw;
+    transition: margin-left 0.5s ease;
 }
 .project{
-    margin-right: 3.5vw;
-    margin-bottom: 3vw;
+    box-sizing: border-box;
+    text-align: end;
+    width: 31vw;
+    margin-top: 2vw;
 }
 iframe{
     width: 28vw;
@@ -33,11 +37,12 @@ iframe:hover{
     transform: scale(1.05) ;
     transition: transform 0.2s ease;
 }
+
 .project .icon-bar{
     position: relative;
     font-weight: 600;
     margin-top: 0.5vw;
-    padding-left: 1vw;
+    padding-left: 5vw;
     font-size: 1rem;
     letter-spacing: 0;
 }
@@ -64,4 +69,24 @@ iframe:hover{
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.05vw;
+}
+.carousel-left-button,
+.carousel-right-button{
+    position: fixed;
+    top: 50%;
+    width: 5vw;
+    height: 5vw;
+    background-color: transparent;
+    background-image: radial-gradient(#ffffff10, #0d111750);
+    border-radius: 50%;
+    outline: none;
+    border: none;
+    font-size: 2.25rem;
+}
+.carousel-left-button{
+    left: 0;
+    opacity: 0.3;
+}
+.carousel-right-button{
+    right: 0;
 }
