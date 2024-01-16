@@ -5,13 +5,17 @@ from django.http import JsonResponse, HttpResponse
 
 import bcrypt
 
-from .models import User, ExampleProject, Project
+from .models import User, Project
 
 # INDEX
 # Validates and creates user registration
 def index(request):
     if request.method == 'GET':
-        return render(request, 'index.html')
+        projects = Project.objects.filter(is_landing=1)
+        context = {
+            'projects' : projects,
+        }
+        return render(request, 'index.html', context)
     # Register user if POST
     if request.method == 'POST':
         # Validate registration
@@ -110,7 +114,7 @@ def home(request):
 # Displays and handles create page
 def create(request):
     if request.method == 'GET':
-        example = ExampleProject.objects.get(id=1)
+        example = Project.objects.get(is_example=True)
         context = {
             'user' : User.objects.get(id=request.session['userId']),
             'example' : example
@@ -227,6 +231,25 @@ def folder(request, folder_userId, username):
 # Get all public projects (home page)
 def getAll(request):
     projects = Project.objects.filter(is_public=1)
+    
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)
+
+# AJAX  CALL
+# Get all landing projects (index page)
+def getAllLanding(request):
+    projects = Project.objects.filter(is_landing=1)
     
     # Serialize the projects to JSON
     serialized_projects = []

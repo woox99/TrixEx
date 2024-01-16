@@ -59,12 +59,19 @@ class User(models.Model):
     # liked_projects
     # following (from_user_id = follower) (to_user_id = followee)
 
-class ExampleProject(models.Model):
-    html = models.TextField()
-    css = models.TextField()
-    js = models.TextField()
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+# class ExampleProject(models.Model):
+#     html = models.TextField()
+#     css = models.TextField()
+#     js = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now_add=True)
+
+# class LandingProjects(models.Model):
+#     html = models.TextField()
+#     css = models.TextField()
+#     js = models.TextField()
+#     created_at = models.DateTimeField(auto_now_add=True)
+#     updated_at = models.DateTimeField(auto_now_add=True)
 
 class Project(models.Model):
     owner = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
@@ -73,6 +80,8 @@ class Project(models.Model):
     css = models.TextField()
     js = models.TextField()
     is_public = models.BooleanField()
+    is_example = models.BooleanField(default=False)
+    is_landing = models.BooleanField(default=False)
     scale = models.FloatField()
     margin_top = models.FloatField()
     margin_left = models.FloatField()
@@ -81,9 +90,4 @@ class Project(models.Model):
     bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects")
     liked_users = models.ManyToManyField(User, related_name="liked_projects")
 
-# class Follow(models.Model):
-#     follower = models.ForeignKey(User, related_name="following", on_delete=models.CASCADE)
-#     followee = models.ForeignKey(User, related_name="followers", on_delete=models.CASCADE)
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now_add=True)
 

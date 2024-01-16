@@ -13,9 +13,7 @@ body{
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
     height: 43vw;
-    /* width: 100vw; */
     margin-top: 6.5vw;
     transition: margin-left 0.5s ease;
 }
@@ -25,6 +23,7 @@ body{
     width: 31vw;
     margin-top: 2vw;
 }
+
 iframe{
     width: 28vw;
     height: 15.75vw;
