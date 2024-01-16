@@ -241,75 +241,40 @@
 .item {
     display: block;
     position: absolute;
-    /* background: #000; */
     width: 28vw;
     height: 15.75vw;
     text-align: center;
     color: #FFF;
-    border-radius: 3vw;
-    /* opacity: 0.95; */
+    /* border-radius: 3vw; */
 }
 
 iframe{
     width: 28vw;
     height: 15.75vw;
-    border-radius: 3vw;
+    /* border-radius: 3vw; */
     border: none;
 }
 
 .carousel :nth-child(1) {
-    transform: rotateY(0deg) translateZ(28vw);
+    transform: rotateY(0deg) translateZ(24vw);
 }
 
 .carousel :nth-child(2) {
-    transform: rotateY(60deg) translateZ(28vw);
+    transform: rotateY(60deg) translateZ(24vw);
 }
 
 .carousel :nth-child(3) {
-    transform: rotateY(120deg) translateZ(28vw);
+    transform: rotateY(120deg) translateZ(24vw);
 }
 
 .carousel :nth-child(4) {
-    transform: rotateY(180deg) translateZ(28vw);
+    transform: rotateY(180deg) translateZ(24vw);
 }
 
 .carousel :nth-child(5) {
-    transform: rotateY(240deg) translateZ(28vw);
+    transform: rotateY(240deg) translateZ(24vw);
 }
 
 .carousel :nth-child(6) {
-    transform: rotateY(300deg) translateZ(28vw);
-}
-
-.next,
-.prev {
-    color: #444;
-    position: absolute;
-    top: 100px;
-    padding: 1em 2em;
-    cursor: pointer;
-    background: #CCC;
-    border-radius: 5px;
-    border-top: 1px solid #FFF;
-    box-shadow: 0 5px 0 #999;
-    transition: box-shadow 0.1s, top 0.1s;
-}
-
-/* .next:hover,
-.prev:hover {
-    color: #000;
-}
-
-.next:active,
-.prev:active {
-    top: 104px;
-    box-shadow: 0 1px 0 #999;
-}
-
-.next {
-    right: -30vw;
-} */
-
-.prev {
-    left: -30vw;
+    transform: rotateY(300deg) translateZ(24vw);
 }
