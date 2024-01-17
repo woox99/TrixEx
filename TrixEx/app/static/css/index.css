@@ -246,6 +246,7 @@
     text-align: center;
     color: #FFF;
     /* border-radius: 3vw; */
+    box-shadow: 0vw 0vw 5vw #ffffff20;
 }
 
 iframe{

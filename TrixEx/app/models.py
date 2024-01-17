@@ -46,6 +46,7 @@ class User(models.Model):
     email = models.EmailField()
     username = models.CharField(max_length=12)
     password = models.TextField()
+    motto = models.TextField(default = 'Hi, I have not yet created a folder encapsultion..')
     is_demo = models.BooleanField(default=False)
     # is_admin = models.BooleanField()
     # is_authorized = models.BooleanField()

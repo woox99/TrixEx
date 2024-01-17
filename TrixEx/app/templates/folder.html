@@ -98,9 +98,19 @@
             </div>
         </div>
         <div class="motto">
-            <p>Store, share, and visualize front-end code</p>
+            <form action="/TrixEx.com/update/motto" method="POST">
+                {% csrf_token %}
+                <p class="current-motto">{{folder_user.motto}}</p>
+                <textarea name="motto" class="motto-input" cols="30" rows="10" maxlength="45">{{user.motto}}</textarea>
+                {% if user.id == folder_user.id %}
+                <p class="blue edit-button" onclick="showInput(this)">Edit</p>
+                {% endif %}
+                <div class="flex save-button">
+                    <button class="submit-button" type="submit">Save </button>
+                    <button class="cancel-button" type="button" onclick="hideInput()">Cancel</button>
+                </div>
+            </form>
         </div>
-        <!-- <input type="file" accept="imgage/"> -->
     </div>
 
     <!-- Projects -->
@@ -113,19 +123,19 @@
             <div class="icon-bar vCenter">
                 {% if project.id in bookmarked_projectIds_set %}
                 <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1"
-                    onclick="toggleBookmark({{project.id}})"></i>
+                onclick="toggleBookmark({{project.id}})"></i>
                 {% endif %}
                 {% if project.id not in bookmarked_projectIds_set %}
                 <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0"
-                    onclick="toggleBookmark({{project.id}})"></i>
+                onclick="toggleBookmark({{project.id}})"></i>
                 {% endif %}
                 {% if project.id in liked_projectIds_set %}
                 <i class="fa-solid fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="1"
-                    onclick="toggleLike({{project.id}})"></i>
+                onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
                 {% if project.id not in liked_projectIds_set %}
                 <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
-                    onclick="toggleLike({{project.id}})"></i>
+                onclick="toggleLike({{project.id}})"></i>
                 {% endif %}
                 <a href="/TrixEx.com/view/{{project.id}}">{{project.title}}</a>
                 <a href="/TrixEx.com/view/{{project.id}}" class="link">View Code <i class="fa-solid fa-angles-right green"></i></a>
@@ -134,10 +144,19 @@
         {% endfor %}
     </div>
     {% endif %}
-
+    
     <!-- Own Projects -->
     {% if user.id == folder_user.id %}
     <div class="projects">
+        <div class="project">
+            <a href="/TrixEx.com/create">
+                <div class="create-button">
+                    <i class="fa-solid fa-plus"></i>
+                    <p class="blue">Create</p>
+                    <p class="dark">New Project</p>
+                </div>
+            </a>
+        </div>
         {% for project in projects %}
         <div class="project">
             <iframe data-project-id="{{project.id}}"></iframe>

@@ -12,6 +12,7 @@ urlpatterns = [
     path('TrixEx.com/create', views.create),
     path('TrixEx.com/view/<int:project_id>', views.view),
     path('TrixEx.com/logout', views.logout),
+    path('TrixEx.com/update/motto', views.updateMotto),
     path('TrixEx/getAll', views.getAll), #AJAX
     path('TrixEx/getAllLanding', views.getAllLanding), #AJAX
     path('TrixEx/getAllByUser/<int:userId>', views.getAllByUser), #AJAX

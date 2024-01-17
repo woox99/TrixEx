@@ -12,10 +12,8 @@ body{
 .projects{
     display: flex;
     flex-wrap: wrap;
-    /* justify-content: space-evenly; */
     margin-top: 10vw;
     margin-left: 3.5vw;
-    /* background-color: red; */
 }
 .project{
     margin-right: 3.5vw;
@@ -24,8 +22,10 @@ body{
 .projects .empty-message{
     width: 100vw;
     font-size: 2rem;
+    font-weight: 600;
     opacity: 0.4;
     text-align: center;
+    margin-top: 3vw;
 }
 iframe{
     width: 28vw;

@@ -106,3 +106,21 @@ const toggleFollow = (followeeId) => {
     
 }
 
+// Show motto edit input
+const input = document.querySelector('.motto-input');
+const currMotto = document.querySelector('.current-motto');
+const saveButton = document.querySelector('.save-button')
+const editButton = document.querySelector('.edit-button')
+const showInput = (element) => {
+    editButton.style.display = 'none';
+    currMotto.style.display = 'none';
+    input.style.display = 'block';
+    saveButton.style.display = 'block';
+}
+const hideInput = (element) => {
+    editButton.style.display = 'block';
+    currMotto.style.display = 'block';
+    input.style.display = 'none';
+    saveButton.style.display = 'none';
+}
+

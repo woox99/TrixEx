@@ -87,7 +87,7 @@ def demo(request):
 # Displays home page
 def home(request):
     if 'userId' not in request.session:
-        return redirect('/TrixEx')
+        return redirect('/TrixEx.com')
     user = User.objects.get(id=request.session['userId'])
     # Get all public projects to display on home page
     projects = Project.objects.filter(is_public=1).order_by('-created_at')
@@ -226,6 +226,12 @@ def folder(request, folder_userId, username):
 
     return render(request, 'folder.html', context)
 
+# Update Motto
+def updateMotto(request):
+    user = User.objects.get(id=request.session['userId'])
+    user.motto = request.POST['motto']
+    user.save()
+    return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
 # AJAX  CALL
 # Get all public projects (home page)
