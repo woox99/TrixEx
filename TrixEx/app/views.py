@@ -181,10 +181,28 @@ def bookmarks(request):
 # VIEW
 # Displays and handles view page
 def view(request, project_id):
+    user = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=project_id)
+
+    # Create sets for bookmarks and likes for BigO(1) lookup
+    bookmarked_projectIds_set = set()
+    bookmarked_projects = user.bookmarked_projects.all()
+    for project in bookmarked_projects:
+        bookmarked_projectIds_set.add(project.id)
+    liked_projectIds_set = set()
+    liked_projects = user.liked_projects.all()
+    for project in liked_projects:
+        liked_projectIds_set.add(project.id)
+    following_userIds_set = set()
+    following = user.following.all()
+    for followee in following:
+        following_userIds_set.add(followee.id)
     context = {
-        'user' : User.objects.get(id=request.session['userId']),
-        'project' : project
+        'user' : user,
+        'project' : project,
+        'bookmarked_projectIds_set' : bookmarked_projectIds_set,
+        'liked_projectIds_set' : liked_projectIds_set,
+        'following_userIds_set' : following_userIds_set,
     }
     return render(request, 'view.html', context)
 

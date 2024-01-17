@@ -59,43 +59,99 @@
     </div>
 
     <!-- Text Editor -->
-    <form action="/TrixEx.com/create" method="POST">
-        {% csrf_token %}
-        <div class="editor-display">
-            <div class="html">
-                <div class="label">
-                    <p><i class="fa-brands fa-html5"></i>HTML</p>
-                </div>
-                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{project.html}}</p></textarea>
+    <div class="editor-display">
+        <div class="html">
+            <div class="label">
+                <p><i class="fa-brands fa-html5"></i>HTML</p>
             </div>
-            <div class="css">
-                <div class="label">
-                    <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
-                </div>
-                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{project.css}}</textarea>
-            </div>
-            <div class="js">
-                <div class="label">
-                    <p><i class="fa-brands fa-square-js"></i>JS</p>
-                </div>
-                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{project.js}}</textarea>
-            </div>
-            <input id="scale" type="hidden" name="scale" value="{{project.scale}}">
-            <input id="margin-top" type="hidden" name="margin_top" value="{{project.margin_top}}">
-            <input id="margin-left" type="hidden" name="margin_left" value="{{project.margin_left}}">
+            <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{project.html}}</p></textarea>
         </div>
-
-        <!-- Main -->
-        <div class="main">
-            <div id="screen"></div>
-            <div class="details">
-
+        <div class="css">
+            <div class="label">
+                <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
             </div>
-            <div class="comments-section">
+            <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{project.css}}</textarea>
+        </div>
+        <div class="js">
+            <div class="label">
+                <p><i class="fa-brands fa-square-js"></i>JS</p>
+            </div>
+            <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{project.js}}</textarea>
+        </div>
+        <input id="scale" type="hidden" name="scale" value="{{project.scale}}">
+        <input id="margin-top" type="hidden" name="margin_top" value="{{project.margin_top}}">
+        <input id="margin-left" type="hidden" name="margin_left" value="{{project.margin_left}}">
+    </div>
 
+    <!-- Main -->
+    <div class="main">
+        <div id="screen"></div>
+        <div class="details">
+            <div class="icon-bar vCenter">
+                {% if project.id in bookmarked_projectIds_set %}
+                <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1"
+                    onclick="toggleBookmark({{project.id}})"></i>
+                {% endif %}
+                {% if project.id not in bookmarked_projectIds_set %}
+                <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0"
+                    onclick="toggleBookmark({{project.id}})"></i>
+                {% endif %}
+                <div class="like-bar">
+                    {% if project.id in liked_projectIds_set %}
+                    <i class="fa-solid fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="1"
+                    onclick="toggleLike({{project.id}})"></i>
+                    {% endif %}
+                    {% if project.id not in liked_projectIds_set %}
+                    <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
+                    onclick="toggleLike({{project.id}})"></i>
+                    {% endif %}
+                    <p>{{project.liked_users.count}}</p>
+                    <div class="line"></div>
+                    <i class="fa-solid fa-eye"></i>
+                    <p>165</p>
+                </div>
+                <p class="project-title">{{project.title}}</p>
+
+                <div class="user-card">
+                    <div class="icon">
+                        <i class="fa-solid fa-icons"></i>
+                    </div>
+                    <div>
+                        <p class="username blue">{{project.owner.username}}</p>
+                        <div class="follows vCenter">
+                            <i class="fa-solid fa-users"></i>
+                            <p><span class="follower-count"
+                                    data-follower-count="{{user.followers.count}}">{{project.owner.followers.count}}</span>
+                                followers</p>
+                            {% if user.id != project.owner.id %}
+                                {% if user.id in following_userIds_set %}
+                                <div class="follow-button flex" onclick="toggleFollow({{user.id}})">
+                                    <i class="fa-solid fa-user-plus green hide" data-is-following="1"></i>
+                                    <p class="follow dark">Unfollow</p>
+                                </div>
+                                {% endif %}
+                                {% if user.id not in following_userIds_set %}
+                                <div class="follow-button flex" onclick="toggleFollow({{user.id}})">
+                                    <i class="fa-solid fa-user-plus green" data-is-following="0"></i>
+                                    <p class="follow green">Follow</p>
+                                </div>
+                                {% endif %}
+                            {% endif %}
+                            {% if user.id == project.owner.id %}
+                            <div class="follow-button flex">
+                                <i class="fa-solid fa-user-plus green disabled"></i>
+                                <p class="follow green disabled">Follow</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </form>
+        <div class="comments-section">
+
+        </div>
+    </div>
 
 
 

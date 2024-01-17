@@ -68,8 +68,125 @@
     height: 10vw;
     width: 60vw;
     margin-top: 40vw;
-    border: 1px solid red;
+    /* border: 1px solid red; */
 }
+
+.icon-bar{
+    position: relative;
+    font-weight: 600;
+    margin-top: 0.5vw;
+    padding-left: 3vw;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+.icon-bar .fa-bookmark{
+    font-size: 2rem;
+    color: #218bff;
+    opacity: 0.4;
+    cursor: pointer;
+    margin-right: 1vw;
+}
+.icon-bar .like-bar{
+    display: flex;
+    align-items: center;
+    background-color: #ffffff03;
+    border: 1px solid #ffffff10;
+    padding: 0.25vw 1vw;
+    border-radius: 5vw;
+}
+.icon-bar .like-bar p{
+    font-weight: 400;
+    font-size: 0.8rem;
+}
+.icon-bar .fa-thumbs-up{
+    font-size: 1.5rem;
+    color: #ffffff;
+    opacity: 0.85;
+    margin-right: 0.5vw;
+    cursor: pointer;
+}
+.icon-bar .line{
+    width: 1px;
+    height: 1.5vw;
+    background-color: #ffffff10;
+    /* border: 1px solid #ffffff10; */
+    margin: 0 0.5vw;
+    border-radius: 5vw;
+}
+.icon-bar .fa-eye{
+    font-size: 1.25rem;
+    margin-right: 0.5vw;
+    opacity: 0.85;
+}
+.icon-bar .selected{
+    opacity: 1;
+}
+.icon-bar .project-title{
+    margin-left: 1vw;
+}
+
+.user-card{
+    position: absolute;
+    top: 1vw;
+    right: 3vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 22vw;
+    height: 7vw;
+    border: 1px solid #ffffff10;
+    background-color: #ffffff03;
+    border-radius: 1vw;
+    margin-left: 2vw;
+}
+.icon{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.user-card i{
+    font-size: 4rem;
+}
+.upload-link{
+    font-size: 0.8rem;
+    cursor: pointer;
+    margin-top: 1vw;
+}
+.username{
+    font-size: 1.25rem;
+    font-weight: 500;
+    margin-bottom: 1vw;
+}
+.follows{
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.follows i{
+    font-size: 1rem;
+}
+.fa-users{
+    margin-right: 0.25vw;
+}
+.follow-button{
+    width: 4.5vw;
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 5vw;
+    padding: 0.35vw .75vw;
+    margin-left: 1vw;
+    cursor: pointer;
+}
+.follow{
+    font-weight: 500;
+    margin-left: 0.25vw;
+}
+.disabled{
+    opacity: 0.4;
+}
+.hide{
+    display: none;
+}
+
 
 
 .comments-section{

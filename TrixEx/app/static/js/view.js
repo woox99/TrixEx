@@ -62,58 +62,79 @@ function updatePreview() {
     return null;
 }
 
-// Scale
-const decreaseScale = () => {
-    scale = parseFloat(scaleElement.value);
-    scale = scale - (0.1 * scale);
-    scaleElement.value = scale;
-    return updatePreview();
-}
-const increaseScale = () => {
-    scale = scale + (0.1 * scale);
-    scaleElement.value = scale;
-    return updatePreview();
+
+// Bookmark project
+const toggleBookmark = (projectId) => {
+    const bookmarkIcon = document.querySelector(`[data-bookmark-projectId='${projectId}']`)
+    let isBookmarked = bookmarkIcon.getAttribute('data-is-bookmarked');
+    if(isBookmarked == 1){
+        bookmarkIcon.classList.remove('fa-solid');
+        bookmarkIcon.classList.remove('selected');
+        bookmarkIcon.classList.add('fa-regular')
+        fetch(`/TrixEx/bookmark/${projectId}`)
+        bookmarkIcon.setAttribute('data-is-bookmarked', 0);
+    }
+    else{
+        bookmarkIcon.classList.remove('fa-regular')
+        bookmarkIcon.classList.add('fa-solid');
+        bookmarkIcon.classList.add('selected');
+        fetch(`/TrixEx/bookmark/${projectId}`)
+        bookmarkIcon.setAttribute('data-is-bookmarked', 1);
+    }
+    
 }
 
-// Direction Pad
-const moveUp = () => {
-    marginTop = marginTop - 2;
-    marginTopElement.value = marginTop;
-    return updatePreview();
-}
-const moveDown = () => {
-    marginTop = marginTop + 2;
-    marginTopElement.value = marginTop;
-    return updatePreview();
-}
-const moveRight = () => {
-    marginLeft = marginLeft + (3);
-    marginLeftElement.value = marginLeft;
-    return updatePreview();
-}
-const moveLeft = () => {
-    marginLeft = marginLeft - (3);
-    marginLeftElement.value = marginLeft;
-    return updatePreview();
+// Like project
+const toggleLike = (projectId) => {
+    const likeIcon = document.querySelector(`[data-like-projectId='${projectId}']`)
+    let isLiked = likeIcon.getAttribute('data-is-liked');
+    if(isLiked == 1){
+        likeIcon.classList.remove('fa-solid');
+        // likeIcon.classList.remove('selected');
+        likeIcon.classList.add('fa-regular')
+        fetch(`/TrixEx/like/${projectId}`)
+        likeIcon.setAttribute('data-is-liked', 0);
+    }
+    else{
+        likeIcon.classList.remove('fa-regular')
+        likeIcon.classList.add('fa-solid');
+        // likeIcon.classList.add('selected');
+        fetch(`/TrixEx/like/${projectId}`)
+        likeIcon.setAttribute('data-is-liked', 1);
+    }
+    
 }
 
-// Visibility Button
-const publicIcon = document.querySelector('.public-icon')
-const privateIcon = document.querySelector('.private-icon')
-const publicButton = document.querySelector('.public-button')
-const privateButton = document.querySelector('.private-button')
-const isPublic = document.getElementById('is-public')
-const togglePublic = (element) => {
-    privateButton.style.opacity = 0.4;
-    element.style.opacity = 0.85;
-    privateIcon.style.display = 'none';
-    publicIcon.style.display = 'contents';
-    isPublic.value = 1;
-}
-const togglePrivate = (element) => {
-    publicButton.style.opacity = 0.4;
-    element.style.opacity = 0.85;
-    publicIcon.style.display = 'none';
-    privateIcon.style.display = 'contents';
-    isPublic.value = 0;
+// Follow User
+const toggleFollow = (followeeId) => {
+    const followIcon = document.querySelector('.fa-user-plus');
+    const followText = document.querySelector('.follow');
+    let isFollowing = followIcon.getAttribute('data-is-following');
+    const followerCountElement = document.querySelector('.follower-count');
+    let followerCount = parseInt(followerCountElement.getAttribute('data-follower-count'));
+
+    if(isFollowing == 1){
+        followIcon.style.display = 'contents';
+        followIcon.style.marginRight = '0.25vw';
+        followText.classList.add('green')
+        followText.innerHTML = 'Follow';
+        followText.style.opacity = '1'
+        fetch(`/TrixEx/follow/${followeeId}`)
+        followerCount -= 1;
+        followerCountElement.innerHTML = followerCount;
+        followerCountElement.setAttribute('data-follower-count', followerCount);
+        followIcon.setAttribute('data-is-following', 0);
+    }
+    else{
+        followIcon.style.display = 'none';
+        followText.classList.remove('green')
+        followText.innerHTML = 'unfollow';
+        followText.style.opacity = '0.4'
+        fetch(`/TrixEx/follow/${followeeId}`)
+        followerCount += 1;
+        followerCountElement.innerHTML = followerCount;
+        followerCountElement.setAttribute('data-follower-count', followerCount);
+        followIcon.setAttribute('data-is-following', 1);
+    }
+    
 }
