@@ -57,14 +57,13 @@
             </a>
         </div>
     </div>
-
     <!-- Text Editor -->
     <div class="editor-display">
         <div class="html">
             <div class="label">
                 <p><i class="fa-brands fa-html5"></i>HTML</p>
             </div>
-            <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{project.html}}</p></textarea>
+            <textarea id="htmlEditor" name="html_input" oninput="updatePreview()" >{{project.html}}</p></textarea>
         </div>
         <div class="css">
             <div class="label">
@@ -82,7 +81,7 @@
         <input id="margin-top" type="hidden" name="margin_top" value="{{project.margin_top}}">
         <input id="margin-left" type="hidden" name="margin_left" value="{{project.margin_left}}">
     </div>
-
+    
     <!-- Main -->
     <div class="main">
         <div id="screen"></div>
@@ -90,7 +89,7 @@
             <div class="icon-bar vCenter">
                 {% if project.id in bookmarked_projectIds_set %}
                 <i class="fa-solid fa-bookmark selected" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="1"
-                    onclick="toggleBookmark({{project.id}})"></i>
+                onclick="toggleBookmark({{project.id}})"></i>
                 {% endif %}
                 {% if project.id not in bookmarked_projectIds_set %}
                 <i class="fa-regular fa-bookmark" data-bookmark-projectId="{{project.id}}" data-is-bookmarked="0"
@@ -105,13 +104,12 @@
                     <i class="fa-regular fa-thumbs-up" data-like-projectId="{{project.id}}" data-is-liked="0"
                     onclick="toggleLike({{project.id}})"></i>
                     {% endif %}
-                    <p>{{project.liked_users.count}}</p>
+                    <p data-like-count="{{project.liked_users.count}}">{{project.liked_users.count}}</p>
                     <div class="line"></div>
                     <i class="fa-solid fa-eye"></i>
-                    <p>165</p>
+                    <p>{{project.views}}</p>
                 </div>
                 <p class="project-title">{{project.title}}</p>
-
                 <div class="user-card">
                     <div class="icon">
                         <i class="fa-solid fa-icons"></i>
@@ -149,7 +147,27 @@
             </div>
         </div>
         <div class="comments-section">
-
+            <div class="header vCenter">
+                <i class="fa-solid fa-comments"></i>
+                <p>Comments ({{project.comments.count}})</p>
+            </div>
+            <form action="" class="comment-input">
+                <input type="text" placeholder="Add comment..">
+                <button type="button">Comment</button>
+            </form>
+            <div class="comment">
+                <div class="stamp vCenter">
+                    <p class="username blue">TrixEx</p>
+                    <p class="time-stamp dark">Mar 28 7:59pm</p>
+                </div>
+                <p class="comment-content">Great work! Here's an example of a long comment for visual purposes. This is that and tha tis this. good luck and take care.</p>
+                <div class="button-bar vCenter">
+                    <i class="fa-regular fa-thumbs-up"></i>
+                    <p data-comment-like-count="">8</p>
+                    <div class="line"></div>
+                    <p class="dark">Reply</p>
+                </div>
+            </div>
         </div>
     </div>
 

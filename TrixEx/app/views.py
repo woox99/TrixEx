@@ -59,7 +59,6 @@ def login(request):
         # If login is valid, get user and store ID in session
         user = User.objects.get(email=request.POST['email'])
         request.session['userId'] = user.id
-        print(user.id)
         return redirect('/TrixEx.com/home')
     
 # LOGOUT
@@ -183,16 +182,18 @@ def bookmarks(request):
 def view(request, project_id):
     user = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=project_id)
+    project.views += 1
+    project.save()
 
     # Create sets for bookmarks and likes for BigO(1) lookup
     bookmarked_projectIds_set = set()
     bookmarked_projects = user.bookmarked_projects.all()
-    for project in bookmarked_projects:
-        bookmarked_projectIds_set.add(project.id)
+    for bookmarked_project in bookmarked_projects:
+        bookmarked_projectIds_set.add(bookmarked_project.id)
     liked_projectIds_set = set()
     liked_projects = user.liked_projects.all()
-    for project in liked_projects:
-        liked_projectIds_set.add(project.id)
+    for liked_project in liked_projects:
+        liked_projectIds_set.add(liked_project.id)
     following_userIds_set = set()
     following = user.following.all()
     for followee in following:

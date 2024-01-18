@@ -91,7 +91,7 @@
     align-items: center;
     background-color: #ffffff03;
     border: 1px solid #ffffff10;
-    padding: 0.25vw 1vw;
+    padding: 0.5vw 1vw;
     border-radius: 5vw;
 }
 .icon-bar .like-bar p{
@@ -152,7 +152,7 @@
     cursor: pointer;
     margin-top: 1vw;
 }
-.username{
+.user-card .username{
     font-size: 1.25rem;
     font-weight: 500;
     margin-bottom: 1vw;
@@ -190,7 +190,87 @@
 
 
 .comments-section{
-    width: 60vw;
-    height: 10vw;
-    background-color: white;
+    width: 50vw;
+    height: 100vw;
+    /* border: 1px solid white; */
+    margin-top: -3vw;
+}
+.comments-section .header i{
+    display: flex;
+    font-size: 2.25rem;
+    margin-right: 1vw;
+}
+.comments-section .header p{
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+    margin-top: 1.5vw;
+    opacity: 0.85;
+}
+.comments-section input{
+    width: 100%;
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    border-bottom: 0.15vw solid #ffffff30;
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    padding-left: 1vw;
+}
+.comments-section button{
+    background-color: transparent;
+    color: #ffffff;
+    font-size: 0.9rem;
+    opacity: 0.4;
+    border: none;
+    font-family: 'Open Sans', sans-serif;
+    outline: none;
+    transition: opacity 0.15s ease;
+}
+.comments-section .comment-input{
+    margin-left: -1vw;
+    /* width: 52vw; */
+}
+.comments-section button:hover{
+    opacity: 0.85;
+}
+.comment{
+    font-weight: 300;
+}
+.comment .stamp{
+    font-size: 0.8rem;
+    /* font-weight: 400; */
+}
+.comment .username{
+    font-weight: 700;
+    margin-right: 0.5vw;
+}
+.comment .comment-content{
+    margin-top: 0.25vw;
+}
+.comment .button-bar{
+    margin-top: 0.5vw;
+}
+.comment .line{
+    width: 0.1vw;
+    height: 1vw;
+    background-color: #ffffff30;
+    /* background-color: red; */
+    margin-left: 0.5vw;
+    margin-right: 0.5vw;
+}
+.comment .button-bar p{
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: opacity .15s ease;
+}
+.comment .button-bar p:hover{
+    opacity: 0.85;
+}
+.comment i{
+    margin-right: 0.25vw;
 }

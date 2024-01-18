@@ -33,6 +33,7 @@ jsEditor.on("change", updatePreview);
 // Update screen preview
 const iframe = document.createElement('iframe');
 function updatePreview() {
+    console.log('test')
     const htmlCode = htmlEditor.getValue();
     const cssCode = cssEditor.getValue();
     const jsCode = jsEditor.getValue();
@@ -41,7 +42,6 @@ function updatePreview() {
     const marginLeft = document.getElementById('margin-left').value
     var viewport = document.getElementById('screen');
     
-    console.log(scale)
     // Clear existing content
     iframe.innerHTML = "";
     
@@ -85,22 +85,28 @@ const toggleBookmark = (projectId) => {
 }
 
 // Like project
+const likeCountElement = document.querySelector('[data-like-count]')
+let likeCount = parseInt(likeCountElement.getAttribute('data-like-count'))
 const toggleLike = (projectId) => {
     const likeIcon = document.querySelector(`[data-like-projectId='${projectId}']`)
     let isLiked = likeIcon.getAttribute('data-is-liked');
     if(isLiked == 1){
         likeIcon.classList.remove('fa-solid');
-        // likeIcon.classList.remove('selected');
         likeIcon.classList.add('fa-regular')
         fetch(`/TrixEx/like/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 0);
+        likeCount -= 1;
+        likeCountElement.innerHTML = likeCount;
+        likeCountElement.setAttribute('data-like-count', likeCount)
     }
     else{
         likeIcon.classList.remove('fa-regular')
         likeIcon.classList.add('fa-solid');
-        // likeIcon.classList.add('selected');
         fetch(`/TrixEx/like/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 1);
+        likeCount += 1;
+        likeCountElement.innerHTML = likeCount;
+        likeCountElement.setAttribute('data-like-count', likeCount)
     }
     
 }

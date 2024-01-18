@@ -59,20 +59,8 @@ class User(models.Model):
     # bookmarked_projects
     # liked_projects
     # following (from_user_id = follower) (to_user_id = followee)
+    # comments
 
-# class ExampleProject(models.Model):
-#     html = models.TextField()
-#     css = models.TextField()
-#     js = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now_add=True)
-
-# class LandingProjects(models.Model):
-#     html = models.TextField()
-#     css = models.TextField()
-#     js = models.TextField()
-#     created_at = models.DateTimeField(auto_now_add=True)
-#     updated_at = models.DateTimeField(auto_now_add=True)
 
 class Project(models.Model):
     owner = models.ForeignKey(User, related_name="projects", on_delete=models.CASCADE)
@@ -86,9 +74,26 @@ class Project(models.Model):
     scale = models.FloatField()
     margin_top = models.FloatField()
     margin_left = models.FloatField()
+    views = models.IntegerField(default = 0)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
     bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects")
     liked_users = models.ManyToManyField(User, related_name="liked_projects")
+    # comments
+
+class Comment(models.Model):
+    owner = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
+    project = models.ForeignKey(Project, related_name="comments", on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
+class Reply(models.Model):
+    owner = models.ForeignKey(User, related_name="replies", on_delete=models.CASCADE)
+    comment = models.ForeignKey(Project, related_name="replies", on_delete=models.CASCADE)
+    content = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now_add=True)
+
 
 
