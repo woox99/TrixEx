@@ -59,14 +59,14 @@ const toggleLike = (projectId) => {
         likeIcon.classList.remove('fa-solid');
         // likeIcon.classList.remove('selected');
         likeIcon.classList.add('fa-regular')
-        fetch(`/TrixEx/like/${projectId}`)
+        fetch(`/TrixEx/like/project/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 0);
     }
     else{
         likeIcon.classList.remove('fa-regular')
         likeIcon.classList.add('fa-solid');
         // likeIcon.classList.add('selected');
-        fetch(`/TrixEx/like/${projectId}`)
+        fetch(`/TrixEx/like/project/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 1);
     }
     

@@ -33,7 +33,6 @@ jsEditor.on("change", updatePreview);
 // Update screen preview
 const iframe = document.createElement('iframe');
 function updatePreview() {
-    console.log('test')
     const htmlCode = htmlEditor.getValue();
     const cssCode = cssEditor.getValue();
     const jsCode = jsEditor.getValue();
@@ -93,7 +92,7 @@ const toggleLike = (projectId) => {
     if(isLiked == 1){
         likeIcon.classList.remove('fa-solid');
         likeIcon.classList.add('fa-regular')
-        fetch(`/TrixEx/like/${projectId}`)
+        fetch(`/TrixEx/like/project/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 0);
         likeCount -= 1;
         likeCountElement.innerHTML = likeCount;
@@ -102,7 +101,7 @@ const toggleLike = (projectId) => {
     else{
         likeIcon.classList.remove('fa-regular')
         likeIcon.classList.add('fa-solid');
-        fetch(`/TrixEx/like/${projectId}`)
+        fetch(`/TrixEx/like/project/${projectId}`)
         likeIcon.setAttribute('data-is-liked', 1);
         likeCount += 1;
         likeCountElement.innerHTML = likeCount;
@@ -142,5 +141,33 @@ const toggleFollow = (followeeId) => {
         followerCountElement.setAttribute('data-follower-count', followerCount);
         followIcon.setAttribute('data-is-following', 1);
     }
+    
+}
+
+// Like comment
+const toggleCommentLike = (commentId) => {
+    const commentLikeCountElement = document.querySelector(`[data-comment-like-count-commentId='${commentId}']`)
+    let commentLikeCount = parseInt(commentLikeCountElement.getAttribute('data-comment-like-count'))
+    const commentLikeIcon = document.querySelector(`[data-like-commentId='${commentId}']`)
+    let isLiked = commentLikeIcon.getAttribute('data-is-liked');
+    if(isLiked == 1){
+        commentLikeIcon.classList.remove('fa-solid');
+        commentLikeIcon.classList.add('fa-regular')
+        fetch(`/TrixEx/like/comment/${commentId}`)
+        commentLikeIcon.setAttribute('data-is-liked', 0);
+        commentLikeCount -= 1;
+        commentLikeCountElement.innerHTML = commentLikeCount;
+        commentLikeCountElement.setAttribute('data-comment-like-count', commentLikeCount)
+    }
+    else{
+        commentLikeIcon.classList.remove('fa-regular')
+        commentLikeIcon.classList.add('fa-solid');
+        fetch(`/TrixEx/like/comment/${commentId}`)
+        commentLikeIcon.setAttribute('data-is-liked', 1);
+        commentLikeCount += 1;
+        commentLikeCountElement.innerHTML = commentLikeCount;
+        commentLikeCountElement.setAttribute('data-comment-like-count', commentLikeCount)
+    }
+    console.log(commentLikeCountElement)
     
 }

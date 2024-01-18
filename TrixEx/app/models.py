@@ -58,6 +58,7 @@ class User(models.Model):
     # projects
     # bookmarked_projects
     # liked_projects
+    # liked_comments
     # following (from_user_id = follower) (to_user_id = followee)
     # comments
 
@@ -85,6 +86,7 @@ class Comment(models.Model):
     owner = models.ForeignKey(User, related_name="comments", on_delete=models.CASCADE)
     project = models.ForeignKey(Project, related_name="comments", on_delete=models.CASCADE)
     content = models.TextField()
+    liked_users = models.ManyToManyField(User, related_name="liked_comments")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
 

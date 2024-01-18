@@ -240,6 +240,7 @@ form{
 }
 .comment{
     font-weight: 300;
+    margin-bottom: 2vw;
 }
 .comment .stamp{
     font-size: 0.8rem;
@@ -254,6 +255,9 @@ form{
 }
 .comment .button-bar{
     margin-top: 0.5vw;
+}
+.comment .fa-thumbs-up{
+    cursor: pointer;
 }
 .comment .line{
     width: 0.1vw;

@@ -151,23 +151,31 @@
                 <i class="fa-solid fa-comments"></i>
                 <p>Comments ({{project.comments.count}})</p>
             </div>
-            <form action="" class="comment-input">
-                <input type="text" placeholder="Add comment..">
-                <button type="button">Comment</button>
+            <form action="/TrixEx.com/comment/{{project.id}}" method="POST" class="comment-input">
+                {% csrf_token %}
+                <input type="text" name="content" placeholder="Add comment..">
+                <button type="submit">Comment</button>
             </form>
+            {% for comment in comments %}
             <div class="comment">
                 <div class="stamp vCenter">
-                    <p class="username blue">TrixEx</p>
-                    <p class="time-stamp dark">Mar 28 7:59pm</p>
+                    <p class="username blue">{{comment.owner.username}}</p>
+                    <p class="time-stamp dark">{{comment.created_at|date:"M d, g:i a"}}</p>
                 </div>
-                <p class="comment-content">Great work! Here's an example of a long comment for visual purposes. This is that and tha tis this. good luck and take care.</p>
+                <p class="comment-content">{{comment.content}}</p>
                 <div class="button-bar vCenter">
-                    <i class="fa-regular fa-thumbs-up"></i>
-                    <p data-comment-like-count="">8</p>
+                    {% if comment.id not in liked_commentIds_set %}
+                    <i class="fa-regular fa-thumbs-up" data-like-commentId="{{comment.id}}" data-is-liked="0" onclick="toggleCommentLike({{comment.id}})"></i>
+                    {% endif %}
+                    {% if comment.id in liked_commentIds_set %}
+                    <i class="fa-solid fa-thumbs-up" data-like-commentId="{{comment.id}}" data-is-liked="1" onclick="toggleCommentLike({{comment.id}})"></i>
+                    {% endif %}
+                    <p data-comment-like-count="{{comment.liked_users.count}}" data-comment-like-count-commentId="{{comment.id}}">{{comment.liked_users.count}}</p>
                     <div class="line"></div>
                     <p class="dark">Reply</p>
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 

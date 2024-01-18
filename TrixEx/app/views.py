@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponse
 
 import bcrypt
 
-from .models import User, Project
+from .models import User, Project, Comment
 
 # INDEX
 # Validates and creates user registration
@@ -132,27 +132,6 @@ def create(request):
         Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
         return redirect('/TrixEx.com/home')
 
-# AJAX CALL
-# Bookmark Project
-def bookmark(request, projectId):
-    user = User.objects.get(id=request.session['userId'])
-    project = Project.objects.get(id=projectId)
-    if project in user.bookmarked_projects.all():
-        user.bookmarked_projects.remove(project)
-    else:
-        user.bookmarked_projects.add(project)
-    return HttpResponse()
-
-# AJAX CALL
-# Like Project
-def like(request, projectId):
-    user = User.objects.get(id=request.session['userId'])
-    project = Project.objects.get(id=projectId)
-    if project in user.liked_projects.all():
-        user.liked_projects.remove(project)
-    else:
-        user.liked_projects.add(project)
-    return HttpResponse()
 
 # BOOKMARKS
 # Displays and handles bookmarks page
@@ -184,6 +163,7 @@ def view(request, project_id):
     project = Project.objects.get(id=project_id)
     project.views += 1
     project.save()
+    comments = project.comments.all().order_by('-created_at')
 
     # Create sets for bookmarks and likes for BigO(1) lookup
     bookmarked_projectIds_set = set()
@@ -194,16 +174,23 @@ def view(request, project_id):
     liked_projects = user.liked_projects.all()
     for liked_project in liked_projects:
         liked_projectIds_set.add(liked_project.id)
+    liked_commentIds_set = set()
+    liked_comments = user.liked_comments.all()
+    for liked_comment in liked_comments:
+        liked_commentIds_set.add(liked_comment.id)
     following_userIds_set = set()
     following = user.following.all()
     for followee in following:
         following_userIds_set.add(followee.id)
+
     context = {
         'user' : user,
         'project' : project,
         'bookmarked_projectIds_set' : bookmarked_projectIds_set,
         'liked_projectIds_set' : liked_projectIds_set,
+        'liked_commentIds_set' : liked_commentIds_set,
         'following_userIds_set' : following_userIds_set,
+        'comments' : comments,
     }
     return render(request, 'view.html', context)
 
@@ -251,6 +238,16 @@ def updateMotto(request):
     user.motto = request.POST['motto']
     user.save()
     return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
+
+# Create Comment
+def comment(request, projectId):
+    owner = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    content = request.POST['content']
+    Comment.objects.create(owner=owner, project=project, content=content)
+    print(projectId)
+    return redirect(f'/TrixEx.com/view/{projectId}')
+
 
 # AJAX  CALL
 # Get all public projects (home page)
@@ -342,4 +339,37 @@ def follow(request, followeeId):
         user.following.remove(followee)
     else:
         user.following.add(followee)
+    return HttpResponse()
+
+# AJAX CALL
+# Bookmark Project
+def bookmark(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    if project in user.bookmarked_projects.all():
+        user.bookmarked_projects.remove(project)
+    else:
+        user.bookmarked_projects.add(project)
+    return HttpResponse()
+
+# AJAX CALL
+# Like Project
+def likeProject(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    if project in user.liked_projects.all():
+        user.liked_projects.remove(project)
+    else:
+        user.liked_projects.add(project)
+    return HttpResponse()
+
+# AJAX CALL
+# Like Comment
+def likeComment(request, commentId):
+    user = User.objects.get(id=request.session['userId'])
+    comment = Comment.objects.get(id=commentId)
+    if comment in user.liked_comments.all():
+        user.liked_comments.remove(comment)
+    else:
+        user.liked_comments.add(comment)
     return HttpResponse()
