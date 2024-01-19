@@ -171,3 +171,13 @@ const toggleCommentLike = (commentId) => {
     console.log(commentLikeCountElement)
     
 }
+
+// Show Reply input
+const showReply = commentId => {
+    const replyInputElement = document.querySelector(`[data-reply-input-commentId='${commentId}']`)
+    replyInputElement.style.display = 'flex';
+}
+const hideReply = commentId => {
+    const replyInputElement = document.querySelector(`[data-reply-input-commentId='${commentId}']`)
+    replyInputElement.style.display = 'none';
+}

@@ -267,14 +267,36 @@ form{
     margin-left: 0.5vw;
     margin-right: 0.5vw;
 }
-.comment .button-bar p{
+.comment .button-bar p,
+.comment .button-bar a{
     font-size: 0.8rem;
     cursor: pointer;
     transition: opacity .15s ease;
 }
-.comment .button-bar p:hover{
+.comment .button-bar p:hover,
+.comment .button-bar a:hover{
     opacity: 0.85;
 }
 .comment i{
     margin-right: 0.25vw;
+}
+.reply-input{
+    display: none;
+    width: 45vw;
+    margin-left: 1vw;
+    font-size: 0.8rem;
+}
+.reply-input .buttons{
+    gap: 1vw;
+}
+.reply {
+    margin-left: 3vw;
+    margin-top: 1.5vw;
+}
+.reply a{
+    font-size: 0.8rem;
+    transition: opacity 0.15s ease;
+}
+.reply a:hover{
+    opacity: 0.85;
 }

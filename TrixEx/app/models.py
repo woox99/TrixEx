@@ -61,6 +61,7 @@ class User(models.Model):
     # liked_comments
     # following (from_user_id = follower) (to_user_id = followee)
     # comments
+    # Replies
 
 
 class Project(models.Model):
@@ -89,10 +90,11 @@ class Comment(models.Model):
     liked_users = models.ManyToManyField(User, related_name="liked_comments")
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
+    # replies
 
 class Reply(models.Model):
     owner = models.ForeignKey(User, related_name="replies", on_delete=models.CASCADE)
-    comment = models.ForeignKey(Project, related_name="replies", on_delete=models.CASCADE)
+    comment = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

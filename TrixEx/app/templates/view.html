@@ -146,11 +146,13 @@
                 </div>
             </div>
         </div>
+        <!-- Comments section -->
         <div class="comments-section">
             <div class="header vCenter">
                 <i class="fa-solid fa-comments"></i>
                 <p>Comments ({{project.comments.count}})</p>
             </div>
+            <!-- Comment -->
             <form action="/TrixEx.com/comment/{{project.id}}" method="POST" class="comment-input">
                 {% csrf_token %}
                 <input type="text" name="content" placeholder="Add comment..">
@@ -172,8 +174,33 @@
                     {% endif %}
                     <p data-comment-like-count="{{comment.liked_users.count}}" data-comment-like-count-commentId="{{comment.id}}">{{comment.liked_users.count}}</p>
                     <div class="line"></div>
-                    <p class="dark">Reply</p>
+                    <p class="dark" onclick="showReply({{comment.id}})">Reply</p>
+                    {% if user.id == comment.owner.id %}
+                    <div class="line"></div>
+                    <a href="/TrixEx.com/delete/comment/{{comment.id}}" class="dark">Delete</a>
+                    {% endif %}
                 </div>
+                <!-- Reply -->
+                <form action="/TrixEx.com/reply/{{comment.id}}" method="POST" class="reply-input" data-reply-input-commentId="{{comment.id}}">
+                    {% csrf_token %}
+                    <input type="text" name="content" placeholder="Add reply..">
+                    <div class="buttons flex">
+                        <button type="submit">Reply</button>
+                        <button type="button" onclick="hideReply({{comment.id}})">Cancel</button>
+                    </div>
+                </form>
+                {% for reply in comment.replies.all %}
+                <div class="reply">
+                    <div class="stamp vCenter">
+                        <p class="username blue">{{reply.owner.username}}</p>
+                        <p class="time-stamp dark">{{reply.created_at|date:"M d, g:i a"}}</p>
+                    </div>
+                    <p class="comment-content">{{reply.content}}</p>
+                    {% if user.id == reply.owner.id %}
+                    <a href="/TrixEx.com/delete/reply/{{reply.id}}" class="dark">Delete</a>
+                    {% endif %}
+                </div>
+                {% endfor %}
             </div>
             {% endfor %}
         </div>

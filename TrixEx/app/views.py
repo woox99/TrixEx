@@ -5,7 +5,7 @@ from django.http import JsonResponse, HttpResponse
 
 import bcrypt
 
-from .models import User, Project, Comment
+from .models import User, Project, Comment, Reply
 
 # INDEX
 # Validates and creates user registration
@@ -232,6 +232,22 @@ def folder(request, folder_userId, username):
 
     return render(request, 'folder.html', context)
 
+# Create Comment
+def comment(request, projectId):
+    owner = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    content = request.POST['content']
+    Comment.objects.create(owner=owner, project=project, content=content)
+    return redirect(f'/TrixEx.com/view/{projectId}')
+
+# Create Reply
+def reply(request, commentId):
+    owner = User.objects.get(id=request.session['userId'])
+    comment = Comment.objects.get(id=commentId)
+    content = request.POST['content']
+    Reply.objects.create(owner=owner, comment=comment, content=content)
+    return redirect(f'/TrixEx.com/view/{comment.project.id}')
+
 # Update Motto
 def updateMotto(request):
     user = User.objects.get(id=request.session['userId'])
@@ -239,14 +255,15 @@ def updateMotto(request):
     user.save()
     return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
-# Create Comment
-def comment(request, projectId):
-    owner = User.objects.get(id=request.session['userId'])
-    project = Project.objects.get(id=projectId)
-    content = request.POST['content']
-    Comment.objects.create(owner=owner, project=project, content=content)
-    print(projectId)
-    return redirect(f'/TrixEx.com/view/{projectId}')
+def deleteComment(request, commentId):
+    comment = Comment.objects.get(id=commentId)
+    comment.delete()
+    return redirect(f'/TrixEx.com/view/{comment.project.id}')
+
+def deleteReply(request, replyId):
+    reply = Reply.objects.get(id=replyId)
+    reply.delete()
+    return redirect(f'/TrixEx.com/view/{reply.comment.project.id}')
 
 
 # AJAX  CALL
