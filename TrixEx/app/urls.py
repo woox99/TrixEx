@@ -10,12 +10,13 @@ urlpatterns = [
     path('TrixEx.com/bookmarks', views.bookmarks),
     path('TrixEx.com/folder<int:folder_userId>/<str:username>', views.folder),
     path('TrixEx.com/create', views.create),
-    path('TrixEx.com/view/<int:project_id>', views.view),
+    path('TrixEx.com/view/<int:projectId>', views.view),
+    path('TrixEx.com/edit/<int:projectId>', views.edit),
     path('TrixEx.com/logout', views.logout),
     path('TrixEx.com/update/motto', views.updateMotto),
     path('TrixEx.com/comment/<int:projectId>', views.comment),
     path('TrixEx.com/reply/<int:commentId>', views.reply),
-    # path('TrixEx.com/delete/project/<int:projectId>', views.deleteProject),
+    path('TrixEx.com/delete/project/<int:projectId>', views.deleteProject),
     path('TrixEx.com/delete/comment/<int:commentId>', views.deleteComment),
     path('TrixEx.com/delete/reply/<int:replyId>', views.deleteReply),
     path('TrixEx/getAll', views.getAll), #AJAX
@@ -26,4 +27,5 @@ urlpatterns = [
     path('TrixEx/like/project/<int:projectId>', views.likeProject), #AJAX
     path('TrixEx/like/comment/<int:commentId>', views.likeComment), #AJAX
     path('TrixEx/follow/<int:followeeId>', views.follow), #AJAX
+    path('TrixEx/visibility/<int:projectId>', views.visibility), #AJAX
 ]

@@ -1,0 +1,214 @@
+.editor-display{
+    position: fixed;
+    top: 0;
+    right: -2vw;
+    z-index: 1;
+    width: 42vw;
+    height: 100vh;
+    border-left: 1px solid #ffffff10;
+    margin-top: 6vh;
+}
+
+.editor-display .label{
+    position: absolute;
+    top: -4vh;
+    height: 4vh;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    align-items: end;
+    background-color: #0e0f11;
+}
+.html, .css, .js{
+    position: relative;
+}
+.editor-display p{
+    display: flex;
+    align-items: center;
+    width: 7vw;
+    height: 4vh;
+    font-size: 1.25rem;
+    font-weight: 600;
+    background-image: linear-gradient(#1a1a1a, #0e0f11 80%);
+    border-radius: 1vw 1vw 0 0; 
+    gap: 0.75vw;
+    padding-left: 1.25vw;
+}
+.html p, .html i{
+    color: #ff8f8f;
+}
+.css p, .css i{
+    color: #a7e5ff;
+}
+.js p, .js i{
+    color: #fff6a2;
+}
+
+/* Main */
+.main{
+    position: relative;
+    width: 60vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+#screen{
+    position: absolute;
+    top: 16vw;
+    left: 15.75vw;
+    width: 28vw;
+    height: 15.75vw;
+    border: 1px solid #ffffff10;
+    border-radius: 3vw;
+    box-shadow: 0.25vw 0.25vw 1vw;
+    overflow: hidden !important;
+    transform: scale(2);
+}
+.main .controls{
+    position: absolute;
+    bottom: 1vw;
+    width: 56vw;
+}
+.main input{
+    height: 2.75vw;
+    width: 15vw;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.025vw;
+    outline: none;
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 0.5vw;
+    color: #ffffff;
+    padding-left: 1vw;
+    outline: none;
+    margin-top: 1.5vw;
+}
+.visibility{
+    position: absolute;
+    left: 18vw;
+    gap: 1vw;
+    margin-top: 1.5vw;
+}
+.visibility p{
+    opacity: 0.4;
+    cursor: pointer;
+    transition: opacity 0.25s ease;
+}
+.visibility .selected{
+    opacity: 0.85;
+}
+.visibility i{
+    font-size: 1.5rem;
+}
+.visibility .fa-eye-slash{
+    position: absolute;
+    left: 4vw;
+    display: none;
+    color: #ff8f8f;
+}
+.private-button{
+    position: absolute;
+    left: 7vw;
+}
+.main button{
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+    height: 2.75vw;
+    border: 1px solid #ffffff10;
+    background-color: #ffffff07;
+    border-radius: 0.5vw;
+    padding: 0 1vw;
+    margin-top: 1.5vw;
+}
+.main button i{
+    color: #3fb950;
+    font-size: 1.2rem;
+}
+.main button p{
+    color: #ffffff;
+    opacity: .85;
+}
+.main button .fa-plus{
+    position: absolute;
+    top: 0.25vw;
+    left: 2vw;
+    z-index: 1;
+    font-size: 0.8rem;
+}
+.controller{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20vw;
+    height: 7vw;
+}
+.decrease, .increase{
+    text-align: center;
+    cursor: pointer;
+}
+.decrease i, .increase i{
+    font-size: 1.25rem;
+}
+.decrease p, .increase p{
+    opacity: 0.4;
+    font-size: 0.8rem;
+    font-weight: 300;
+}
+.line{
+    width: 0.2vw;
+    height: 3vw;
+    background-color: #ffffff07;
+    border: 1px solid #ffffff10;
+    border-radius: 0.5vw;
+}
+.line-left{
+    margin-left: 1vw;
+}
+.line-right{
+    margin-right: 1vw;
+}
+.main img{
+    width: 9vw;
+    opacity: 0.85;
+}
+.main .direction-pad{
+    position: relative;
+    padding-left: 0.8vw;
+}
+.main .direction{
+    position: absolute;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+}
+.direction-pad .up{
+    top: 0.9vw;
+    left: 50%;
+    width: 2vw;
+    height: 3vw;
+}
+.direction-pad .down{
+    top: 4.5vw;
+    left: 50%;
+    width: 2vw;
+    height: 3vw;
+}
+.direction-pad .left{
+    top: 48%;
+    left: 3vw;
+    height: 2vw;
+    width: 3vw;
+}
+.direction-pad .right{
+    top: 48%;
+    right: 0;
+    height: 2vw;
+    width: 3vw;
+}

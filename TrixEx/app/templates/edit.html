@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/edit.css' %}">
+
+    <!-- Include CodeMirror CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.min.css">
+    <!-- Include CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/codemirror.js"></script>
+    <!-- Include CodeMirror dracula theme -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/theme/moxer.css">
+
+    <!-- Include CodeMirror modes (e.g., HTML, CSS, JavaScript) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/htmlmixed/htmlmixed.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.41.0/mode/xml/xml.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/css/css.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.63.1/mode/javascript/javascript.js"></script>
+
+</head>
+
+<body onload="updatePreview()">
+    <!-- Nav Bar -->
+    <div class="nav">
+        <a href="/TrixEx.com/home" class="logo">
+            <i class="fa-solid fa-code"></i>
+        </a>
+        <form action="/">
+            <input type="search">
+            <button type="submit">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+        </form>
+        <div class="icons">
+            <a href="/TrixEx.com/home" class="icon">
+                <i class="fa-solid fa-house"></i>
+                <p>Home</p>
+            </a>
+            <a href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="icon">
+                <i class="fa-regular fa-folder-open"></i>
+                <p>Folder</p>
+            </a>
+            <a href="/TrixEx.com/bookmarks" class="icon">
+                <i class="fa-solid fa-bookmark"></i>
+                <p>Saved</p>
+            </a>
+            <a href="" class="icon">
+                <i class="fa-solid fa-cloud-arrow-up selected"></i>
+                <p class="selected">Create</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- Text Editor -->
+    <form action="/TrixEx.com/create" method="POST">
+        {% csrf_token %}
+        <div class="editor-display">
+            <div class="html">
+                <div class="label">
+                    <p><i class="fa-brands fa-html5"></i>HTML</p>
+                </div>
+                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{example.html}}</p></textarea>
+            </div>
+            <div class="css">
+                <div class="label">
+                    <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
+                </div>
+                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{example.css}}</textarea>
+            </div>
+            <div class="js">
+                <div class="label">
+                    <p><i class="fa-brands fa-square-js"></i>JS</p>
+                </div>
+                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
+            </div>
+            <input id="is-public" type="hidden" name="is_public" value="True">
+            <input id="scale" type="hidden" name="scale" value="1.0">
+            <input id="margin-top" type="hidden" name="margin_top" value="0">
+            <input id="margin-left" type="hidden" name="margin_left" value="0">
+        </div>
+
+        <!-- Main -->
+        <div class="main">
+            <div id="screen"></div>
+            <div class="controls">
+                <div class="relative vCenter">
+                    <div class="visibility vCenter">
+                        <p class="selected public-button" onclick="togglePublic(this)">Public</p>
+                        <i class="fa-solid fa-eye public-icon"></i>
+                        <i class="fa-solid fa-eye-slash private-icon"></i>
+                        <p class="private-button" onclick="togglePrivate(this)">Private</p>
+                    </div>
+                    <input type="text" name="title" placeholder="Title" minlength="3" maxlength="20" required>
+                </div>
+                <button type="submit" class="flex">
+                    <i class="fa-regular fa-folder-open"></i>
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Save</p>
+                </button>
+                <div class="controller">
+                    <div class="decrease" onclick="decreaseScale()">
+                        <i class="fa-solid fa-magnifying-glass-minus"></i>
+                        <p>Decrease</p>
+                    </div>
+                    <div class="line line-left"></div>
+                    <div class="direction-pad">
+                        <img src="{% static 'assets/direction_pad.png' %}" />
+                        <div class="direction up" onclick="moveUp()"></div>
+                        <div class="direction down" onclick="moveDown()"></div>
+                        <div class="direction left" onclick="moveLeft()"></div>
+                        <div class="direction right" onclick="moveRight()"></div>
+                    </div>
+                    <div class="line line-right"></div>
+                    <div class="increase" onclick="increaseScale()">
+                        <i class="fa-solid fa-magnifying-glass-plus"></i>
+                        <p>Increase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+
+    <script src="{% static 'js/edit.js' %}"></script>
+</body>
+
+</html>

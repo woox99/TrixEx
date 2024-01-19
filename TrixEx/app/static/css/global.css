@@ -54,6 +54,9 @@ button{
 .orange{
     color: #ff8600;
 }
+.red{
+    color: #ff8f8f;
+}
 .relative{
     position: relative;
 }
@@ -70,6 +73,15 @@ button{
 }
 button:hover{
     cursor: pointer;
+}
+.hide{
+    display: none;
+}
+.hover{
+    transition: opacity 0.15s ease;
+}
+.hover:hover{
+    opacity: 0.85;
 }
 
 /* Nav */
@@ -155,7 +167,7 @@ button:hover{
     display: flex;
 }
 .nav .welcome{
-    margin-right: 2vw;
+    margin-right: 1vw;
     font-size: 1.25rem;
     font-weight: 500;
 }
@@ -166,6 +178,10 @@ button:hover{
 .nav .username i{
     color: #ffffff;
     opacity: 0.4;
+}
+.nav .fa-right-from-bracket{
+    margin-top: 0.5vw;
+    margin-right: 1vw;
 }
 
 

@@ -124,3 +124,52 @@ const hideInput = (element) => {
     saveButton.style.display = 'none';
 }
 
+// Show Select Menu
+const showSelect = (projectId) => {
+    // Hide any open select menus
+    const allSelectMenus = document.querySelectorAll('.select-menu');
+    for(const selectMenu of allSelectMenus){
+        selectMenu.style.display = 'none';
+    }
+
+    const selectMenu = document.querySelector(`[data-select-menu-projectId='${projectId}']`)
+    selectMenu.style.display = 'block';
+
+}
+// Hide Select Menu
+const hideSelect = (projectId) => {
+    const selectMenu = document.querySelector(`[data-select-menu-projectId='${projectId}']`);
+    selectMenu.style.display = 'none';
+}
+
+
+// Make public
+const makePublic = (projectId) => {
+    publicButtonElement = document.querySelector(`[data-public-button-projectId='${projectId}']`)
+    privateButtonElement = document.querySelector(`[data-private-button-projectId='${projectId}']`)
+    privateIcon = document.querySelector(`[data-private-icon-projectId='${projectId}']`)
+    fetch(`/TrixEx/visibility/${projectId}`)
+    privateIcon.style.display = 'none';
+    publicButtonElement.style.display = 'none';
+    privateButtonElement.style.display = 'flex';
+}
+const makePrivate = (projectId) => {
+    publicButtonElement = document.querySelector(`[data-public-button-projectId='${projectId}']`)
+    privateButtonElement = document.querySelector(`[data-private-button-projectId='${projectId}']`)
+    privateIcon = document.querySelector(`[data-private-icon-projectId='${projectId}']`)
+    fetch(`/TrixEx/visibility/${projectId}`)
+    privateIcon.style.display = 'flex';
+    publicButtonElement.style.display = 'flex';
+    privateButtonElement.style.display = 'none';
+}
+
+// Show confirm delete
+const showConfirmDelete = (projectId) => {
+    const confirmDelete = document.querySelector(`[data-confirm-delete-projectId='${projectId}']`);
+    confirmDelete.style.display = 'block';
+}
+const hideConfirmDelete = (projectId) => {
+    const confirmDelete = document.querySelector(`[data-confirm-delete-projectId='${projectId}']`);
+    confirmDelete.style.display = 'none';
+}
+

@@ -138,6 +138,8 @@ body{
     color: #ffffff;
     opacity: 0.4;
 }
+
+
 /* Projects */
 .projects{
     display: flex;
@@ -170,6 +172,7 @@ body{
 }
 
 .project{
+    position: relative;
     width: 28vw;
     height: 18.5vw;
     margin-right: 3.5vw;
@@ -213,7 +216,7 @@ iframe:hover{
 .projects .selected{
     opacity: 1;
 }
-.projects .fa-eye-slash{
+.projects .icon-bar .fa-eye-slash{
     font-size: 1.25rem;
     color: #ff8f8f;
     cursor: auto;
@@ -227,4 +230,59 @@ iframe:hover{
     font-size: 0.8rem;
     font-weight: 400;
     letter-spacing: 0.05vw;
+}
+.project .select-menu{
+    position: absolute;
+    bottom: 2vw;
+    left: -1vw;
+    width: 11vw;
+    height: 8vw;
+    background-color: #0d1117;
+    border: 1px solid #ffffff10;
+    border-radius: 0.5vw;
+    box-shadow: 0.25vw 0.25vw 1vw #000;
+}
+.project .option{
+    height: 2vw;
+    padding-left: 1vw;
+    cursor: pointer;
+}
+.project .option:hover{
+    background-color: #ffffff10;
+}
+.project .option p{
+    display: flex;
+    align-items: center;
+}
+.project .select-menu i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1vw;
+}
+
+.confirm-delete{
+    position: absolute;
+    top: 0;
+    width: 28vw;
+    height: 15.75vw;
+    background-color: #0d1117;
+    border: 1px solid #ffffff30;
+    border-radius: 3vw;
+    opacity: 0.97;
+}
+.warning{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+.confirm-delete .warning-text{
+    font-weight: 500;
+}
+.confirm-delete .buttons{
+    gap: 1vw;
+    margin-top: 2vw;
+    cursor: pointer;
 }

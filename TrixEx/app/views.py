@@ -132,6 +132,29 @@ def create(request):
         Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
         return redirect('/TrixEx.com/home')
 
+# Edit Project
+# Displays and handles create page
+def edit(request, projectId):
+    if request.method == 'GET':
+        example = Project.objects.get(is_example=True)
+        context = {
+            'user' : User.objects.get(id=request.session['userId']),
+            'example' : example
+        }
+        return render(request, 'edit.html', context)
+    if request.method == 'POST':
+        title = request.POST['title']
+        css = request.POST['css_input']
+        html = request.POST['html_input']
+        js = request.POST['js_input']
+        is_public = request.POST['is_public']
+        scale = request.POST['scale']
+        margin_top = request.POST['margin_top']
+        margin_left = request.POST['margin_left']
+        owner = User.objects.get(id=request.session['userId'])
+        Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
+        return redirect('/TrixEx.com/home')
+
 
 # BOOKMARKS
 # Displays and handles bookmarks page
@@ -158,9 +181,9 @@ def bookmarks(request):
 
 # VIEW
 # Displays and handles view page
-def view(request, project_id):
+def view(request, projectId):
     user = User.objects.get(id=request.session['userId'])
-    project = Project.objects.get(id=project_id)
+    project = Project.objects.get(id=projectId)
     project.views += 1
     project.save()
     comments = project.comments.all().order_by('-created_at')
@@ -253,6 +276,12 @@ def updateMotto(request):
     user = User.objects.get(id=request.session['userId'])
     user.motto = request.POST['motto']
     user.save()
+    return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
+
+def deleteProject(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    project.delete()
     return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
 def deleteComment(request, commentId):
@@ -389,4 +418,17 @@ def likeComment(request, commentId):
         user.liked_comments.remove(comment)
     else:
         user.liked_comments.add(comment)
+    return HttpResponse()
+
+# AJAX CALL
+# Visibility Toggle
+def visibility(request, projectId):
+    user = User.objects.get(id=request.session['userId'])
+    project = Project.objects.get(id=projectId)
+    if project.is_public == 1:
+        project.is_public = 0
+        project.save()
+    else:
+        project.is_public = 1
+        project.save()
     return HttpResponse()
