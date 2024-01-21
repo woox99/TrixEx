@@ -32,12 +32,12 @@
         <a href="/TrixEx.com/home" class="logo">
             <i class="fa-solid fa-code"></i>
         </a>
-        <form action="/">
+        <!-- <form action="/">
             <input type="search">
             <button type="submit">
                 <i class="fa-solid fa-magnifying-glass"></i>
             </button>
-        </form>
+        </form> -->
         <div class="icons">
             <a href="/TrixEx.com/home" class="icon">
                 <i class="fa-solid fa-house"></i>
@@ -115,21 +115,21 @@
                         <i class="fa-solid fa-icons"></i>
                     </div>
                     <div>
-                        <p class="username blue">{{project.owner.username}}</p>
+                        <a href="/TrixEx.com/folder{{project.owner.id}}/{{project.owner.username}}" class="username blue">{{project.owner.username}}</a>
                         <div class="follows vCenter">
                             <i class="fa-solid fa-users"></i>
                             <p><span class="follower-count"
-                                    data-follower-count="{{user.followers.count}}">{{project.owner.followers.count}}</span>
+                                    data-follower-count="{{project.owner.followers.count}}">{{project.owner.followers.count}}</span>
                                 followers</p>
                             {% if user.id != project.owner.id %}
-                                {% if user.id in following_userIds_set %}
-                                <div class="follow-button flex" onclick="toggleFollow({{user.id}})">
+                                {% if project.owner.id in following_userIds_set %}
+                                <div class="follow-button flex" onclick="toggleFollow({{project.owner.id}})">
                                     <i class="fa-solid fa-user-plus green hide" data-is-following="1"></i>
                                     <p class="follow dark">Unfollow</p>
                                 </div>
                                 {% endif %}
-                                {% if user.id not in following_userIds_set %}
-                                <div class="follow-button flex" onclick="toggleFollow({{user.id}})">
+                                {% if project.owner.id not in following_userIds_set %}
+                                <div class="follow-button flex" onclick="toggleFollow({{project.owner.id}})">
                                     <i class="fa-solid fa-user-plus green" data-is-following="0"></i>
                                     <p class="follow green">Follow</p>
                                 </div>
@@ -147,7 +147,7 @@
             </div>
         </div>
         <!-- Comments section -->
-        <div class="comments-section">
+        <div class="comments-section" id="commentSection">
             <div class="header vCenter">
                 <i class="fa-solid fa-comments"></i>
                 <p>Comments ({{project.comments.count}})</p>
@@ -161,7 +161,7 @@
             {% for comment in comments %}
             <div class="comment">
                 <div class="stamp vCenter">
-                    <p class="username blue">{{comment.owner.username}}</p>
+                    <a href="/TrixEx.com/folder{{comment.owner.id}}/{{comment.owner.username}}" class="username blue">{{comment.owner.username}}</a>
                     <p class="time-stamp dark">{{comment.created_at|date:"M d, g:i a"}}</p>
                 </div>
                 <p class="comment-content">{{comment.content}}</p>
@@ -192,7 +192,7 @@
                 {% for reply in comment.replies.all %}
                 <div class="reply">
                     <div class="stamp vCenter">
-                        <p class="username blue">{{reply.owner.username}}</p>
+                        <a href="/TrixEx.com/folder{{reply.owner.id}}/{{reply.owner.username}}" class="username blue">{{reply.owner.username}}</a>
                         <p class="time-stamp dark">{{reply.created_at|date:"M d, g:i a"}}</p>
                     </div>
                     <p class="comment-content">{{reply.content}}</p>

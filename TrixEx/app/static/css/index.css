@@ -67,12 +67,11 @@
 }
 .sideBar .bar{
     width: 0.2vw;
-    /* height: 100vh; */
     border-radius: 10vw;
 }
 .sideBar .greenBlueBar{
     background-image: linear-gradient(#3fb950 30%, #218bff 70%);
-    height: 34vw;
+    height: 45vw;
 }
 .sideBar .blueGradient{
     background-image: radial-gradient(#218bff, #0d1117 75%);
@@ -111,6 +110,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-top: 10vw;
 }
 .registerSection .header{
     font-size: 6rem;

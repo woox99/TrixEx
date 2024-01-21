@@ -86,6 +86,7 @@ const toggleFollow = (followeeId) => {
         followText.classList.add('green')
         followText.innerHTML = 'Follow';
         followText.style.opacity = '1'
+        followText.style.fontWeight = '500'
         fetch(`/TrixEx/follow/${followeeId}`)
         followerCount -= 1;
         followerCountElement.innerHTML = followerCount;
@@ -95,8 +96,9 @@ const toggleFollow = (followeeId) => {
     else{
         followIcon.style.display = 'none';
         followText.classList.remove('green')
-        followText.innerHTML = 'unfollow';
+        followText.innerHTML = 'Unfollow';
         followText.style.opacity = '0.4'
+        followText.style.fontWeight = '400'
         fetch(`/TrixEx/follow/${followeeId}`)
         followerCount += 1;
         followerCountElement.innerHTML = followerCount;

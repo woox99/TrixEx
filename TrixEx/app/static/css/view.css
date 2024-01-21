@@ -138,6 +138,7 @@
     background-color: #ffffff03;
     border-radius: 1vw;
     margin-left: 2vw;
+    box-shadow: 0.25vw 0.25vw 1vw #000;
 }
 .icon{
     display: flex;
@@ -191,7 +192,7 @@
 
 .comments-section{
     width: 50vw;
-    height: 100vw;
+    min-height: 10vw;
     /* border: 1px solid white; */
     margin-top: -3vw;
 }

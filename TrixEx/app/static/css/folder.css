@@ -19,11 +19,12 @@ body{
     align-items: center;
     justify-content: space-evenly;
     height: 100%;
-    width: 25vw;
+    width: 28vw;
     border: 1px solid #ffffff10;
     background-color: #ffffff03;
     border-radius: 1vw;
-    margin-left: 2vw;
+    /* margin-left: 2vw; */
+    box-shadow: 0.25vw 0.25vw 1vw #000;
 }
 .folder .icon{
     display: flex;
@@ -89,7 +90,7 @@ body{
 }
 .folder .edit-button{
     position: absolute;
-    bottom: -2.5vw;
+    bottom: -3vw;
     font-size: 0.8rem;
     font-weight: 500;
     opacity: 1.0;
@@ -118,7 +119,7 @@ body{
     display: none;
     position: absolute;
     width: 20vw;
-    bottom: -2.5vw;
+    bottom: -3vw;
     font-size: 0.8rem;
 }
 .folder .motto button{

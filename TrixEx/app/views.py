@@ -69,7 +69,7 @@ def logout(request):
     context = {
         'username' : user.username
     }
-    return render(request, 'logout.html', context)
+    return redirect('/TrixEx.com')
 
 # DEMO ACCOUNT
 # Creates demo account
@@ -120,6 +120,7 @@ def create(request):
         }
         return render(request, 'create.html', context)
     if request.method == 'POST':
+        user = User.objects.get(id=request.session['userId'])
         title = request.POST['title']
         css = request.POST['css_input']
         html = request.POST['html_input']
@@ -130,7 +131,7 @@ def create(request):
         margin_left = request.POST['margin_left']
         owner = User.objects.get(id=request.session['userId'])
         Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
-        return redirect('/TrixEx.com/home')
+        return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
 # Edit Project
 # Displays and handles create page
@@ -261,7 +262,7 @@ def comment(request, projectId):
     project = Project.objects.get(id=projectId)
     content = request.POST['content']
     Comment.objects.create(owner=owner, project=project, content=content)
-    return redirect(f'/TrixEx.com/view/{projectId}')
+    return redirect(f'/TrixEx.com/view/{projectId}#commentSection')
 
 # Create Reply
 def reply(request, commentId):
@@ -269,7 +270,7 @@ def reply(request, commentId):
     comment = Comment.objects.get(id=commentId)
     content = request.POST['content']
     Reply.objects.create(owner=owner, comment=comment, content=content)
-    return redirect(f'/TrixEx.com/view/{comment.project.id}')
+    return redirect(f'/TrixEx.com/view/{comment.project.id}#commentSection')
 
 # Update Motto
 def updateMotto(request):
@@ -287,12 +288,12 @@ def deleteProject(request, projectId):
 def deleteComment(request, commentId):
     comment = Comment.objects.get(id=commentId)
     comment.delete()
-    return redirect(f'/TrixEx.com/view/{comment.project.id}')
+    return redirect(f'/TrixEx.com/view/{comment.project.id}#commentSection')
 
 def deleteReply(request, replyId):
     reply = Reply.objects.get(id=replyId)
     reply.delete()
-    return redirect(f'/TrixEx.com/view/{reply.comment.project.id}')
+    return redirect(f'/TrixEx.com/view/{reply.comment.project.id}#commentSection')
 
 
 # AJAX  CALL
