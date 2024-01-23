@@ -1,0 +1,83 @@
+/* Footer */
+body{
+    padding-bottom: 8.5vw;
+}
+.foot{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+/* Projects */
+.projects{
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 12vw;
+    margin-left: 3.5vw;
+}
+.search-key-text{
+    position: absolute;
+    top: -3vw;
+    left: 0;
+}
+.search-key-text span{
+    font-weight: 600;
+}
+.project{
+    margin-right: 3.5vw;
+    margin-bottom: 3vw;
+}
+.projects .empty-message{
+    width: 100vw;
+    font-size: 2rem;
+    font-weight: 600;
+    opacity: 0.4;
+    text-align: center;
+    margin-top: 3vw;
+}
+iframe{
+    width: 28vw;
+    height: 15.75vw;
+    border: 1px solid #ffffff20;
+    box-shadow: 0.25vw 0.25vw 1vw;
+    border-radius: 3vw;
+}
+iframe:hover{
+    transform-origin: bottom;
+    transform: scale(1.05) ;
+    transition: transform 0.2s ease;
+}
+.project .icon-bar{
+    position: relative;
+    font-weight: 600;
+    margin-top: 0.5vw;
+    padding-left: 1vw;
+    font-size: 1rem;
+    letter-spacing: 0;
+}
+.projects i{
+    margin-right: 1vw;
+    cursor: pointer;
+}
+.projects .fa-bookmark{
+    font-size: 1.7rem;
+    color: #218bff;
+    opacity: 0.4;
+}
+.projects .fa-thumbs-up{
+    font-size: 1.5rem;
+    color: #ffffff;
+    opacity: 0.85;
+}
+.projects .selected{
+    opacity: 1;
+}
+.projects .link{
+    position: absolute;
+    right: 0;
+    font-size: 0.8rem;
+    font-weight: 400;
+    letter-spacing: 0.05vw;
+}
+

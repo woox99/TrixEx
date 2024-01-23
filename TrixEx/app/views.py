@@ -2,6 +2,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
+from django.db.models import Q
+
 
 import bcrypt
 
@@ -163,8 +165,8 @@ def bookmarks(request):
     user = User.objects.get(id=request.session['userId'])
     
     # Create sets for bookmarks and likes for BigO(1) lookup
-    bookmarked_projectIds_set = set()
     projects = user.bookmarked_projects.all().order_by('bookmarked_users__created_at')[::-1]
+    bookmarked_projectIds_set = set()
     for project in projects:
         bookmarked_projectIds_set.add(project.id)
     liked_projectIds_set = set()
@@ -179,6 +181,32 @@ def bookmarks(request):
         'liked_projectIds_set' : liked_projectIds_set,
     }
     return render(request, 'bookmarks.html', context)
+
+# SEARCH
+# Displays search page
+def search(request):
+    user = User.objects.get(id=request.session['userId'])
+    
+    # Create sets for bookmarks and likes for BigO(1) lookup
+    searchKey = request.POST['searchKey']
+    projects = Project.objects.filter(Q(title__icontains=searchKey) | Q(owner__username__icontains=searchKey), is_public = True)
+    bookmarked_projects = user.bookmarked_projects.all()
+    bookmarked_projectIds_set = set()
+    for project in bookmarked_projects:
+        bookmarked_projectIds_set.add(project.id)
+    liked_projectIds_set = set()
+    liked_projects = user.liked_projects.all()
+    for project in liked_projects:
+        liked_projectIds_set.add(project.id)
+
+    context = {
+        'user' : user,
+        'projects' : projects,
+        'bookmarked_projectIds_set' : bookmarked_projectIds_set,
+        'liked_projectIds_set' : liked_projectIds_set,
+        'searchKey' : searchKey,
+    }
+    return render(request, 'search.html', context)
 
 # VIEW
 # Displays and handles view page
@@ -361,6 +389,26 @@ def getAllByUser(request, userId):
 def getBookmarks(request):
     user = User.objects.get(id=request.session['userId'])
     projects = user.bookmarked_projects.all()
+    
+    # Serialize the projects to JSON
+    serialized_projects = []
+    for project in projects:
+        serialized_projects.append({
+            'id' : project.id,
+            'html': project.html,
+            'css': project.css,
+            'js': project.js,
+            'scale': project.scale,
+            'margin_top': project.margin_top,
+            'margin_left': project.margin_left,
+        })
+    return JsonResponse(serialized_projects, safe=False)
+
+# AJAX CALL
+# Get search result projects (search page)
+def getSearchProjects(request, searchKey):
+    user = User.objects.get(id=request.session['userId'])
+    projects = Project.objects.filter(Q(title__icontains=searchKey) | Q(owner__username__icontains=searchKey), is_public = True)
     
     # Serialize the projects to JSON
     serialized_projects = []
