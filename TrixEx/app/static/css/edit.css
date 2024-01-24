@@ -104,7 +104,7 @@
 .visibility .fa-eye-slash{
     position: absolute;
     left: 4vw;
-    display: none;
+    /* display: none; */
     color: #ff8f8f;
 }
 .private-button{

@@ -39,6 +39,7 @@ let marginTop = parseFloat(marginTopElement.value);
 let marginLeft = parseFloat(marginLeftElement.value);
 const iframe = document.createElement('iframe');
 function updatePreview() {
+    console.log(scale)
     const htmlCode = htmlEditor.getValue();
     const cssCode = cssEditor.getValue();
     const jsCode = jsEditor.getValue();

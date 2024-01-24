@@ -81,9 +81,9 @@
                 <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
             </div>
             <input id="is-public" type="hidden" name="is_public" value="True">
-            <input id="scale" type="hidden" name="scale" value="1.0">
-            <input id="margin-top" type="hidden" name="margin_top" value="0">
-            <input id="margin-left" type="hidden" name="margin_left" value="0">
+            <input id="scale" type="hidden" name="scale" value="{{example.scale}}">
+            <input id="margin-top" type="hidden" name="margin_top" value="{{example.margin_top}}">
+            <input id="margin-left" type="hidden" name="margin_left" value="{{example.margin_left}}">
         </div>
 
         <!-- Main -->

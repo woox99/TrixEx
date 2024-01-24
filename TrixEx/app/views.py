@@ -73,6 +73,11 @@ def logout(request):
     }
     return redirect('/TrixEx.com')
 
+# SUPPORT
+# Displays support page
+def support(request):
+    return render(request, 'support.html')
+
 # DEMO ACCOUNT
 # Creates demo account
 def demo(request):
@@ -139,24 +144,26 @@ def create(request):
 # Displays and handles create page
 def edit(request, projectId):
     if request.method == 'GET':
-        example = Project.objects.get(is_example=True)
+        project = Project.objects.get(id=projectId)
         context = {
             'user' : User.objects.get(id=request.session['userId']),
-            'example' : example
+            'project' : project
         }
         return render(request, 'edit.html', context)
     if request.method == 'POST':
-        title = request.POST['title']
-        css = request.POST['css_input']
-        html = request.POST['html_input']
-        js = request.POST['js_input']
-        is_public = request.POST['is_public']
-        scale = request.POST['scale']
-        margin_top = request.POST['margin_top']
-        margin_left = request.POST['margin_left']
-        owner = User.objects.get(id=request.session['userId'])
-        Project.objects.create(title=title, html=html, css=css, js=js, is_public=is_public, scale=scale, margin_top=margin_top, margin_left=margin_left, owner=owner)
-        return redirect('/TrixEx.com/home')
+        user = User.objects.get(id=request.session['userId'])
+        project = Project.objects.get(id=projectId)
+        project.title = request.POST['title']
+        project.css = request.POST['css_input']
+        project.html = request.POST['html_input']
+        project.js = request.POST['js_input']
+        project.is_public = request.POST['is_public']
+        project.scale = request.POST['scale']
+        project.margin_top = request.POST['margin_top']
+        project.margin_left = request.POST['margin_left']
+        project.owner = User.objects.get(id=request.session['userId'])
+        project.save()
+        return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
 
 # BOOKMARKS

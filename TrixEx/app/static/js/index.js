@@ -30,11 +30,6 @@ function rotateCarousel() {
 }
 setInterval(rotateCarousel, 1);
 
-// function turnCarousel() {
-//     currdeg -= 60;
-//     carousel.style.transform = "rotateY(" + currdeg + "deg)";
-// }
-// setInterval(turnCarousel, 3000);
 
 
 // Get all landing projects

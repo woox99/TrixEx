@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrixEx - Support</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/support.css' %}">
+</head>
+
+<body onload="getProjects()">
+
+    <!-- Nav Bar -->
+    <div class="landingNav">
+        <a href="/TrixEx.com" class="logo flex vCenter">
+            <p class="logo green">TrixEx</p>
+            <i class="fa-solid fa-code"></i>
+        </a>
+    </div>
+
+
+    <!-- contact section -->
+    <div class="contact" id="contact-section" data-section="contact">
+        <form action="https://formspree.io/f/mgejpkoe" method="POST" id="form" target="_blank">
+            <p class="header">Contact us</p>
+            <p class="header2 dark">Say hello, or ask for support</p>
+            <input class="name-input" name="subject" type="text" required placeholder="Name">
+            <input class="email-input" name="email" type="email" required placeholder="Email">
+            <textarea name="message" id="" required placeholder="Message"></textarea>
+            <div class="buttonContainer">
+                <button type="submit">Send</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer -->
+    <div class="foot vCenter">
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-linkedin"></i>
+                <p>Connect with us</p>
+            </div>
+            <p class="link"><a class="orange" href="https://www.linkedin.com/company/trixex/" target="_blank">Follow</a> us on LinkedIn</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-solid fa-envelope"></i>
+                <p>Support</p>
+            </div>
+            <p class="link"><a class="orange" href="/TrixEx.com/support" target="_blank">Report</a> an issue</p>
+        </div>
+        <div>
+            <div class="flex vCenter group">
+                <i class="fa-brands fa-github"></i>
+                <p>Source Code</p>
+            </div>
+            <p class="link"><a class="orange" href="https://github.com/woox99/TrixEx-2.0" target="_blank">Github</a> or it didn't happen</p>
+        </div>
+        <p class="copyright">© 2024 TrixEx</p>
+    </div>
+
+    <script src="{% static 'js/support.js' %}"></script>
+</body>
+
+</html>

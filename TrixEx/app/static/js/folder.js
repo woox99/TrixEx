@@ -154,6 +154,8 @@ const makePublic = (projectId) => {
     privateIcon.style.display = 'none';
     publicButtonElement.style.display = 'none';
     privateButtonElement.style.display = 'flex';
+
+    hideSelect(projectId);
 }
 const makePrivate = (projectId) => {
     publicButtonElement = document.querySelector(`[data-public-button-projectId='${projectId}']`)
@@ -163,6 +165,8 @@ const makePrivate = (projectId) => {
     privateIcon.style.display = 'flex';
     publicButtonElement.style.display = 'flex';
     privateButtonElement.style.display = 'none';
+
+    hideSelect(projectId);
 }
 
 // Show confirm delete

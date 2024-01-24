@@ -51,39 +51,39 @@
                 <i class="fa-solid fa-bookmark"></i>
                 <p>Saved</p>
             </a>
-            <a href="" class="icon">
-                <i class="fa-solid fa-cloud-arrow-up selected"></i>
-                <p class="selected">Create</p>
+            <a href="/TrixEx.com/create" class="icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p class="">Create</p>
             </a>
         </div>
     </div>
 
     <!-- Text Editor -->
-    <form action="/TrixEx.com/create" method="POST">
+    <form action="/TrixEx.com/edit/{{project.id}}" method="POST">
         {% csrf_token %}
         <div class="editor-display">
             <div class="html">
                 <div class="label">
                     <p><i class="fa-brands fa-html5"></i>HTML</p>
                 </div>
-                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{example.html}}</p></textarea>
+                <textarea id="htmlEditor" name="html_input" oninput="updatePreview()">{{project.html}}</textarea>
             </div>
             <div class="css">
                 <div class="label">
                     <p><i class="fa-brands fa-css3-alt"></i>CSS</p>
                 </div>
-                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{example.css}}</textarea>
+                <textarea id="cssEditor" name="css_input" oninput="updatePreview()">{{project.css}}</textarea>
             </div>
             <div class="js">
                 <div class="label">
                     <p><i class="fa-brands fa-square-js"></i>JS</p>
                 </div>
-                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{example.js}}</textarea>
+                <textarea id="jsEditor" name="js_input" oninput="updatePreview()">{{project.js}}</textarea>
             </div>
-            <input id="is-public" type="hidden" name="is_public" value="True">
-            <input id="scale" type="hidden" name="scale" value="1.0">
-            <input id="margin-top" type="hidden" name="margin_top" value="0">
-            <input id="margin-left" type="hidden" name="margin_left" value="0">
+            <input id="is-public" type="hidden" name="is_public" value="{{project.is_public}}">
+            <input id="scale" type="hidden" name="scale" value="{{project.scale}}">
+            <input id="margin-top" type="hidden" name="margin_top" value="{{project.margin_top}}">
+            <input id="margin-left" type="hidden" name="margin_left" value="{{project.margin_left}}">
         </div>
 
         <!-- Main -->
@@ -91,13 +91,23 @@
             <div id="screen"></div>
             <div class="controls">
                 <div class="relative vCenter">
+                    {% if project.is_public == 1 %}
                     <div class="visibility vCenter">
                         <p class="selected public-button" onclick="togglePublic(this)">Public</p>
                         <i class="fa-solid fa-eye public-icon"></i>
-                        <i class="fa-solid fa-eye-slash private-icon"></i>
+                        <i class="fa-solid fa-eye-slash private-icon hide"></i>
                         <p class="private-button" onclick="togglePrivate(this)">Private</p>
                     </div>
-                    <input type="text" name="title" placeholder="Title" minlength="3" maxlength="20" required>
+                    {% endif %}
+                    {% if project.is_public == 0 %}
+                    <div class="visibility vCenter">
+                        <p class=" public-button" onclick="togglePublic(this)">Public</p>
+                        <i class="fa-solid fa-eye public-icon hide"></i>
+                        <i class="fa-solid fa-eye-slash private-icon"></i>
+                        <p class="selected private-button" onclick="togglePrivate(this)">Private</p>
+                    </div>
+                    {% endif %}
+                    <input type="text" name="title" value="{{project.title}}" minlength="3" maxlength="20" required>
                 </div>
                 <button type="submit" class="flex">
                     <i class="fa-regular fa-folder-open"></i>
