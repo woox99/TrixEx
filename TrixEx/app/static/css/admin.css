@@ -1,0 +1,28 @@
+/* index.css */
+
+*{
+    
+}
+.foot {
+    position: absolute;
+    bottom: 0;
+}
+.stats{
+    margin-top: 10vw;
+    padding-left: 7vw;
+}
+table{
+    padding-left: 5vw;
+    color: white;
+    margin-top: 4vw;
+    margin-bottom: 5vw;
+}
+th{
+    text-align: left;
+    /* background-color: red; */
+    padding-left: 2vw;
+}
+td{
+    padding-left: 2vw;
+
+}

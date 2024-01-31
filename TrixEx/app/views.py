@@ -4,7 +4,6 @@ from django.contrib import messages
 from django.http import JsonResponse, HttpResponse
 from django.db.models import Q
 
-
 import bcrypt
 
 from .models import User, Project, Comment, Reply
@@ -68,15 +67,45 @@ def login(request):
 def logout(request):
     user = User.objects.get(id=request.session['userId'])
     del request.session['userId']
-    context = {
-        'username' : user.username
-    }
     return redirect('/TrixEx.com')
 
 # SUPPORT
 # Displays support page
 def support(request):
     return render(request, 'support.html')
+
+# ADMIN
+# Displays and handles admin page
+def admin(request):
+    user = User.objects.get(id=request.session['userId'])
+    users = User.objects.filter(is_demo=0).order_by('-created_at')
+    context = {
+        'user' : user,
+        'users' : users
+    }
+    return render(request, 'admin.html', context)
+
+# TOGGLE ADMIN
+def toggle_admin(request, userId):
+    user = User.objects.get(id=userId)
+    if(user.is_admin == 0):
+        user.is_admin = 1
+        user.save()
+    else:
+        user.is_admin = 0 
+        user.save()
+    return redirect('/TrixEx.com/admin')
+
+# TOGGLE AUTH
+def toggle_auth(request, userId):
+    user = User.objects.get(id=userId)
+    if(user.is_authorized == 0):
+        user.is_authorized = 1
+        user.save()
+    else:
+        user.is_authorized = 0 
+        user.save()
+    return redirect('/TrixEx.com/admin')
 
 # DEMO ACCOUNT
 # Creates demo account
@@ -196,6 +225,8 @@ def search(request):
     
     # Create sets for bookmarks and likes for BigO(1) lookup
     searchKey = request.POST['searchKey']
+    if searchKey == '':
+        return redirect('/TrixEx.com/home')
     projects = Project.objects.filter(Q(title__icontains=searchKey) | Q(owner__username__icontains=searchKey), is_public = True)
     bookmarked_projects = user.bookmarked_projects.all()
     bookmarked_projectIds_set = set()
@@ -416,7 +447,6 @@ def getBookmarks(request):
 def getSearchProjects(request, searchKey):
     user = User.objects.get(id=request.session['userId'])
     projects = Project.objects.filter(Q(title__icontains=searchKey) | Q(owner__username__icontains=searchKey), is_public = True)
-    
     # Serialize the projects to JSON
     serialized_projects = []
     for project in projects:

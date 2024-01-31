@@ -118,6 +118,7 @@ button:hover{
     border-radius: 10vw;
     color: #ffffff;
     padding-left: 3vw;
+    padding-right: 1vw;
 }
 .nav button{
     position: absolute;

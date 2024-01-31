@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrixEx - Support</title>
+    {% load static %}
+    <link rel="icon" href="{% static 'assets/icon.png' %}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.1/css/all.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin.css' %}">
+</head>
+
+<body onload="getProjects()">
+
+    <!-- Nav Bar -->
+    <div class="nav">
+        <a href="/TrixEx.com/home" class="logo">
+            <i class="fa-solid fa-code"></i>
+        </a>
+        <div class="icons">
+            <a href="/TrixEx.com/home" class="icon">
+                <i class="fa-solid fa-house"></i>
+                <p class="">Home</p>
+            </a>
+            <a href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="icon">
+                <i class="fa-regular fa-folder-open"></i>
+                <p>Folder</p>
+            </a>
+            <a href="/TrixEx.com/bookmarks" class="icon">
+                <i class="fa-solid fa-bookmark"></i>
+                <p>Saved</p>
+            </a>
+            <a href="/TrixEx.com/create" class="icon">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <p>Create</p>
+            </a>
+        </div>
+        <div class="username">
+            <p class="welcome"><span class="dark">Welcome,</span> <a
+                    href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="blue">{{user.username}}</a></p>
+            <a href="/TrixEx.com/logout" class="icon">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <!-- <p>Logout</p> -->
+            </a>
+        </div>
+    </div>
+
+    <div class="stats">
+        <p>Total site visits:</p>
+        <p>Site visits since last admin loggin:</p>
+        <p>--</p>
+        <p>Total demo accounts:</p>
+        <p>New demo accounts since last admin loggin:</p>
+    </div>
+
+    <table>
+        <thead>
+            <th>Email</th>
+            <th>Username</th>
+            <th>Created At</th>
+            <th>Authorized</th>
+            <th>Admin</th>
+        </thead>
+        <tbody>
+            {% for existing_user in users %}
+            <tr>
+                <td>{{existing_user.email}}</td>
+                <td>{{existing_user.username}}</td>
+                <td>{{existing_user.created_at}}</td>
+                {% if existing_user.is_authorized == 0 %}
+                <td>{{existing_user.is_authorized}} <a href="/TrixEx.com/toggle/auth/{{existing_user.id}}" class="blue">Auth</a></td>
+                {% endif %}
+                {% if existing_user.is_authorized == 1 %}
+                <td>{{existing_user.is_authorized}} <a href="/TrixEx.com/toggle/auth/{{existing_user.id}}" class="blue">Undo</a></td>
+                {% endif %}
+                {% if existing_user.is_admin == 0 %}
+                <td>{{existing_user.is_admin}} <a href="/TrixEx.com/toggle/admin/{{existing_user.id}}" class="blue">Admin</a></td>
+                {% endif %}
+                {% if existing_user.is_admin == 1 %}
+                <td>{{existing_user.is_admin}} <a href="/TrixEx.com/toggle/admin/{{existing_user.id}}" class="blue">Undo</a></td>
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+
+
+    <script src="{% static 'js/admin.js' %}"></script>
+</body>
+
+</html>
