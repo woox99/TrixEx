@@ -14,6 +14,7 @@ urlpatterns = [
     path('TrixEx.com/edit/<int:projectId>', views.edit),
     path('TrixEx.com/search', views.search),
     path('TrixEx.com/admin', views.admin),
+    path('TrixEx.com/admin/reset', views.reset_stats),
     path('TrixEx.com/toggle/admin/<int:userId>', views.toggle_admin),
     path('TrixEx.com/toggle/auth/<int:userId>', views.toggle_auth),
     path('TrixEx.com/logout', views.logout),

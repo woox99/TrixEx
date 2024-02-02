@@ -48,11 +48,12 @@
     </div>
 
     <div class="stats">
-        <p>Total site visits:</p>
-        <p>Site visits since last admin loggin:</p>
+        <p>Recent site visits: {{stats.recent_visits}}</p>
         <p>--</p>
-        <p>Total demo accounts:</p>
-        <p>New demo accounts since last admin loggin:</p>
+        <p>Recent demo accounts: {{stats.recent_demos}}</p>
+        <p>--</p>
+        <a class="blue" href="/TrixEx.com/admin/reset">Reset</a>
+        <p>Last reset: {{stats.updated_at}}</p>
     </div>
 
     <table>

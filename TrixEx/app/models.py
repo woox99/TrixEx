@@ -50,9 +50,8 @@ class User(models.Model):
     is_demo = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
     is_authorized = models.BooleanField(default=False)
-    # is_banned = models.BooleanField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     following = models.ManyToManyField('self', symmetrical=False, related_name='followers')
     objects = UserManager() 
     # projects
@@ -78,7 +77,7 @@ class Project(models.Model):
     margin_left = models.FloatField()
     views = models.IntegerField(default = 0)
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     bookmarked_users = models.ManyToManyField(User, related_name="bookmarked_projects")
     liked_users = models.ManyToManyField(User, related_name="liked_projects")
     # comments
@@ -89,7 +88,7 @@ class Comment(models.Model):
     content = models.TextField()
     liked_users = models.ManyToManyField(User, related_name="liked_comments")
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     # replies
 
 class Reply(models.Model):
@@ -97,7 +96,10 @@ class Reply(models.Model):
     comment = models.ForeignKey(Comment, related_name="replies", on_delete=models.CASCADE)
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-
+class Stats(models.Model):
+    recent_visits = models.IntegerField(default=0)
+    recent_demos = models.IntegerField(default=0)
+    updated_at = models.DateTimeField(auto_now=True)
 

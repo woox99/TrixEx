@@ -6,17 +6,27 @@ from django.db.models import Q
 
 import bcrypt
 
-from .models import User, Project, Comment, Reply
+from .models import User, Project, Comment, Reply, Stats
 
 # INDEX
 # Validates and creates user registration
 def index(request):
     if request.method == 'GET':
+        # Increment recent visits count
+        try:
+            stats = Stats.objects.get(id=1)
+            stats.recent_visits += 1
+            stats.save()
+        except Stats.DoesNotExist:
+            Stats.objects.create(recent_visits = 1, recent_demos =0)  
+
+        # Get landing projects
         projects = Project.objects.filter(is_landing=1)
         context = {
             'projects' : projects,
         }
         return render(request, 'index.html', context)
+    
     # Register user if POST
     if request.method == 'POST':
         # Validate registration
@@ -79,9 +89,11 @@ def support(request):
 def admin(request):
     user = User.objects.get(id=request.session['userId'])
     users = User.objects.filter(is_demo=0).order_by('-created_at')
+    stats = Stats.objects.get(id=1)
     context = {
         'user' : user,
-        'users' : users
+        'users' : users,
+        'stats' : stats
     }
     return render(request, 'admin.html', context)
 
@@ -116,6 +128,11 @@ def demo(request):
     is_demo = True
     demo = User.objects.create(username=username, is_demo=is_demo, email=email)
     request.session['userId'] = demo.id
+
+    # Increment recent demo accounts count
+    stats = Stats.objects.get(id=1)
+    stats.recent_demos += 1
+    stats.save()
     return redirect('/TrixEx.com/home')
 
 # HOME
@@ -150,6 +167,7 @@ def home(request):
 def create(request):
     if request.method == 'GET':
         example = Project.objects.get(is_example=True)
+        
         context = {
             'user' : User.objects.get(id=request.session['userId']),
             'example' : example
@@ -157,11 +175,14 @@ def create(request):
         return render(request, 'create.html', context)
     if request.method == 'POST':
         user = User.objects.get(id=request.session['userId'])
+        if user.is_authorized:
+            is_public = request.POST['is_public']
+        else:
+            is_public = 0
         title = request.POST['title']
         css = request.POST['css_input']
         html = request.POST['html_input']
         js = request.POST['js_input']
-        is_public = request.POST['is_public']
         scale = request.POST['scale']
         margin_top = request.POST['margin_top']
         margin_left = request.POST['margin_left']
@@ -361,6 +382,12 @@ def deleteReply(request, replyId):
     reply.delete()
     return redirect(f'/TrixEx.com/view/{reply.comment.project.id}#commentSection')
 
+def reset_stats(request):
+    stats = Stats.objects.get(id=1)
+    stats.recent_visits = 0
+    stats.recent_demos = 0
+    stats.save()
+    return redirect('/TrixEx.com/admin')
 
 # AJAX  CALL
 # Get all public projects (home page)
