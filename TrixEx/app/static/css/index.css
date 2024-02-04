@@ -275,3 +275,104 @@ iframe{
 .carousel :nth-child(6) {
     transform: rotateY(300deg) translateZ(24vw);
 }
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .landingNav .logo{
+        font-size: 4rem;
+    }
+    .landingNav i{
+        font-size: 3rem;
+        margin-top: 1vw;
+    }
+    .landingNav .links{
+        font-size: 3.25rem;
+    }
+    .sideBar{
+        top: 19vw;
+        margin-left: 1vw;
+    }
+    .sideBar i{
+        font-size: 4rem;
+        top: 3vw;
+    }
+    .sideBar .gradient{
+        width: 10vw;
+        height: 10vw;
+    }
+    .sideBar .greenBlueBar{
+        height: 54vw;
+    }
+    .sideBar .blueOrangeBar{
+        height: 84vw;
+    }
+    .intro{
+        margin-top: 10vw;
+    }
+    .intro .dark{
+        font-size: 4rem;
+    }
+    .section{
+        margin-left: 15vw;
+    }
+    .registerSection{
+        margin-top: 20vw !important;
+    }
+    .registerSection .flex{
+        flex-direction: column;
+    }
+    .registerSection .demoAccount{
+        display: none;
+    }
+    .registerSection .header2{
+        letter-spacing: 0;
+    }
+    .demoAccount .button{
+        font-size: 2rem;
+        width: 17vw !important;
+        height: 5vw !important;
+        margin-left: 0 !important;
+    }
+    .registerSection .register{
+        margin-top: 40vw;
+        width: 60vw !important;
+    }
+    .registerSection input{
+        width: 59vw;
+        height: 7vw;
+        padding-left: 7vw;
+    }
+    .registerSection .input i{
+        font-size: 3rem;
+        margin-left: 1vw;
+        margin-top: 1.5vw;
+    }
+    .registerSection .register .flex{
+        align-items: start;
+        font-size: 3rem;
+    }
+    .registerSection .register button{
+        width: 17vw;
+        height: 6.5vw;
+        font-size: 3rem;
+    }
+    .foot{
+        width: unset;
+        height: 12vw;
+        gap: 0;
+    }
+    .foot .group{
+        font-size: 3rem;
+        margin-right: 4vw;
+    }
+    .foot i{
+        font-size: 3rem !important;
+    }
+    .foot .link{
+        font-size: 2rem;
+    }
+    .foot .copyright{
+        display: none;
+    }
+}
