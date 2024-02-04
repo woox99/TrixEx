@@ -89,3 +89,77 @@ iframe:hover{
 .carousel-right-button{
     right: 0;
 }
+
+/* Mobile */
+@media (max-width: 600px) {
+    .nav {
+        height: 10vw;
+        /* background-color: red; */
+    }
+    .nav form{
+        display: none;
+    }
+    .nav .folder-icon,
+    .nav .create-icon,
+    .nav .logout-icon{
+        display: none;
+    }
+    .nav .welcome{
+        display: none;
+    }
+    .nav .icons p{
+        display: none;
+    }
+    .nav .icons .icon{
+        margin-right: 2vw;
+    }
+    .nav i{
+        font-size: 4rem;
+    }
+    .nav .icon i{
+        font-size: 4rem;
+    }
+    .nav .icon p{
+        font-size: 2rem;
+    }
+
+    .projects{
+        flex-wrap: unset;
+        margin-top: 10vw;
+        /* background-color: red; */
+    }
+    .project{
+        margin-top: 0;
+    }
+    iframe{
+        border-radius: 0;
+        width: 100vw;
+        height: 56.25vw;
+        border: none;
+        box-shadow: none;
+    }
+    .project .icon-bar{
+        /* background-color: red; */
+        height: 5vw;
+        margin-top: 0;
+        font-size: 3rem;
+        margin-bottom: 5vw;
+        margin-top: 1vw;
+        padding-left: 2vw;
+    }
+    .projects i{
+        font-size: 4rem !important;
+        margin-right: 3vw;
+    }
+    .project .icon-bar .link{
+        display: none;
+    }
+    .carousel-left-button,
+    .carousel-right-button{
+        display: none;
+    }
+    .foot{
+        display: none;
+    }
+
+}
