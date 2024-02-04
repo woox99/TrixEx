@@ -57,6 +57,7 @@ def login(request):
     if request.method == 'GET':
         return render(request, 'login.html')
     if request.method == 'POST':
+        # Validate login
         errors = User.objects.validate_login(request.POST)
 
         # If login is not valid, return errors
@@ -67,6 +68,7 @@ def login(request):
             }
             context = {**form_data, **errors}
             return render(request, 'login.html', context)
+        
         # If login is valid, get user and store ID in session
         user = User.objects.get(email=request.POST['email'])
         request.session['userId'] = user.id
@@ -75,7 +77,6 @@ def login(request):
 # LOGOUT
 # Displays and handles logout
 def logout(request):
-    user = User.objects.get(id=request.session['userId'])
     del request.session['userId']
     return redirect('/TrixEx.com')
 
@@ -87,7 +88,12 @@ def support(request):
 # ADMIN
 # Displays and handles admin page
 def admin(request):
+    # Route protection
     user = User.objects.get(id=request.session['userId'])
+    if not user.is_admin:
+        return redirect('/TrixEx.com/logout')
+    
+    # Get users and stats for admin display
     users = User.objects.filter(is_demo=0).order_by('-created_at')
     stats = Stats.objects.get(id=1)
     context = {
@@ -99,29 +105,43 @@ def admin(request):
 
 # TOGGLE ADMIN
 def toggle_admin(request, userId):
-    user = User.objects.get(id=userId)
-    if(user.is_admin == 0):
-        user.is_admin = 1
-        user.save()
+    # Route protection
+    user = User.objects.get(id=request.session['userId'])
+    if not user.is_admin:
+        return redirect('/TrixEx.com/logout')
+    
+    # Get user to toggle admin
+    selected_user = User.objects.get(id=userId)
+    if(selected_user.is_admin == 0):
+        selected_user.is_admin = 1
+        selected_user.save()
     else:
-        user.is_admin = 0 
-        user.save()
+        selected_user.is_admin = 0 
+        selected_user.save()
     return redirect('/TrixEx.com/admin')
 
 # TOGGLE AUTH
+# Authorized users can post a public project
 def toggle_auth(request, userId):
-    user = User.objects.get(id=userId)
-    if(user.is_authorized == 0):
-        user.is_authorized = 1
-        user.save()
+    # Route protection
+    user = User.objects.get(id=request.session['userId'])
+    if not user.is_admin:
+        return redirect('/TrixEx.com/logout')
+    
+    # Get user to toggle authorization
+    selected_user = User.objects.get(id=userId)
+    if(selected_user.is_authorized == 0):
+        selected_user.is_authorized = 1
+        selected_user.save()
     else:
-        user.is_authorized = 0 
-        user.save()
+        selected_user.is_authorized = 0 
+        selected_user.save()
     return redirect('/TrixEx.com/admin')
 
 # DEMO ACCOUNT
 # Creates demo account
 def demo(request):
+    # Get demo accounts count to set demo account number
     id = User.objects.all().last().id + 1
     username = 'DemoAccount#' + str(id)
     email = 'demo'
@@ -138,13 +158,15 @@ def demo(request):
 # HOME
 # Displays home page
 def home(request):
+    # Route protection
     if 'userId' not in request.session:
         return redirect('/TrixEx.com')
     user = User.objects.get(id=request.session['userId'])
+
     # Get all public projects to display on home page
     projects = Project.objects.filter(is_public=1).order_by('-created_at')
 
-    # Create sets for bookmarks and likes for BigO(1) lookup
+    # Create sets for bookmarks and likes for BigO(1) search
     bookmarked_projectIds_set = set()
     bookmarked_projects = user.bookmarked_projects.all()
     for project in bookmarked_projects:
@@ -166,6 +188,11 @@ def home(request):
 # Displays and handles create page
 def create(request):
     if request.method == 'GET':
+        # Route protection
+        if 'userId' not in request.session:
+            return redirect('/TrixEx.com')
+        
+        # Get example project to display in iframe
         example = Project.objects.get(is_example=True)
         
         context = {
@@ -201,6 +228,7 @@ def edit(request, projectId):
         }
         return render(request, 'edit.html', context)
     if request.method == 'POST':
+        # Create project
         user = User.objects.get(id=request.session['userId'])
         project = Project.objects.get(id=projectId)
         project.title = request.POST['title']
@@ -219,10 +247,13 @@ def edit(request, projectId):
 # BOOKMARKS
 # Displays and handles bookmarks page
 def bookmarks(request):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
     user = User.objects.get(id=request.session['userId'])
     
     # Create sets for bookmarks and likes for BigO(1) lookup
-    projects = user.bookmarked_projects.all().order_by('bookmarked_users__created_at')[::-1]
+    projects = user.bookmarked_projects.filter(is_public = 1).order_by('bookmarked_users__created_at')[::-1]
     bookmarked_projectIds_set = set()
     for project in projects:
         bookmarked_projectIds_set.add(project.id)
@@ -242,6 +273,9 @@ def bookmarks(request):
 # SEARCH
 # Displays search page
 def search(request):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
     user = User.objects.get(id=request.session['userId'])
     
     # Create sets for bookmarks and likes for BigO(1) lookup
@@ -270,13 +304,17 @@ def search(request):
 # VIEW
 # Displays and handles view page
 def view(request, projectId):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
+    
     user = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=projectId)
     project.views += 1
     project.save()
     comments = project.comments.all().order_by('-created_at')
 
-    # Create sets for bookmarks and likes for BigO(1) lookup
+    # Create sets for bookmarks, likes, comments, and follows for BigO(1) lookup
     bookmarked_projectIds_set = set()
     bookmarked_projects = user.bookmarked_projects.all()
     for bookmarked_project in bookmarked_projects:
@@ -308,6 +346,10 @@ def view(request, projectId):
 # FOLDER
 # Displays and handles folder page
 def folder(request, folder_userId, username):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
+    
     # If viewing own folder, user & folder_user will be same
     user = User.objects.get(id=request.session['userId'])
     folder_user = User.objects.get(id=folder_userId)
@@ -345,6 +387,10 @@ def folder(request, folder_userId, username):
 
 # Create Comment
 def comment(request, projectId):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
+    
     owner = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=projectId)
     content = request.POST['content']
@@ -353,6 +399,10 @@ def comment(request, projectId):
 
 # Create Reply
 def reply(request, commentId):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
+    
     owner = User.objects.get(id=request.session['userId'])
     comment = Comment.objects.get(id=commentId)
     content = request.POST['content']
@@ -361,6 +411,10 @@ def reply(request, commentId):
 
 # Update Motto
 def updateMotto(request):
+    # Route protection
+    if 'userId' not in request.session:
+        return redirect('/TrixEx.com')
+    
     user = User.objects.get(id=request.session['userId'])
     user.motto = request.POST['motto']
     user.save()
@@ -369,20 +423,41 @@ def updateMotto(request):
 def deleteProject(request, projectId):
     user = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=projectId)
+
+    # Route protection
+    if user != project.owner and user.is_admin == False:
+        return redirect('/TrixEx.com/logout')
+    
     project.delete()
     return redirect(f'/TrixEx.com/folder{user.id}/{user.username}')
 
 def deleteComment(request, commentId):
+    user = User.objects.get(id=request.session['userId'])
     comment = Comment.objects.get(id=commentId)
+
+    # Route protection
+    if user != comment.owner and user.is_admin == False:
+        return redirect('/TrixEx.com/logout')
+    
     comment.delete()
     return redirect(f'/TrixEx.com/view/{comment.project.id}#commentSection')
 
 def deleteReply(request, replyId):
+    user = User.objects.get(id=request.session['userId'])
     reply = Reply.objects.get(id=replyId)
+
+    # Route protection
+    if user != reply.owner and user.is_admin == False:
+        return redirect('/TrixEx.com/logout')
     reply.delete()
     return redirect(f'/TrixEx.com/view/{reply.comment.project.id}#commentSection')
 
 def reset_stats(request):
+    user = User.objects.get(id=request.session['userId'])
+    # Route protection
+    if not user.is_admin:
+        return redirect ('/TrixEx.com/logout')
+
     stats = Stats.objects.get(id=1)
     stats.recent_visits = 0
     stats.recent_demos = 0
@@ -453,7 +528,7 @@ def getAllByUser(request, userId):
 # Get all bookmarked projects (bookmarks page)
 def getBookmarks(request):
     user = User.objects.get(id=request.session['userId'])
-    projects = user.bookmarked_projects.all()
+    projects = user.bookmarked_projects.filter(is_public = 1)
     
     # Serialize the projects to JSON
     serialized_projects = []
@@ -472,7 +547,6 @@ def getBookmarks(request):
 # AJAX CALL
 # Get search result projects (search page)
 def getSearchProjects(request, searchKey):
-    user = User.objects.get(id=request.session['userId'])
     projects = Project.objects.filter(Q(title__icontains=searchKey) | Q(owner__username__icontains=searchKey), is_public = True)
     # Serialize the projects to JSON
     serialized_projects = []
@@ -538,6 +612,11 @@ def likeComment(request, commentId):
 def visibility(request, projectId):
     user = User.objects.get(id=request.session['userId'])
     project = Project.objects.get(id=projectId)
+
+    # Route protection
+    if user != project.owner:
+        return redirect('/TrixEx.com/logout')
+    
     if project.is_public == 1:
         project.is_public = 0
         project.save()

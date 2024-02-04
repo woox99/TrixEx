@@ -175,7 +175,7 @@
                     <p data-comment-like-count="{{comment.liked_users.count}}" data-comment-like-count-commentId="{{comment.id}}">{{comment.liked_users.count}}</p>
                     <div class="line"></div>
                     <p class="dark" onclick="showReply({{comment.id}})">Reply</p>
-                    {% if user.id == comment.owner.id %}
+                    {% if user.id == comment.owner.id or user.is_admin == 1 %}
                     <div class="line"></div>
                     <a href="/TrixEx.com/delete/comment/{{comment.id}}" class="dark">Delete</a>
                     {% endif %}
@@ -196,7 +196,7 @@
                         <p class="time-stamp dark">{{reply.created_at|date:"M d, g:i a"}}</p>
                     </div>
                     <p class="comment-content">{{reply.content}}</p>
-                    {% if user.id == reply.owner.id %}
+                    {% if user.id == reply.owner.id or user.is_admin == 1 %}
                     <a href="/TrixEx.com/delete/reply/{{reply.id}}" class="dark">Delete</a>
                     {% endif %}
                 </div>
