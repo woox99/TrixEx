@@ -23,7 +23,6 @@ body{
     border: 1px solid #ffffff10;
     background-color: #ffffff03;
     border-radius: 1vw;
-    /* margin-left: 2vw; */
     box-shadow: 0.25vw 0.25vw 1vw #000;
 }
 .folder .icon{
@@ -178,7 +177,6 @@ body{
     height: 18.5vw;
     margin-right: 3.5vw;
     margin-bottom: 3vw;
-    /* background-color: red; */
 }
 iframe{
     width: 28vw;

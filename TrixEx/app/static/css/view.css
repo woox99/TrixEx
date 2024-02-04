@@ -69,7 +69,6 @@
     height: 10vw;
     width: 60vw;
     margin-top: 40vw;
-    /* border: 1px solid red; */
 }
 
 .icon-bar{
@@ -110,7 +109,6 @@
     width: 1px;
     height: 1.5vw;
     background-color: #ffffff10;
-    /* border: 1px solid #ffffff10; */
     margin: 0 0.5vw;
     border-radius: 5vw;
 }
@@ -194,7 +192,6 @@
 .comments-section{
     width: 50vw;
     min-height: 10vw;
-    /* border: 1px solid white; */
     margin-top: -3vw;
 }
 .comments-section .header i{
@@ -235,7 +232,6 @@ form{
 }
 .comments-section .comment-input{
     margin-left: -1vw;
-    /* width: 52vw; */
 }
 .comments-section button:hover{
     opacity: 0.85;
@@ -246,7 +242,6 @@ form{
 }
 .comment .stamp{
     font-size: 0.8rem;
-    /* font-weight: 400; */
 }
 .comment .username{
     font-weight: 700;
@@ -265,7 +260,6 @@ form{
     width: 0.1vw;
     height: 1vw;
     background-color: #ffffff30;
-    /* background-color: red; */
     margin-left: 0.5vw;
     margin-right: 0.5vw;
 }
