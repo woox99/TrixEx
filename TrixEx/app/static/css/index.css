@@ -302,7 +302,7 @@ iframe{
         height: 10vw;
     }
     .sideBar .greenBlueBar{
-        height: 54vw;
+        height: 92vw;
     }
     .sideBar .blueOrangeBar{
         height: 84vw;
@@ -316,6 +316,48 @@ iframe{
     .section{
         margin-left: 15vw;
     }
+    .container {
+        width: 100vw;
+        height: 56.25vw;
+        transform: scale(0.3);
+        perspective: 300vw;
+    }
+    .carousel {
+    }
+    
+    .item {
+        width: 100vw;
+        height: 56.25vwvw;
+    }
+    
+    iframe{
+        width: 100vw;
+        height: 56.25vw;
+    }
+    .carousel :nth-child(1) {
+        transform: rotateY(0deg) translateZ(86vw);
+    }
+    
+    .carousel :nth-child(2) {
+        transform: rotateY(60deg) translateZ(86vw);
+    }
+    
+    .carousel :nth-child(3) {
+        transform: rotateY(120deg) translateZ(86vw);
+    }
+    
+    .carousel :nth-child(4) {
+        transform: rotateY(180deg) translateZ(86vw);
+    }
+    
+    .carousel :nth-child(5) {
+        transform: rotateY(240deg) translateZ(86vw);
+    }
+    
+    .carousel :nth-child(6) {
+        transform: rotateY(300deg) translateZ(86vw);
+    }
+
     .registerSection{
         margin-top: 20vw !important;
     }
