@@ -36,7 +36,7 @@
                 <p class="selected">Folder</p>
                 {% endif %}
                 {% if user.id != folder_user.id %}
-                <i class="fa-regular fa-folder-open"></i>
+                <i class="fa-regular fa-folder-open folder-icon"></i>
                 <p class="">Folder</p>
                 {% endif %}
             </a>
@@ -44,14 +44,14 @@
                 <i class="fa-solid fa-bookmark"></i>
                 <p>Saved</p>
             </a>
-            <a href="/TrixEx.com/create" class="icon">
+            <a href="/TrixEx.com/create" class="icon create-icon">
                 <i class="fa-solid fa-cloud-arrow-up"></i>
                 <p>Create</p>
             </a>
         </div>
         <div class="username">
             <p class="welcome"><span class="dark">Welcome,</span> <a href="/TrixEx.com/folder{{user.id}}/{{user.username}}" class="blue">{{user.username}}</a></p>
-            <a href="/TrixEx.com/logout" class="icon">
+            <a href="/TrixEx.com/logout" class="icon logout-icon">
                 <i class="fa-solid fa-right-from-bracket"></i>
                 <p class="logout">Logout</p>
             </a>
@@ -251,6 +251,16 @@
             <p class="link"><a class="orange" href="https://github.com/woox99/TrixEx-2.0" target="_blank">Github</a> or it didn't happen</p>
         </div>
         <p class="copyright">© 2024 TrixEx</p>
+    </div>
+
+    <!-- Mobile Alert -->
+    <div class="mobile-alert">
+        <p class="header">This page uses developer tools.</p>
+        <p class="header2">Please visit this page on a desktop device or in landscape mode.</p>
+        <a href="/TrixEx.com/home" class="logo flex vCenter">
+            <p class="logo green">TrixEx</p>
+            <i class="fa-solid fa-code"></i>
+        </a>
     </div>
     <script src="{% static 'js/folder.js' %}"></script>
 </body>

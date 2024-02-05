@@ -285,3 +285,69 @@ iframe:hover{
     margin-top: 2vw;
     cursor: pointer;
 }
+
+/* Mobile */
+@media (max-width: 600px) {
+    .mobile-alert{
+        display: block;
+    }
+    .nav {
+        height: 10vw;
+    }
+    .nav form{
+        display: none;
+    }
+    .nav .folder-icon,
+    .nav .create-icon,
+    .nav .logout-icon{
+        display: none;
+    }
+    .nav .username{
+        display: none;
+    }
+    .nav .icons p{
+        display: none;
+    }
+    .nav .icons .icon{
+        margin-right: 2vw;
+    }
+    .nav i{
+        font-size: 4rem;
+    }
+    .nav .icon i{
+        font-size: 4rem;
+    }
+    .nav .icon p{
+        font-size: 2rem;
+    }
+    .mobile-alert{
+        position: absolute;
+        top: -10vw;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        background-color: #0d1117;
+    }
+    .mobile-alert .header{
+        font-size: 10rem;
+        font-weight: 700;
+        margin-top: 20vw;
+        margin-left: 5vw;
+    }
+    .mobile-alert .header2{
+        font-size: 5rem;
+        font-weight: 500;
+        opacity: 0.4;
+        margin-left: 5vw;
+    }
+    .mobile-alert .logo .logo{
+        font-size: 10rem;
+        font-weight: 800;
+        margin-left: 5vw;
+        margin-top: 5vw;
+    }
+    .mobile-alert .fa-code{
+        font-size: 8rem;
+        margin-top: 7vw;
+    }
+}

@@ -97,3 +97,73 @@ button{
     display: flex;
     justify-content: end;
 }
+
+
+/* MOBILE */
+@media (max-width: 600px) {
+    .landingNav .logo{
+        font-size: 4rem;
+    }
+    .landingNav i{
+        font-size: 3rem;
+        margin-top: 1vw;
+    }
+    .landingNav .links{
+        font-size: 3.25rem;
+    }
+    .header2{
+        font-size: 4rem !important;
+    }
+    form{
+        width: 64vw;
+        margin-top: 20vw;
+    }
+    .input i{
+        font-size: 3.5rem !important;
+        margin-top: 3.5vw !important;
+        margin-left: 1vw !important;
+        margin-right: 1vw !important;
+    }
+    input{
+        width: 60vw !important;
+        height: 8vw !important;
+        padding-left: 4vw !important;
+        margin-top: 2vw;
+    }
+    textarea{
+        width: 60vw;
+        height: 20vw;
+        padding-left: 4vw !important;
+    }
+    .register .error{
+        font-size: 2rem;
+    }
+    form .flex{
+        font-size: 3rem !important;
+        margin-top: 5vw !important;
+    }
+    form button{
+        font-size: 3rem !important;
+        width: 14vw !important;
+        height: 6vw !important;
+    }
+
+    .foot{
+        width: 100%;
+        height: 12vw;
+        gap: 0;
+    }
+    .foot .group{
+        font-size: 3rem;
+        margin-right: 4vw;
+    }
+    .foot i{
+        font-size: 3rem !important;
+    }
+    .foot .link{
+        font-size: 2rem;
+    }
+    .foot .copyright{
+        display: none;
+    }
+}

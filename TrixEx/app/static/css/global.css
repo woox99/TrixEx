@@ -83,6 +83,10 @@ button:hover{
 .hover:hover{
     opacity: 0.85;
 }
+/* Mobile */
+.mobile-alert{
+    display: none;
+}
 
 /* Nav */
 .nav{
@@ -226,3 +230,5 @@ button:hover{
     opacity: 0.4;
     margin-left: 20vw;
 }
+
+
