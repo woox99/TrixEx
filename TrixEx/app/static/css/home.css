@@ -94,7 +94,6 @@ iframe:hover{
 @media (max-width: 600px) {
     .nav {
         height: 10vw;
-        /* background-color: red; */
     }
     .nav form{
         display: none;
@@ -126,7 +125,6 @@ iframe:hover{
     .projects{
         flex-wrap: unset;
         margin-top: 10vw;
-        /* background-color: red; */
     }
     .project{
         margin-top: 0;
@@ -139,7 +137,6 @@ iframe:hover{
         box-shadow: none;
     }
     .project .icon-bar{
-        /* background-color: red; */
         height: 5vw;
         margin-top: 0;
         font-size: 3rem;
@@ -161,5 +158,4 @@ iframe:hover{
     .foot{
         display: none;
     }
-
 }
