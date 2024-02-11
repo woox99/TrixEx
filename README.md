@@ -14,6 +14,8 @@ Store, share, and visualize front-end code. <a href="http://3.133.92.255/TrixEx.
 
 ![Static Badge](https://img.shields.io/badge/Python%20-%20%239A85BE)    ![Static Badge](https://img.shields.io/badge/Django-%20%239A85BE)  ![Static Badge](https://img.shields.io/badge/AWS%20EC2-%20%239A85BE) ![Static Badge](https://img.shields.io/badge/MVC%20Design-%20%239A85BE)
 
+Find the repo for this app in the Flask stack <a href="https://github.com/woox99/TrixEx1.o" target="_blank">here</a>.
+
 
 ## Overview
 
