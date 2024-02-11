@@ -14,6 +14,7 @@ body{
     flex-direction: column;
     flex-wrap: wrap;
     height: 43vw;
+    width: 100vw;
     margin-top: 6.5vw;
     transition: margin-left 0.5s ease;
 }
